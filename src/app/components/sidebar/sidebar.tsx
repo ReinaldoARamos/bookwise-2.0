@@ -1,9 +1,12 @@
 export function Sidebar() {
-    return (
-        <div className='pl-5 pt-5 mb-5 fixed'>
-            <div className="bg-slate-600 ">
-                Hello
-            </div>
-       </div>
-    )
+  return (
+    <div
+      className="fixed mb-5 ml-5 mt-5 bg-slate-600 "
+      style={{ height: "calc(100% - 40px)" }}
+    >
+     <div className="pt-10 px-[52px]">
+        Fala tu
+     </div>
+    </div>
+  );
 }

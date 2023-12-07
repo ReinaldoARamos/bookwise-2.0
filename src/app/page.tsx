@@ -1,15 +1,11 @@
-'use client'
-
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
-import { Sidebar } from './components/sidebar/sidebar'
-
+"use client";
 
 export default function Home() {
-  
   return (
-   <div className='flex'>
-      <Sidebar />
-      <div className='pt-20 ml-48'>fala tu</div>
-   </div>
-)}
+    <div className="flex pl-5">
+      <div className="pt-5">
+        <div className="ml-72 bg-slate-50 text-black">Fala tu</div>
+      </div>
+    </div>
+  );
+}
