@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import {Nunito_Sans} from 'next/font/google'
 import { Sidebar } from "./components/sidebar/sidebar";
 
-const inter = Inter({ subsets: ["latin"] });
+const nunitoSans = Nunito_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,11 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className} >
-      <div className="flex">
-      <Sidebar />
+      <body className={nunitoSans.className}>
+        <Sidebar />
         {children}
-        </div>
       </body>
     </html>
   );
