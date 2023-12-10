@@ -17,21 +17,22 @@ const config: Config = {
         md: "16px",
       },
       gradientColorStops: {
-        'from-teal': '#7FD1CC',
-        'to-purple': '#9694F5',
+        "from-teal": "#7FD1CC",
+        "to-purple": "#9694F5",
       },
       linearGradientDirections: {
-        '45': '45deg',
+        "45": "45deg",
       },
       colors: {
-        singin: '#50B2C0',
-        reviewCard: '#181C2A',
-        custompurple: '#8381D9'
-      }
+        singin: "#50B2C0",
+        latestread: '#252D4A',
+        reviewCard: "#181C2A",
+        custompurple: "#8381D9",
+        custompurple200: "#2A2879",
+
+      },
     },
   },
-  plugins: [
-    require('tailwindcss-gradients'),
-  ],
+  plugins: [require("tailwindcss-gradients")],
 };
 export default config;

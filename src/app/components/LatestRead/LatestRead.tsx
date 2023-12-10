@@ -2,9 +2,9 @@
 import Image from "next/image";
 import { Avatar } from "../Avatar/Avatar";
 
-export function ReviewCard() {
+export function LatestRead() {
   return (
-    <div className="bg-reviewCard rounded-lg ">
+    <div className="bg-latestread rounded-lg ">
       <div className="p-6">
         <Avatar />
         <div className="flex gap-5">
