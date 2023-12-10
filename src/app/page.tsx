@@ -7,7 +7,7 @@ import { LatestRead } from "./components/LatestRead/LatestRead";
 
 export default function Home() {
   return (
-    <div className="flex  ml-96  ">
+    <div className="flex  pl-96  ">
       <div className="pt-[72px] ">
         <div className="flex gap-4 ditems-center pb-10 text-gray-100 text-2xl font-bold">
           <ChartLineUp size={26} className="text-singin" />

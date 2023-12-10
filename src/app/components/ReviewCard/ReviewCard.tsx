@@ -4,7 +4,7 @@ import { Avatar } from "../Avatar/Avatar";
 
 export function ReviewCard() {
   return (
-    <div className="bg-reviewCard rounded-lg ">
+    <div className="bg-reviewCard w-[608px] rounded-lg ">
       <div className="p-6">
         <Avatar />
         <div className="flex gap-5">
@@ -16,10 +16,11 @@ export function ReviewCard() {
                 Edude Bon D Skibdy Toilet
               </span>
             </div>
-            <div className="text-sm text-gray-100 pt-5">
-              Edude edude edude Edude edude edude Edude edude edude Edude edude
-              edude Edude edude edude Edude edude edude Edude edude edude Edude
-              edude edude Edude edude edude Edude edude edude Edude edude edude
+            <div className="text-sm text-gray-100 pt-5 break-words">
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorum
+              totam, modi aliquam deleniti voluptates, sapiente possimus nostrum
+              temporibus iste itaque accusamus aut libero magnam repellat
+              molestiae cum perferendis laborum obcaecati.
             </div>
           </div>
         </div>
