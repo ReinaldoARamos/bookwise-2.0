@@ -24,7 +24,9 @@ const config: Config = {
         '45': '45deg',
       },
       colors: {
-        singin: '#50B2C0'
+        singin: '#50B2C0',
+        reviewCard: '#181C2A',
+        custompurple: '#8381D9'
       }
     },
   },
