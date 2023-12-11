@@ -1,26 +1,24 @@
+import { ProfileInfoItem } from "./Item";
+
 /* eslint-disable @next/next/no-img-element */
 export function ProfileInfo() {
   return (
     <div>
-      <div className="flex fixed  pl-16 pt-[146px] ">
-        <div className="flex flex-col justify-center items-center ">
+      <div className="fixed flex    pt-[146px]">
+        <div className="flex flex-col items-center justify-center  pl-16 border-l  border-white ">
           <img
             src={"https://avatars.githubusercontent.com/u/55931337?v=4"}
             alt=""
             className="h-[72px] w-[72px] rounded-full border-2 border-white "
           />
-          <div className="text-center pt-5 text-xl text-gray-100 font-bold">
+          <div className="pt-5 text-center text-xl font-bold text-gray-100">
             Reinaldo Ramos
           </div>
-          <div className="text-md text-gray-400 pb-10">
-            membro desde 2023
-            </div>
-            <div className="w-8 h-1 bg-white rounded-full"></div>
-            <div className="pt-8">
-          Items
+          <div className="pb-10 text-md text-gray-400">membro desde 2023</div>
+          <div className="h-1 w-8 rounded-full bg-white"></div>
+
+          <ProfileInfoItem text="A" />
         </div>
-        </div>
-      
       </div>
     </div>
   );

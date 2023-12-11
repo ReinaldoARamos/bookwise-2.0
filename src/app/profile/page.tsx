@@ -6,7 +6,7 @@ import { RatedBooks } from "../components/RatedBooks/RatedBooks";
 export default function Profile() {
   return (
     <>
-      <div className="flex  gap-16 pl-96  ">
+      <div className="flex  gap-16 pl-[480px]  ">
         <div className="pt-[72px] ">
           <div className="flex  gap-4 items-center pb-10 text-gray-100 text-2xl font-bold">
             <User size={26} className="text-singin" />

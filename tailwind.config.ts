@@ -29,7 +29,8 @@ const config: Config = {
         reviewCard: "#181C2A",
         custompurple: "#8381D9",
         custompurple200: "#2A2879",
-        searchbar: '#303F73'
+        searchbar: '#303F73',
+        background: '#0E1116'
 
       },
     },
