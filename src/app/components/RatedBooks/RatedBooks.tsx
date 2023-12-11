@@ -4,8 +4,8 @@ import { Star } from "@phosphor-icons/react/dist/ssr";
 export function RatedBooks() {
   return (
     <>
-      <div className="text-md pb-2 text-gray-300">Há 2 dias</div>
-      <div className="p-6 flex flex-col w-[608px] bg-reviewCard rounded-lg">
+      <div className="pb-2 text-md text-gray-300">Há 2 dias</div>
+      <div className="flex w-[608px] flex-col rounded-lg bg-reviewCard p-6">
         <div className="flex gap-6 pb-6">
           <img src="/images/Book.png" width={108} height={152} alt="" />
           <div className="flex flex-col justify-between">
@@ -23,10 +23,10 @@ export function RatedBooks() {
           </div>
         </div>
         <div className="break-words text-justify">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Corporis
-          voluptate dolore cumque odit fugiat est illum optio nesciunt
-          voluptatum molestiae, temporibus inventore exercitationem adipisci
-          sequi culpa eveniet ducimus possimus blanditiis!
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla dolore
+          non, veniam asperiores distinctio omnis amet necessitatibus saepe!
+          Quam veniam minima quia odio nemo, aliquam harum tempora amet officiis
+          non?
         </div>
       </div>
     </>
