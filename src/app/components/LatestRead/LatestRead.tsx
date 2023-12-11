@@ -4,7 +4,7 @@ import { Avatar } from "../Avatar/Avatar";
 
 export function LatestRead() {
   return (
-    <div className="bg-latestread rounded-lg ">
+    <div className="bg-latestread rounded-lg w-[608px] ">
       <div className="p-6">
         <Avatar />
         <div className="flex gap-5">
@@ -16,7 +16,7 @@ export function LatestRead() {
                 Edude Bon D Skibdy Toilet
               </span>
             </div>
-            <div className="text-sm text-gray-100 pt-5">
+            <div className="text-sm text-gray-100 pt-5 break-words">
               Edude edude edude Edude edude edude Edude edude edude Edude edude
               edude Edude edude edude Edude edude edude Edude edude edude Edude
               edude edude Edude edude edude Edude edude edude Edude edude edude
