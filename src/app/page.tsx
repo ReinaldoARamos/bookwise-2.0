@@ -7,6 +7,7 @@ import { LatestRead } from "./components/LatestRead/LatestRead";
 import { ChartLineUp } from "@phosphor-icons/react/dist/ssr";
 
 export default function Home() {
+  
   return (
     <div className="flex  pl-[480px]  ">
       <div className="pt-[72px] ">

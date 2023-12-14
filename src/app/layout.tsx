@@ -22,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={nunitoSans.className}>
+        <div className="">
         <Sidebar />
+        </div>
         {children}
       </body>
     </html>
