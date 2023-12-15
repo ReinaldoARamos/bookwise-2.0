@@ -5,7 +5,7 @@ interface loginButtonProps {
 }
 export function LoginButton({ image, text} : loginButtonProps) {
  return (
-    <button className="pl-6 py-5 bg-reviewCard flex pr-[140px] gap-5 items-center" >
+    <button className="pl-6 py-5 rounded-lg bg-reviewCard flex lg:pr-[140px] gap-5 items-center transition duration-150 hover:bg-latestread hover:text-font" >
        <img width={24} height={20 } alt="" src={`/images/${image}`} />
         {text}
     </button>

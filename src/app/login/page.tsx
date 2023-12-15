@@ -4,10 +4,10 @@ import BookwiseLogo from "../components/logo/Logo";
 
 export default function Login() {
   return (
-    <div className="flex gap-48  pl-3.5">
+    <div className="flex items-center justify-center gap-48  px-5  py-5 lg:justify-normal lg:px-0 lg:py-0 lg:pl-3.5 ">
       <div
         className={
-          "ml-5 mt-5 flex h-screen items-center justify-center rounded-xl bg-[url('/images/LoginBg.png')] px-60"
+          "ml-5 mt-5 hidden h-screen items-center justify-center rounded-xl bg-[url('/images/LoginBg.png')] px-60 lg:flex"
         }
         style={{ height: "calc(100vh - 40px)" }}
       >
