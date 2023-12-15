@@ -14,23 +14,13 @@ export function Sidebar() {
   const [isloginPage, setIsloginPage] = useState<boolean>(false);
 
   const path = usePathname();
-  console.log(path);
-  function Edude() {
-    if (path != "/login") {
-      setIsloginPage(true);
-      console.log(isloginPage);
-    } else {
-      console.log("edude");
-    }
-  }
-  useEffect(() => {
-    Edude();
-  }, []);
 
-  return isloginPage ? (
+  return (
     <div
       className={
-        "fixed mb-5 ml-5 mt-5 flex w-[239px] flex-col justify-between rounded-xl bg-[url('/images/Background.png')]"
+        path === "/login"
+          ? "hidden"
+          : "fixed mb-5 ml-5 mt-5 flex w-[239px] flex-col justify-between rounded-xl bg-[url('/images/Background.png')]"
       }
       style={{ height: "calc(100% - 40px)" }}
     >
@@ -75,7 +65,5 @@ export function Sidebar() {
         )}
       </div>
     </div>
-  ) : (
-    <div></div>
   );
 }
