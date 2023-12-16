@@ -14,7 +14,7 @@ export default function Explorer() {
         <SearchBar />
       </div>
       <div className="pb-12 flex gap-3 flex-wrap">
-        <Tags text={"Tudo"} />
+        <Tags text={"Tudo"} isSelected/>
         <Tags text={"Computação"} />
         <Tags text={"Fantasia"} />
         <Tags text={"Ficção Científica"} />
