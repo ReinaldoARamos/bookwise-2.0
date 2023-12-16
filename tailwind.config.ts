@@ -30,8 +30,10 @@ const config: Config = {
         custompurple: "#8381D9",
         custompurple200: "#2A2879",
         searchbar: '#303F73',
-        background: '#0E1116'
-
+        background: '#0E1116',
+        starpurple: '#8381D9',
+        customgreen300: '#0A313C',
+        customgreen100: '#50B2C0',
       },
     },
   },
