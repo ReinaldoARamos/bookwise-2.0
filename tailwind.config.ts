@@ -34,6 +34,7 @@ const config: Config = {
         starpurple: '#8381D9',
         customgreen300: '#0A313C',
         customgreen100: '#50B2C0',
+        customgreen200: '#255D6A',
       },
     },
   },

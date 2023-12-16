@@ -27,7 +27,7 @@ export function ExplorerBooks({isRead} : ExplorerBooksProps) {
        
       </div>
       <div>
-        {isRead ? <div className=" text-customgreen100 py-1 px-3 bg-customgreen300  font-bold rounded-b-lg  rounded-l-lg">LIDO</div> : <div></div>}
+        {isRead ? <div className=" text-customgreen100 py-1 px-3 bg-customgreen300  font-bold rounded-bl-lg rounded-tr-md ">LIDO</div> : <div></div>}
         </div>
     </div>
   );
