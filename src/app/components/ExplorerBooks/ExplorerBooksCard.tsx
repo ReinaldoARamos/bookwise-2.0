@@ -47,7 +47,7 @@ export function ExplorerBooks({ isRead }: ExplorerBooksProps) {
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 bg-black/50" />
       </Dialog.Portal>
-      <Dialog.Content className="fixed right-0 top-1/2 z-10 h-screen  -translate-y-1/2  transform rounded-md bg-white p-4">
+      <Dialog.Content className="fixed right-0 top-1/2 z-10 h-screen py-16 px-12  -translate-y-1/2  transform rounded-md bg-background ">
         <ReviewDialog />
       </Dialog.Content>
     </Dialog.Root>
