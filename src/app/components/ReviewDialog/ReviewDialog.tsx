@@ -62,7 +62,14 @@ export function ReviewDialog() {
         </div>
         <div className="flex flex-col space-y-3 rounded-lg">
              <Comments />
-           
+             <Comments />
+             <Comments />
+             <Comments />
+             <Comments />
+             <Comments />
+             <Comments />
+             <Comments />
+             <Comments />
         </div>
       </div>
     </>
