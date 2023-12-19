@@ -1,6 +1,7 @@
-import { BookOpen, BookmarkSimple, Star } from "@phosphor-icons/react/dist/ssr";
+import { BookOpen, BookmarkSimple, Star, X } from "@phosphor-icons/react/dist/ssr";
 import { Comments } from "../Comments/Comments";
-
+import * as Dialog from "@radix-ui/react-dialog";
+import { LoginDialog } from "../LoginDialog/LoginDialog";
 /* eslint-disable @next/next/no-img-element */
 export function ReviewDialog() {
   return (
@@ -53,23 +54,36 @@ export function ReviewDialog() {
 
       <div className="pt-[46px]">
         <div className="flex w-full justify-between pb-[22px]">
-          <span className="text-gray-200 text-sm">
-            Avaliações
-          </span>
-          <span className="text-sm text-custompurple font-bold hover:cursor-pointer">
-            Avaliar
-          </span>
+          <span className="text-sm text-gray-200">Avaliações</span>
+          <Dialog.Root>
+            <Dialog.Trigger>
+              <span className="text-sm font-bold text-custompurple hover:cursor-pointer">
+                Avaliar
+              </span>
+            </Dialog.Trigger>
+
+            <Dialog.Portal>
+              <Dialog.Overlay className="fixed inset-0   z-20 bg-background/50" />
+              <Dialog.Content className="fixed  z-30 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center rounded-xl focus:outline-none border- bg-reviewCard  ">
+              <Dialog.Close className="flex w-full justify-end pr-4 py-4 ">
+          <X size={24} />
+        </Dialog.Close>
+        <LoginDialog />
+            </Dialog.Content>
+            </Dialog.Portal>
+           
+          </Dialog.Root>
         </div>
         <div className="flex flex-col space-y-3 rounded-lg">
-             <Comments />
-             <Comments />
-             <Comments />
-             <Comments />
-             <Comments />
-             <Comments />
-             <Comments />
-             <Comments />
-             <Comments />
+          <Comments />
+          <Comments />
+          <Comments />
+          <Comments />
+          <Comments />
+          <Comments />
+          <Comments />
+          <Comments />
+          <Comments />
         </div>
       </div>
     </>
