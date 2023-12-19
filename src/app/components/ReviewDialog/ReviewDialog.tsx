@@ -1,4 +1,5 @@
 import { BookOpen, BookmarkSimple, Star } from "@phosphor-icons/react/dist/ssr";
+import { Comments } from "../Comments/Comments";
 
 /* eslint-disable @next/next/no-img-element */
 export function ReviewDialog() {
@@ -59,23 +60,9 @@ export function ReviewDialog() {
             Avaliar
           </span>
         </div>
-        <div className="flex flex-col space-x-3">
-          
-          <div>Comentarios</div>
-          <div>Comentarios</div>
-          <div>Comentarios</div>
-          <div>Comentarios</div>
-          <div>Comentarios</div>
-          <div>Comentarios</div>
-          <div>Comentarios</div>
-          <div>Comentarios</div>
-          <div>Comentarios</div>
-          <div>Comentarios</div>
-          <div>Comentarios</div>
-          <div>Comentarios</div>
-          <div>Comentarios</div>
-          <div>Comentarios</div>
-          <div>Comentarios</div>
+        <div className="flex flex-col space-y-3 rounded-lg">
+             <Comments />
+           
         </div>
       </div>
     </>
