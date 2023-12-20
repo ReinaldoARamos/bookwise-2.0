@@ -10,13 +10,13 @@ export default function Home() {
   
   return (
     <div className="flex  lg:pl-[480px]  ">
-      <div className="pt-[72px] bg-white  px-6">
-        <h1 className="flex gap-4 ditems-center pb-10 text-gray-100 text-2xl font-bold">
+      <div className="lg:pt-[72px] pt-7  w-full  px-4">
+      <h1 className="flex gap-4 ditems-center pb-10 text-gray-100 text-2xl font-bold">
           <ChartLineUp size={26} className="text-singin" />
           Início
         </h1>
 
-        <div className="flex">
+        <div className="flex lg:flex-row flex-col">
           <div>
             <div className=" pb-5">
               <div className="text-gray-100 text-sm pb-6 ">
@@ -24,6 +24,7 @@ export default function Home() {
               </div>
               <LatestRead />
             </div>
+
             <div className="text-gray-100  text-sm pb-6 ">
               Avaliações mais recentes
             </div>
@@ -34,9 +35,16 @@ export default function Home() {
             </div>
           </div>
 
-          <PopularBooks />
+       
+       <PopularBooks />
+       
         </div>
       </div>
     </div>
   );
 }
+
+/*
+
+
+* */

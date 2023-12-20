@@ -3,7 +3,7 @@ import { Star } from "@phosphor-icons/react";
 
 export function BookReview() {
   return (
-    <div className="px-5 py-[18px] w-80 bg-reviewCard rounded-lg ">
+    <div className="px-5 py-[18px] lg:w-80 w-full bg-reviewCard rounded-lg ">
       <div className="flex gap-5">
         <img src="/images/Book.png" width={64} height={94} alt="" />
         <div className="flex flex-col justify-between">
