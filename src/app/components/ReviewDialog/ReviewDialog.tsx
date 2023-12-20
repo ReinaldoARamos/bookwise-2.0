@@ -1,7 +1,13 @@
-import { BookOpen, BookmarkSimple, Star, X } from "@phosphor-icons/react/dist/ssr";
+import {
+  BookOpen,
+  BookmarkSimple,
+  Star,
+  X,
+} from "@phosphor-icons/react/dist/ssr";
 import { Comments } from "../Comments/Comments";
 import * as Dialog from "@radix-ui/react-dialog";
 import { LoginDialog } from "../LoginDialog/LoginDialog";
+import { ReviewArea } from "../ReviewArea/ReviewArea";
 /* eslint-disable @next/next/no-img-element */
 export function ReviewDialog() {
   return (
@@ -64,17 +70,20 @@ export function ReviewDialog() {
 
             <Dialog.Portal>
               <Dialog.Overlay className="fixed inset-0   z-20 bg-background/50" />
-              <Dialog.Content className="fixed  z-30 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center rounded-xl focus:outline-none border- bg-reviewCard  ">
-              <Dialog.Close className="flex w-full justify-end pr-4 py-4 ">
-          <X size={24} />
-        </Dialog.Close>
-        <LoginDialog />
-            </Dialog.Content>
+              <Dialog.Content className="border-  fixed left-1/2 top-1/2 z-30 flex -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center rounded-xl bg-reviewCard focus:outline-none  ">
+                <div className="flex w-full justify-end py-4 pr-4 ">
+                  <Dialog.Close>
+                    <X size={24} />
+                  </Dialog.Close>
+                </div>
+                <LoginDialog />
+              </Dialog.Content>
             </Dialog.Portal>
-           
           </Dialog.Root>
         </div>
+
         <div className="flex flex-col space-y-3 rounded-lg">
+          <ReviewArea />
           <Comments />
           <Comments />
           <Comments />

@@ -49,9 +49,11 @@ export function ExplorerBooks({ isRead }: ExplorerBooksProps) {
       </Dialog.Portal>
 
       <Dialog.Content className="fixed right-0 top-1/2 z-10 h-screen overflow-auto -translate-y-1/2  transform  rounded-md bg-background px-12 ">
-        <Dialog.Close className="flex w-full justify-end pb-4 pt-7">
+        <div className="flex w-full justify-end pb-4 pt-7">
+        <Dialog.Close >
           <X size={24} />
         </Dialog.Close>
+        </div>
         <ReviewDialog />
         
       </Dialog.Content>
