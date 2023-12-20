@@ -4,7 +4,7 @@ import { Avatar } from "../Avatar/Avatar";
 
 export function LatestRead() {
   return (
-    <div className="bg-latestread rounded-lg w-[608px] ">
+    <div className="bg-latestread rounded-lg lg:w-[608px] ">
       <div className="p-6">
         <Avatar />
         <div className="flex gap-5">

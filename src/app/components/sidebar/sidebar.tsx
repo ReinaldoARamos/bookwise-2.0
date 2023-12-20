@@ -20,7 +20,7 @@ export function Sidebar() {
       className={
         path === "/login"
           ? "hidden"
-          : "fixed mb-5 ml-5 mt-5 flex w-[239px] flex-col justify-between rounded-xl bg-[url('/images/Background.png')]"
+          : "fixed mb-5 ml-5 mt-5 lg:flex w-[239px] hidden   flex-col justify-between rounded-xl bg-[url('/images/Background.png')]"
       }
       style={{ height: "calc(100% - 40px)" }}
     >
