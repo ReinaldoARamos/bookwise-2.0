@@ -70,7 +70,7 @@ export function ReviewDialog() {
 
             <Dialog.Portal>
               <Dialog.Overlay className="fixed inset-0   z-20 bg-background/50" />
-              <Dialog.Content className="border-  fixed left-1/2 top-1/2 z-30 flex -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center rounded-xl bg-reviewCard focus:outline-none  ">
+              <Dialog.Content className="fixed left-1/2 top-1/2 z-30 flex -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center rounded-xl bg-reviewCard focus:outline-none  ">
                 <div className="flex w-full justify-end py-4 pr-4 ">
                   <Dialog.Close>
                     <X size={24} />
