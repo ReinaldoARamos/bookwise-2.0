@@ -5,7 +5,7 @@ import { Tags } from "../components/Tags/Tags";
 
 export default function Explorer() {
   return (
-    <div className="mr-24  flex  flex-col  pl-[480px]">
+    <div className="lg:mr-24  flex px-4 lg:px-0  flex-col  lg:pl-[480px]">
       <div className="pt-[72px]  pb-14 flex justify-between w-full">
         <h1 className="flex items-center gap-4 pb-10 text-2xl w-full font-bold text-gray-100">
           <Binoculars size={26} className="text-singin" />
@@ -28,7 +28,7 @@ export default function Explorer() {
         <Tags text={"Horror"} />
       </div>
 
-      <div className="grid grid-cols-3 gap-5">
+      <div className="lg:grid grid-cols-3 gap-5 hidden">
         <ExplorerBooks isRead />
         <ExplorerBooks />
         <ExplorerBooks />
