@@ -1,11 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { ButtonMd } from "@/typography/Button/ButtonMd/ButtonMd";
 import BookwiseLogo from "../logo/Logo";
-import { Binoculars, ChartLineUp, SignIn } from "@phosphor-icons/react";
+import { Binoculars, SignIn } from "@phosphor-icons/react";
 import { Items } from "./items";
-import { useEffect, useState } from "react";
-import { log } from "console";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 
 export function Sidebar() {
