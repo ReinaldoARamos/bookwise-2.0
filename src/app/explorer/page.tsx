@@ -28,7 +28,7 @@ export default function Explorer() {
         <Tags text={"Horror"} />
       </div>
 
-      <div className="grid  grid-cols-2 lg:grid-cols-3 gap-5 ">
+      <div className="grid  grid-cols-2 lg:grid-cols-3 gap-5 lg:pb-0 pb-4 ">
         <ExplorerBooks isRead />
         <ExplorerBooks />
         <ExplorerBooks />
