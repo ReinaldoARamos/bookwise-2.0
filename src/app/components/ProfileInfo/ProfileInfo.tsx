@@ -4,7 +4,7 @@ import { ProfileInfoItem } from "./Item";
 export function ProfileInfo() {
   return (
     <div>
-      <div className="fixed flex    pt-[146px]">
+      <div className="fixed lg:flex hidden    pt-[146px]">
         <div className="flex flex-col items-center justify-center  pl-16 border-l  border-reviewCard ">
           <img
             src={"https://avatars.githubusercontent.com/u/55931337?v=4"}
