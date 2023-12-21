@@ -7,20 +7,25 @@ export default function Profile() {
   return (
     <>
       <div className="flex  lg:gap-16 lg:pl-[480px]    ">
-        <div className="lg:pt-[72px]  w-full  pt-7 px-4 lg:w-auto   ">
-          <div className="flex  gap-4 items-center pb-10 text-gray-100 text-2xl font-bold">
+        <div className="w-full  px-4  pt-7 lg:w-auto lg:pt-[72px]   ">
+          <div className="flex  items-center gap-4 pb-10 text-2xl font-bold text-gray-100">
             <User size={26} className="text-singin" />
             Perfil
           </div>
           <SearchBar />
+          <div className="block lg:hidden">
+            <ProfileInfo />
+          </div>
           <div className="space-y-6 ">
-          <RatedBooks />
-          <RatedBooks />
-          <RatedBooks />
-          <RatedBooks />
+            <RatedBooks />
+            <RatedBooks />
+            <RatedBooks />
+            <RatedBooks />
           </div>
         </div>
-        <ProfileInfo />
+        <div className="hidden lg:block">
+          <ProfileInfo />
+        </div>
       </div>
     </>
   );
