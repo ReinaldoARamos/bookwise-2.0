@@ -22,7 +22,7 @@ export function ExplorerBooks({ isRead }: ExplorerBooksProps) {
               <div className=" h-6 rounded-bl-lg rounded-tr-md bg-reviewCard  px-3 font-bold text-reviewCard "></div>
             )}
           </div>
-          <div className="flex  gap-5   px-5 pb-6 ">
+          <div className="flex  gap-5 lg:flex-row flex-col lg:justify-normal  items-center  px-5 pb-6 ">
             <img src="/images/Book.png" width={108} height={152} alt="" />
             <div className="flex flex-col justify-between">
               <div className="flex w-full flex-col items-start ">
@@ -48,14 +48,13 @@ export function ExplorerBooks({ isRead }: ExplorerBooksProps) {
         <Dialog.Overlay className="fixed inset-0 bg-black/50" />
       </Dialog.Portal>
 
-      <Dialog.Content className="fixed right-0 top-1/2 z-10 h-screen overflow-auto -translate-y-1/2  transform  rounded-md bg-background px-12 ">
+      <Dialog.Content className="fixed right-0 top-1/2 z-10 h-screen -translate-y-1/2 transform  overflow-auto  rounded-md bg-background px-12 ">
         <div className="flex w-full justify-end pb-4 pt-7">
-        <Dialog.Close >
-          <X size={24} />
-        </Dialog.Close>
+          <Dialog.Close>
+            <X size={24} />
+          </Dialog.Close>
         </div>
         <ReviewDialog />
-        
       </Dialog.Content>
     </Dialog.Root>
   );
