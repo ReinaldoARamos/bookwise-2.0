@@ -13,7 +13,7 @@ export function ExplorerBooks({ isRead }: ExplorerBooksProps) {
     <Dialog.Root>
       <Dialog.Trigger>
         <div className="flex flex-col rounded-lg bg-reviewCard">
-          <div className="flex justify-end">
+          <div className="flex justify-end lg:pb-0 pb-3">
             {isRead ? (
               <div className=" h-6 rounded-bl-lg rounded-tr-md bg-customgreen300  px-3 font-bold text-customgreen100 ">
                 LIDO
@@ -22,17 +22,18 @@ export function ExplorerBooks({ isRead }: ExplorerBooksProps) {
               <div className=" h-6 rounded-bl-lg rounded-tr-md bg-reviewCard  px-3 font-bold text-reviewCard "></div>
             )}
           </div>
-          <div className="flex  gap-5 lg:flex-row flex-col lg:justify-normal  items-center  px-5 pb-6 ">
-            <img src="/images/Book.png" width={108} height={152} alt="" />
-            <div className="flex flex-col justify-between">
-              <div className="flex w-full flex-col items-start ">
+          <div className="flex   gap-5 lg:flex-row flex-col lg:justify-normal lg:items-stretch  items-center  px-5 pb-6 ">
+          <img src="/images/Book.png" width={108} height={152} alt="" />
+            <div className="flex flex-col justify-between ">
+
+              <div className="flex w-full flex-col lg:items-start items-center ">
                 <span className="text-md font-bold text-gray-100 ">
                   {" "}
                   Edude Edude
                 </span>
                 <span className="text-sm text-gray-300">Edude Adventures</span>
               </div>
-              <div className="flex gap-[5px]">
+              <div className="flex gap-[5px] w-full justify-center lg:justify-normal">
                 <Star size={14} color="#8381D9" weight="fill" />
                 <Star size={14} color="#8381D9" weight="fill" />
                 <Star size={14} color="#8381D9" weight="fill" />
