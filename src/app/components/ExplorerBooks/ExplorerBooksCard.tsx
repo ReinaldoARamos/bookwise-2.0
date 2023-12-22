@@ -33,7 +33,7 @@ export function ExplorerBooks({ isRead }: ExplorerBooksProps) {
                 </span>
                 <span className="text-sm text-gray-300">Edude Adventures</span>
               </div>
-              <div className="flex gap-[5px] w-full justify-center lg:justify-normal">
+              <div className="flex gap-[5px] w-full justify-center lg:justify-normal ">
                 <Star size={14} color="#8381D9" weight="fill" />
                 <Star size={14} color="#8381D9" weight="fill" />
                 <Star size={14} color="#8381D9" weight="fill" />

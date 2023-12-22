@@ -15,10 +15,10 @@ export function ReviewDialog() {
       <div className="flex  flex-col rounded-[10px] bg-reviewCard ">
         <div className="flex flex-col  px-8 py-6 ">
           <div className="flex gap-8 border-b  border-b-gray-800 pb-10 ">
-            <img src="/images/Book.png" width={171} height={242} alt="" />
+            <img src="/images/Book.png"  alt=""  className="lg:w-[172] w-auto lg:h-[242px] h-auto"/>
             <div className="flex flex-col  justify-between">
               <div className="flex flex-col space-y-2 ">
-                <h2 className="break-words text-lg font-bold text-gray-100">
+                <h2 className=" text-lg font-bold text-gray-100 ">
                   14 hábitos de um desenvolvedor
                   <br /> altamente produtivo
                 </h2>
@@ -36,12 +36,12 @@ export function ReviewDialog() {
               </div>
             </div>
           </div>
-          <div className="flex gap-[60px] pt-6">
+          <div className="flex lg:gap-[60px] pt-6">
             <div className="flex items-center gap-4">
               <BookmarkSimple size={24} className="text-singin" />
-              <div className="flex flex-col">
-                <span className="text-sm text-gray-300">Caterogia</span>
-                <span className="text-md font-bold text-gray-100">
+              <div className="flex flex-col ">
+                <span className="lg:text-sm text-gray-300 text-sm">Caterogia</span>
+                <span className="lg:text-md  text-sm font-bold text-gray-100">
                   Computação, Educação
                 </span>
               </div>
@@ -50,8 +50,8 @@ export function ReviewDialog() {
             <div className="flex items-center gap-4">
               <BookOpen size={24} className="text-singin" />
               <div className="flex flex-col">
-                <span className="text-sm text-gray-300"> Páginas</span>
-                <span className="text-md font-bold text-gray-100">160</span>
+                <span className="lg:text-sm text-gray-300 text-sm"> Páginas</span>
+                <span className="lg:text-md  text-sm font-bold text-gray-100">160</span>
               </div>
             </div>
           </div>

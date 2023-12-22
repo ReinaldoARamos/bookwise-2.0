@@ -5,23 +5,26 @@ export function ReviewArea() {
   return (
     <div className="flex  flex-col rounded-lg bg-reviewCard p-6">
       <div className="flex items-center justify-between pb-6">
-        <div className="flex items-center  gap-4">
+        <div className="flex items-center  w-full justify-between gap-4">
+          <div className="flex items-center gap-3">
           <img
             src={"https://avatars.githubusercontent.com/u/55931337?v=4"}
             alt=""
             className="h-10 w-10 rounded-full"
           />
-          <span className="text-md font-bold text-gray-100">
+          <span className="text-md font-bold text-gray-100  ">
             Reinaldo Ramos
           </span>
+          </div>
+          <div className="flex gap-[5px]">
+          <Star  color="#8381D9" className="lg:h-6 lg:w-6 h-3 w-3 " />
+          <Star  color="#8381D9" className="lg:h-6 lg:w-6 h-3 w-3 " />
+          <Star  color="#8381D9" className="lg:h-6 lg:w-6 h-3 w-3 " />
+          <Star  color="#8381D9" className="lg:h-6 lg:w-6 h-3 w-3 " />
+          <Star  color="#8381D9" className="lg:h-6 lg:w-6 h-3 w-3 " />
         </div>
-        <div className="flex gap-[5px]">
-          <Star size={24} color="#8381D9" />
-          <Star size={24} color="#8381D9" />
-          <Star size={24} color="#8381D9" />
-          <Star size={24} color="#8381D9" />
-          <Star size={24} color="#8381D9" />
         </div>
+       
       </div>
       <div className="border border-searchbar bg-background">
         <textarea
