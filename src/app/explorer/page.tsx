@@ -2,12 +2,20 @@ import { Binoculars } from "@phosphor-icons/react/dist/ssr";
 import { SearchBar } from "../components/SearchBar/SearchBar";
 import { ExplorerBooks } from "../components/ExplorerBooks/ExplorerBooksCard";
 import { Tags } from "../components/Tags/Tags";
+import { SideBarDropDownMenu } from "../components/SideBarDropDown/SideBarDropDown";
 
 export default function Explorer() {
   return (
     <div className="lg:mr-24  flex px-4 lg:px-0  flex-col  lg:pl-[480px]">
       <div className="lg:pt-[72px] pt-7  pb-14 flex lg:justify-between lg:flex-row flex-col w-full">
-        <h1 className="flex items-center gap-4 pb-10 text-2xl w-full font-bold text-gray-100">
+        <div className="lg:hidden flex justify-between pb-10">
+        <h1 className="flex items-center  gap-4  text-2xl w-full font-bold text-gray-100">
+          <Binoculars size={26} className="text-singin" />
+          Explorar
+        </h1>
+        <SideBarDropDownMenu />
+        </div>
+        <h1 className="lg:flex items-center hidden gap-4 pb-10 text-2xl w-full font-bold text-gray-100">
           <Binoculars size={26} className="text-singin" />
           Explorar
         </h1>
