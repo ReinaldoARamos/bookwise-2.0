@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import {
   Binoculars,
@@ -8,9 +8,10 @@ import {
   User,
 } from "@phosphor-icons/react/dist/ssr";
 import { useRouter } from "next/navigation";
-import { UseRedirect } from "@/app/hooks/UseRedirect";
 
 export function SideBarDropDownMenu() {
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
+
     const RedirectTo = useRouter();
 
      function Redirect(url: string) {
@@ -44,13 +45,17 @@ export function SideBarDropDownMenu() {
             Explorar
            
           </DropdownMenu.Item>
-          <DropdownMenu.Item   onClick={() => Redirect('/profile')} className="group gap-2 items-center text-sm leading-none  rounded-[3px] flex  h-[25px] px-[5px]   outline-none">
-          <div className="group-data-[highlighted]:text-white ">
-              <User size={16} className="text-singin" />
-            </div>
-            Perfil
-           
-          </DropdownMenu.Item>
+         {isLoggedIn ? (
+           <DropdownMenu.Item   onClick={() => Redirect('/profile')} className="group gap-2 items-center text-sm leading-none  rounded-[3px] flex  h-[25px] px-[5px]   outline-none">
+           <div className="group-data-[highlighted]:text-white ">
+               <User size={16} className="text-singin" />
+             </div>
+             Perfil
+            
+           </DropdownMenu.Item>
+         ) : (
+          <></>
+         )}
 
           <DropdownMenu.Arrow className="fill-reviewCard" />
         </DropdownMenu.Content>
