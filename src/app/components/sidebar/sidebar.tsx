@@ -5,6 +5,7 @@ import { Binoculars, SignIn } from "@phosphor-icons/react";
 import { Items } from "./items";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
+import { User } from "@phosphor-icons/react/dist/ssr";
 
 export function Sidebar() {
   const [logged, SetLogged] = useState<boolean>(false);
@@ -28,8 +29,9 @@ export function Sidebar() {
         </div>
 
         <div className="flex flex-col space-y-4">
-          <Items text={"Início"} />
-          <Items text={"Explorar"} icon={Binoculars} />
+          <Items text={"Início"} redirectUrl={"/"} />
+          <Items text={"Explorar"} icon={Binoculars} redirectUrl={"/explorer"} />
+          <Items text={"Perfil"} icon={User} redirectUrl={"/profile"} />
         </div>
       </div>
       <div className="group flex  justify-center pb-6">
