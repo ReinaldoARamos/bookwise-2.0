@@ -15,12 +15,12 @@ export function ReviewDialog() {
   const [HideComment, setHideComment] = useState<boolean>(true);
 
   function ShowComment() {
-    setHideComment(false)
-    console.log("mostrando comentario")
+    setHideComment(false);
+    console.log("mostrando comentario");
   }
   function HideCommentary() {
-    setHideComment(true)
-    console.log("FEchando comentario")
+    setHideComment(true);
+    console.log("FEchando comentario");
   }
   return (
     <>
@@ -34,19 +34,20 @@ export function ReviewDialog() {
             />
             <div className="flex flex-col  justify-between">
               <div className="flex flex-col space-y-2 ">
-                <h2 className=" text-lg font-bold text-gray-100 ">
-                  14 hábitos de um desenvolvedor
-                  <br /> altamente produtivo
+                <h2 className=" text-md  font-bold text-gray-100 lg:text-lg ">
+                  14 hábitos de um desenvolvedor altamente produtivo
                 </h2>
-                <span className="text-md text-gray-300">Zeno Rocha</span>
+                <span className="text-sm text-gray-300 lg:text-md">
+                  Zeno Rocha
+                </span>
               </div>
               <div className="flex flex-col space-y-1">
                 <div className="flex gap-[5px]">
-                  <Star size={17} color="#8381D9" weight="fill" />
-                  <Star size={17} color="#8381D9" weight="fill" />
-                  <Star size={17} color="#8381D9" weight="fill" />
-                  <Star size={17} color="#8381D9" weight="fill" />
-                  <Star size={17} color="#8381D9" weight="fill" />
+                  <Star size={16} color="#8381D9" weight="fill" />
+                  <Star size={16} color="#8381D9" weight="fill" />
+                  <Star size={16} color="#8381D9" weight="fill" />
+                  <Star size={16} color="#8381D9" weight="fill" />
+                  <Star size={16} color="#8381D9" weight="fill" />
                 </div>
                 <span className="text-sm text-gray-400">1 avaliação</span>
               </div>
@@ -85,13 +86,16 @@ export function ReviewDialog() {
         <div className="flex w-full justify-between pb-[22px]">
           <span className="text-sm text-gray-200">Avaliações</span>
           {isLoggedIn ? (
-            <span className="text-sm font-bold text-custompurple hover:cursor-pointer" onClick={() => ShowComment()}>
+            <span
+              className="text-sm font-bold text-custompurple hover:cursor-pointer"
+              onClick={() => ShowComment()}
+            >
               Avaliar
             </span>
           ) : (
             <Dialog.Root>
               <Dialog.Trigger>
-                <span className="text-sm font-bold text-custompurple hover:cursor-pointer" >
+                <span className="text-sm font-bold text-custompurple hover:cursor-pointer">
                   Avaliar
                 </span>
               </Dialog.Trigger>
@@ -112,7 +116,11 @@ export function ReviewDialog() {
         </div>
 
         <div className="flex flex-col space-y-3 rounded-lg">
-        {HideComment ? (<></>) : ( <ReviewArea  onHideCommentary={() => HideCommentary()} />)}
+          {HideComment ? (
+            <></>
+          ) : (
+            <ReviewArea onHideCommentary={() => HideCommentary()} />
+          )}
           <Comments />
           <Comments />
           <Comments />
