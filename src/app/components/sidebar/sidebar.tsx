@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import BookwiseLogo from "../logo/Logo";
-import { Binoculars, SignIn } from "@phosphor-icons/react";
+import { Binoculars, SignIn, SignOut } from "@phosphor-icons/react";
 import { Items } from "./items";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
@@ -13,13 +13,19 @@ export function Sidebar() {
   const [isloginPage, setIsloginPage] = useState<boolean>(false);
 
   const path = usePathname();
+  function Login() {
+    SetLogged(true);
+  }
 
+  function LogOut() {
+    SetLogged(false);
+  }
   return (
     <div
       className={
         path === "/login"
           ? "hidden"
-          : "fixed mb-5 ml-5 mt-5 lg:flex w-[239px] hidden   flex-col justify-between rounded-xl bg-[url('/images/Background.png')]"
+          : "fixed mb-5 ml-5 mt-5 hidden w-[239px] flex-col   justify-between rounded-xl bg-[url('/images/Background.png')] lg:flex"
       }
       style={{ height: "calc(100% - 40px)" }}
     >
@@ -30,8 +36,16 @@ export function Sidebar() {
 
         <div className="flex flex-col space-y-4">
           <Items text={"Início"} redirectUrl={"/"} />
-          <Items text={"Explorar"} icon={Binoculars} redirectUrl={"/explorer"} />
-          <Items text={"Perfil"} icon={User} redirectUrl={"/profile"} />
+          <Items
+            text={"Explorar"}
+            icon={Binoculars}
+            redirectUrl={"/explorer"}
+          />
+          {logged ? (
+            <Items text={"Perfil"} icon={User} redirectUrl={"/profile"} />
+          ) : (
+            <></>
+          )}
         </div>
       </div>
       <div className="group flex  justify-center pb-6">
@@ -44,16 +58,17 @@ export function Sidebar() {
                 className="h-10 w-10 rounded-full"
               />
               <div>Reinaldo</div>
-              <SignIn
+              <SignOut
                 size={24}
-                className="text-md text-red-500 group-hover:text-gray-100"
+                className="text-md text-red-500 group-hover:text-gray-100 hover:cursor-pointer"
+                onClick={() => LogOut()}
               />
             </div>
           </>
         ) : (
           <>
             <div className="item-center flex gap-3">
-              <button className="text-gray-400 group-hover:text-gray-100">
+              <button className="text-gray-400 group-hover:text-gray-100 " onClick={() => Login()}>
                 Login
               </button>
               <SignIn
