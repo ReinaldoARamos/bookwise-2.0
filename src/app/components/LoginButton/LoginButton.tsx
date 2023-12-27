@@ -4,12 +4,12 @@ import { useRouter } from "next/navigation";
 interface loginButtonProps {
     text: string;
     image: string;
-    redirectUrl: string
+    redirectUrl: string 
 }
 export function LoginButton({ image, text, redirectUrl} : loginButtonProps) {
     const RedirectTo = useRouter();
 
-  function Redirect(url : string) {
+  function Redirect(url : string ) {
     RedirectTo.push(url);
   }
  return (

@@ -11,9 +11,11 @@ export function ReviewCard() {
       <div className="rounded-lg bg-reviewCard p-6 lg:w-[608px] ">
         <Avatar />
         <div className="flex  flex-col gap-5 lg:flex-row">
-          <Dialog.Trigger>
+      
             <div className="flex gap-5">
+            <Dialog.Trigger>
               <img src="/images/Book.png" width={108} height={152} alt="" />
+              </Dialog.Trigger>
               <div className=" flex flex-col lg:hidden">
                 <span className="text-sm text-gray-100">O Sigma</span>
                 <span className="text-sm text-gray-400">
@@ -21,7 +23,7 @@ export function ReviewCard() {
                 </span>
               </div>
             </div>
-          </Dialog.Trigger>
+          
           <Dialog.Portal>
             <Dialog.Overlay className="fixed inset-0  lg:bg-black/50 bg-background" />
           </Dialog.Portal>

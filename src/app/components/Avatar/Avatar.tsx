@@ -1,13 +1,24 @@
 import { Star } from "@phosphor-icons/react";
+import { useRouter } from "next/navigation";
 
 /* eslint-disable @next/next/no-img-element */
 export function Avatar() {
+
+  const RedirectTo = useRouter();
+
+  function Redirect(url: string) {
+   
+   RedirectTo.push(url);
+ }
+ 
   return (
     <div className="flex gap-4 lg:pb-10  pb-3">
       <img
         src={"https://avatars.githubusercontent.com/u/55931337?v=4"}
         alt=""
         className="h-10 w-10 rounded-full border border-teal "
+        onClick={() => Redirect('/profile')}
+        
       />
       <div className="flex flex-col  w-full">
         <div className="flex justify-between items-center ">

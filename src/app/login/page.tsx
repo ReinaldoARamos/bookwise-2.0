@@ -23,17 +23,17 @@ export default function Login() {
           <LoginButton
             image="/logos_google-icon.png"
             text="Entrar com o google"
-            redirectUrl={"/"}
+            redirectUrl="/"
           />
           <LoginButton
             image="/Vector.png"
             text="Entrar com o Github"
-            redirectUrl={"/"}
+            redirectUrl="/"
           />
           <LoginButton
             image="/RocketLaunch.png"
             text="Entrar como visitante"
-            redirectUrl={"/"}
+            redirectUrl="/"
           />
         </div>
       </div>
