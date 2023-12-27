@@ -30,7 +30,7 @@ export function ReviewDialog() {
             <img
               src="/images/Book.png"
               alt=""
-              className="h-auto w-auto lg:h-[242px] lg:w-[172]"
+              className="h-auto w-auto lg:h-[242px] lg:w-[172px]"
             />
             <div className="flex flex-col  justify-between">
               <div className="flex flex-col space-y-2 ">

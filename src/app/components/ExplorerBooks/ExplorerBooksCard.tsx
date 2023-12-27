@@ -46,10 +46,10 @@ export function ExplorerBooks({ isRead }: ExplorerBooksProps) {
       </Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black/50" />
+        <Dialog.Overlay className="fixed inset-0  bg-black/50" />
       </Dialog.Portal>
 
-      <Dialog.Content className="fixed lg:right-0 top-1/2 lg:w-auto w-full z-10 h-screen -translate-y-1/2 transform  overflow-auto  rounded-md bg-background px-12 ">
+      <Dialog.Content className="fixed right-0 top-1/2 lg:w-auto w-full z-10 h-screen -translate-y-1/2 transform  overflow-auto  rounded-md bg-background px-12 ">
         <div className="flex w-full justify-end pb-4 pt-7">
           <Dialog.Close>
             <X size={24} />
