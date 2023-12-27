@@ -19,7 +19,7 @@ export function Items({ text, icon: IconComponent = ChartLineUp, redirectUrl }: 
     
   return (
     <div className="flex gap-3 group ">
-      <div className="w-1 h-6 bg-transparent transition duration-150  rounded-full group-hover:block group-hover:bg-white "></div>
+      <div className="w-1 h-6 bg-transparent transition duration-150  rounded-full group-hover:block  group-hover:bg-gradient-to-b from-teal to-purpleguy" />
       <button className=" text-md flex gap-3 transition duration-150 text-gray-400 hover:text-gray-100" onClick={() => Redirect(redirectUrl)}>
         <IconComponent size={24} />
         {text}

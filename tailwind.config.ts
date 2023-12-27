@@ -14,13 +14,14 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+          'linear': 'linear-gradient(to right, rgba(34,164,116,1) 0%, rgba(41,47,143,1) 100%)'
       },
       fontSize: {
         md: "16px",
       },
       gradientColorStops: {
-        "from-teal": "#7FD1CC",
-        "to-purple": "#9694F5",
+        "teal": "#7FD1CC",
+        "purple": "#9694F5",
       },
       linearGradientDirections: {
         "45": "45deg",
@@ -61,6 +62,9 @@ const config: Config = {
         customgreen300: '#0A313C',
         customgreen100: '#50B2C0',
         customgreen200: '#255D6A',
+        teal: "#7FD1CC",
+        purpleguy: "#9694F5",
+       
       },
     },
   },

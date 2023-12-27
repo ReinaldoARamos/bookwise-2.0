@@ -10,7 +10,7 @@ export function ProfileInfo() {
          <img
             src={"https://avatars.githubusercontent.com/u/55931337?v=4"}
             alt=""
-            className="h-[72px] w-[72px] rounded-full border-2 border-white "
+            className="h-[72px] w-[72px] rounded-full border border-teal"
           />
          <div className="flex flex-col">
          <div className="lg:pt-5 text-center text-xl font-bold text-gray-100">
@@ -19,7 +19,7 @@ export function ProfileInfo() {
           <div className="lg:pb-10 text-md text-gray-400">membro desde 2023</div>
          </div>
          </div>
-          <div className="h-1 w-8 rounded-full bg-white hidden lg:block" /> 
+          <div className="h-1 w-8 rounded-full bg-gradient-to-tr from-teal to bg-purpleguy hidden lg:block" /> 
 
           <ProfileInfoItem text="A" />
         </div>

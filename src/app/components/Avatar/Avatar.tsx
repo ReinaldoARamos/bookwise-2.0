@@ -7,7 +7,7 @@ export function Avatar() {
       <img
         src={"https://avatars.githubusercontent.com/u/55931337?v=4"}
         alt=""
-        className="h-10 w-10 rounded-full"
+        className="h-10 w-10 rounded-full border border-teal "
       />
       <div className="flex flex-col  w-full">
         <div className="flex justify-between items-center ">

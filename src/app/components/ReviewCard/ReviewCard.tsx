@@ -8,7 +8,7 @@ export function ReviewCard() {
       <Avatar />
       <div className="flex  flex-col gap-5 lg:flex-row">
         <div className="flex gap-5">
-          <img src="/images/Book.png" width={108} height={152} alt="" />
+          <img src="/images/Book.png" width={108} height={152} alt=""  />
           <div className=" flex flex-col lg:hidden">
             <span className="text-sm text-gray-100">O Sigma</span>
             <span className="text-sm text-gray-400">
