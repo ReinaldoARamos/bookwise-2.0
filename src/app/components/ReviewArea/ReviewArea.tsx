@@ -17,7 +17,7 @@ export function ReviewArea() {
           </span>
           </div>
           <div className="flex gap-[5px]">
-          <Star  color="#8381D9" className="lg:h-6 lg:w-6 h-3 w-3 " />
+          <Star  color="#8381D9" className="lg:h-6 lg:w-6 h-3 w-3 "  />
           <Star  color="#8381D9" className="lg:h-6 lg:w-6 h-3 w-3 " />
           <Star  color="#8381D9" className="lg:h-6 lg:w-6 h-3 w-3 " />
           <Star  color="#8381D9" className="lg:h-6 lg:w-6 h-3 w-3 " />

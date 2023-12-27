@@ -11,12 +11,12 @@ export function BookReview() {
             <span className="text-md text-gray-100 font-bold">Edudes Life</span>
             <span className="text-sm text-gray-400">Edude</span>
           </div>
-          <div className="flex ">
-            <Star size={14} />
-            <Star size={14} />
-            <Star size={14} />
-            <Star size={14} />
-            <Star size={14} />
+          <div className="flex gap-[5px] ">
+            <Star size={14} color="#8381D9" weight="fill" />
+            <Star size={14} color="#8381D9" weight="fill" />
+            <Star size={14} color="#8381D9" weight="fill" />
+            <Star size={14} color="#8381D9" weight="fill" />
+            <Star size={14} color="#8381D9"  />
           </div>
         </div>
       </div>
