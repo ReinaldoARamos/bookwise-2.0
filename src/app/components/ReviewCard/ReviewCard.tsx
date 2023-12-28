@@ -4,6 +4,7 @@ import { Avatar } from "../Avatar/Avatar";
 import * as Dialog from "@radix-ui/react-dialog";
 import { ReviewDialog } from "../ReviewDialog/ReviewDialog";
 import { X } from "@phosphor-icons/react/dist/ssr";
+import { useRouter } from "next/navigation";
 
 interface ReviewCardProps {
   title: string;
@@ -28,10 +29,22 @@ export function ReviewCard({
   avatarurl,
   userId
 }: ReviewCardProps) {
+  const RedirectTo = useRouter();
+
+  function Redirect(url: string) {
+   
+   RedirectTo.push(url);
+ }
+ 
+  /*
+ 
+  * */
+
+       
   return (
     <Dialog.Root>
       <div className="rounded-lg bg-reviewCard p-6 lg:w-[608px] ">
-        <Avatar
+      <Avatar
           ratingNumber={rating}
           name={username}
           date={date}

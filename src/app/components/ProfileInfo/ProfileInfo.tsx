@@ -1,13 +1,19 @@
 import { DateFormatterYear } from "@/utils/DateFormatter";
 import { ProfileInfoItem } from "./Item";
+import { useEffect } from "react";
 
 interface ProfileInfoProps{
   name: string | undefined;
   created_at: string | undefined;
   avatar_url: string | undefined;
+  
 }
+
+
+
 /* eslint-disable @next/next/no-img-element */
 export function ProfileInfo({ avatar_url, created_at, name} : ProfileInfoProps) {
+ 
 
   return (
     <div>
