@@ -11,32 +11,46 @@ interface ReviewCardProps {
   rating: number;
   review: string;
   cover: string;
-
+  username: string;
+  avatarurl: string;
+  date: string;
 }
-export function ReviewCard({author, rating, review, title, cover} : ReviewCardProps)   {
+
+export function ReviewCard({
+  author,
+  rating,
+  review,
+  title,
+  cover,
+  date,
+  username,
+  avatarurl,
+}: ReviewCardProps) {
   return (
     <Dialog.Root>
       <div className="rounded-lg bg-reviewCard p-6 lg:w-[608px] ">
-        <Avatar ratingNumber={rating}/>
+        <Avatar
+          ratingNumber={rating}
+          name={username}
+          date={date}
+          image={avatarurl}
+        />
         <div className="flex  flex-col gap-5 lg:flex-row">
-      
-            <div className="flex gap-5">
+          <div className="flex gap-5">
             <Dialog.Trigger>
-            <img src={cover} width={108} height={152} alt="not found" />
-              </Dialog.Trigger>
-              <div className=" flex flex-col lg:hidden">
-                <span className="text-sm text-gray-100">{author}</span>
-                <span className="text-sm text-gray-400">
-                {title}
-                </span>
-              </div>
+              <img src={cover} width={108} height={152} alt="not found" />
+            </Dialog.Trigger>
+            <div className=" flex flex-col lg:hidden">
+              <span className="text-sm text-gray-100">{author}</span>
+              <span className="text-sm text-gray-400">{title}</span>
             </div>
-          
+          </div>
+
           <Dialog.Portal>
-            <Dialog.Overlay className="fixed inset-0  lg:bg-black/50 bg-background" />
+            <Dialog.Overlay className="fixed inset-0  bg-background lg:bg-black/50" />
           </Dialog.Portal>
 
-          <Dialog.Content className="fixed  right-0 top-1/2 lg:w-auto w-full z-10 h-screen -translate-y-1/2 transform  overflow-auto  rounded-md bg-background px-12 ">
+          <Dialog.Content className="fixed  right-0 top-1/2 z-10 h-screen w-full -translate-y-1/2 transform overflow-auto  rounded-md  bg-background px-12 lg:w-auto ">
             <div className="flex w-full justify-end pb-4 pt-7">
               <Dialog.Close>
                 <X size={24} />
@@ -47,17 +61,14 @@ export function ReviewCard({author, rating, review, title, cover} : ReviewCardPr
           <div className="flex flex-col ">
             <div className=" hidden lg:flex lg:flex-col">
               <span className="text-sm text-gray-100">{title}</span>
-              <span className="text-sm text-gray-400">
-               {author}
-              </span>
+              <span className="text-sm text-gray-400">{author}</span>
             </div>
-            <div className="break-words text-sm  text-gray-100 lg:pt-5">
-           {review}
+            <div className="break-words text-sm text-gray-100 lg:max-w-[432px] lg:pt-5">
+              {review}
             </div>
           </div>
         </div>
       </div>
-
     </Dialog.Root>
   );
 }

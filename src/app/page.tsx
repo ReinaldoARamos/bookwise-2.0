@@ -12,6 +12,7 @@ interface RecentReviewsProps {
   id: string;
   rate: number;
   description: string;
+  created_at: string;
   book: {
     id: string;
     name: string;
@@ -19,6 +20,12 @@ interface RecentReviewsProps {
     summary: string;
     cover_url: string;
   };
+  user: {
+    id: string;
+    name: string;
+    avatar_url: string;
+
+  }
 }
 
 export default function Home() {
@@ -44,11 +51,11 @@ export default function Home() {
 
         <div className="flex flex-col pt-10 lg:flex-row lg:pt-0">
           <div>
-            <div className=" pb-5">
+            <div className=" hidden pb-5">
               <div className="pb-6 text-sm text-gray-100 ">
                 Sua última leitura
               </div>
-              <LatestRead />
+              <LatestRead title={"a"} author={"a"} rating={0} review={"a"} cover={"public/images/o-hobbit.png"} />
             </div>
 
             <div className="pb-6  text-sm text-gray-100 ">
@@ -63,6 +70,9 @@ export default function Home() {
                   review={reviews.description}
                   key={reviews.id}
                   cover={reviews.book.cover_url}
+                  username={reviews.user.name}
+                  avatarurl={reviews.user.avatar_url}
+                  date={"hoje"}
                 />
               ))}
             </div>

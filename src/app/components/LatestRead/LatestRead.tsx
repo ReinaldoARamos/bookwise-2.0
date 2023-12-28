@@ -5,11 +5,20 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { ReviewDialog } from "../ReviewDialog/ReviewDialog";
 import { X } from "@phosphor-icons/react/dist/ssr";
 
-export function LatestRead() {
+interface ReviewCardProps {
+  title: string;
+  author: string;
+  rating: number;
+  review: string;
+  cover: string;
+
+}
+
+export function LatestRead({author, cover, rating, review, title} : ReviewCardProps) {
   return (
     <Dialog.Root>
     <div className="rounded-lg bg-latestread p-6 lg:w-[608px] ">
-      <Avatar />
+      <Avatar ratingNumber={4} name={""} date={""} image={""}/>
       <div className="flex  flex-col gap-5 lg:flex-row">
         <div className="flex gap-5">
         <Dialog.Trigger>
@@ -28,24 +37,22 @@ export function LatestRead() {
             <ReviewDialog />
           </Dialog.Content>
           <div className=" flex flex-col lg:hidden">
-            <span className="text-sm text-gray-100">O Sigma</span>
+            <span className="text-sm text-gray-100">{title}</span>
             <span className="text-sm text-gray-400">
-              Edude Bon D Skibdy Toilet
+             {author}
             </span>
           </div>
         </div>
         <div className="flex flex-col ">
           <div className=" hidden lg:flex lg:flex-col">
-            <span className="text-sm text-gray-100">O Sigma</span>
+            <span className="text-sm text-gray-100">{title}</span>
             <span className="text-sm text-gray-400">
-              Edude Bon D Skibdy Toilet
+           {author}
             </span>
           </div>
-          <div className="text-sm  text-gray-100 lg:pt-5">
-            Edude edude edude Edude edude
-            
-            Edude edude edude Edude edude
-          </div>
+          <div className="break-words text-sm lg:max-w-[432px]  text-gray-100 lg:pt-5">
+          {review}
+            </div>
         </div>
       </div>
     </div>

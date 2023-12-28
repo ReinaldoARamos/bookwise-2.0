@@ -3,9 +3,12 @@ import { useRouter } from "next/navigation";
 
 interface AvatarProps {
   ratingNumber: number;
+  name: string;
+  date: string;
+  image: string;
 }
 /* eslint-disable @next/next/no-img-element */
-export function Avatar({ratingNumber} : AvatarProps) {
+export function Avatar({ratingNumber, date, image, name} : AvatarProps) {
 
   const RedirectTo = useRouter();
 
@@ -17,20 +20,20 @@ export function Avatar({ratingNumber} : AvatarProps) {
   return (
     <div className="flex gap-4 lg:pb-10  pb-3">
       <img
-        src={"https://avatars.githubusercontent.com/u/55931337?v=4"}
+        src={image}
         alt=""
-        className="h-10 w-10 rounded-full border border-teal "
+        className="h-10 w-10 rounded-full border border-teal hover:cursor-pointer"
         onClick={() => Redirect('/profile')}
         
       />
       <div className="flex flex-col  w-full">
         <div className="flex justify-between items-center ">
-          <span className="text-gray-100">Edude Agatha</span>
+          <span className="text-gray-100">{name}</span>
           <div>
             {ratingNumber}
           </div>
         </div>
-        <span className="text-gray-400">Hoje</span>
+        <span className="text-gray-400">{date}</span>
       </div>
     </div>
   );
