@@ -5,8 +5,32 @@ import { PopularBooks } from "./components/LatestBooks/PopularBooks";
 import { LatestRead } from "./components/LatestRead/LatestRead";
 import { ChartLineUp } from "@phosphor-icons/react/dist/ssr";
 import { SideBarDropDownMenu } from "./components/SideBarDropDown/SideBarDropDown";
+import { useQuery } from "@tanstack/react-query";
+import { api } from "@/lib/axios";
+
+interface RecentReviewsProps {
+  id: string;
+  rate: number;
+  description: string;
+  book: {
+    id: string;
+    name: string;
+    author: string;
+    summary: string;
+    cover_url: string;
+  };
+}
 
 export default function Home() {
+  const { isLoading, data } = useQuery<RecentReviewsProps[]>({
+    queryKey: ["Tasks"],
+    queryFn: async () => {
+      const response = await api.get(`/recentreviews`);
+      console.log(response.data);
+      return response.data;
+    },
+  });
+
   return (
     <div className="flex  lg:pl-[480px]  ">
       <div className="w-full px-4  pt-7   lg:pt-[72px]">
@@ -31,9 +55,16 @@ export default function Home() {
               Avaliações mais recentes
             </div>
             <div className="space-y-3">
-              <ReviewCard />
-              <ReviewCard />
-              <ReviewCard />
+              {data?.map((reviews) => (
+                <ReviewCard
+                  title={reviews.book.name}
+                  author={reviews.book.author}
+                  rating={reviews.rate}
+                  review={reviews.description}
+                  key={reviews.id}
+                  cover={reviews.book.cover_url}
+                />
+              ))}
             </div>
           </div>
 

@@ -4,6 +4,7 @@ import "./globals.css";
 import { Nunito_Sans } from "next/font/google";
 import { Sidebar } from "./components/sidebar/sidebar";
 import { usePathname } from "next/navigation";
+import { Provider } from "@/utils/Provider";
 
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
@@ -25,7 +26,7 @@ export default function RootLayout({
       <body className={nunitoSans.className}>
         <Sidebar />
 
-        {children}
+        <Provider>{children}</Provider>
       </body>
     </html>
   );

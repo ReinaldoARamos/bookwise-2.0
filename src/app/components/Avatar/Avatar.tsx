@@ -1,8 +1,11 @@
 import { Star } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
 
+interface AvatarProps {
+  ratingNumber: number;
+}
 /* eslint-disable @next/next/no-img-element */
-export function Avatar() {
+export function Avatar({ratingNumber} : AvatarProps) {
 
   const RedirectTo = useRouter();
 
@@ -23,16 +26,23 @@ export function Avatar() {
       <div className="flex flex-col  w-full">
         <div className="flex justify-between items-center ">
           <span className="text-gray-100">Edude Agatha</span>
-            <div className="flex gap-[5px]">
-              <Star  className="h-4 w-4 lg:h-6 lg:w-6" color="#8381D9" weight="fill" />
-              <Star  className="h-4 w-4 lg:h-6 lg:w-6" color="#8381D9" weight="fill" />
-              <Star  className="h-4 w-4 lg:h-6 lg:w-6" color="#8381D9" weight="fill" />
-              <Star  className="h-4 w-4 lg:h-6 lg:w-6" color="#8381D9" weight="fill" />
-              <Star  className="h-4 w-4 lg:h-6 lg:w-6" color="#8381D9" weight="fill" />
-            </div>
+          <div>
+            {ratingNumber}
+          </div>
         </div>
         <span className="text-gray-400">Hoje</span>
       </div>
     </div>
   );
 }
+
+
+/*
+  <div className="flex gap-[5px]">
+              <Star  className="h-4 w-4 lg:h-6 lg:w-6" color="#8381D9" weight="fill" />
+              <Star  className="h-4 w-4 lg:h-6 lg:w-6" color="#8381D9" weight="fill" />
+              <Star  className="h-4 w-4 lg:h-6 lg:w-6" color="#8381D9" weight="fill" />
+              <Star  className="h-4 w-4 lg:h-6 lg:w-6" color="#8381D9" weight="fill" />
+              <Star  className="h-4 w-4 lg:h-6 lg:w-6" color="#8381D9" weight="fill" />
+            </div>
+* */

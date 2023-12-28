@@ -5,21 +5,29 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { ReviewDialog } from "../ReviewDialog/ReviewDialog";
 import { X } from "@phosphor-icons/react/dist/ssr";
 
-export function ReviewCard() {
+interface ReviewCardProps {
+  title: string;
+  author: string;
+  rating: number;
+  review: string;
+  cover: string;
+
+}
+export function ReviewCard({author, rating, review, title, cover} : ReviewCardProps)   {
   return (
     <Dialog.Root>
       <div className="rounded-lg bg-reviewCard p-6 lg:w-[608px] ">
-        <Avatar />
+        <Avatar ratingNumber={rating}/>
         <div className="flex  flex-col gap-5 lg:flex-row">
       
             <div className="flex gap-5">
             <Dialog.Trigger>
-              <img src="/images/Book.png" width={108} height={152} alt="" />
+            <img src={cover} width={108} height={152} alt="not found" />
               </Dialog.Trigger>
               <div className=" flex flex-col lg:hidden">
-                <span className="text-sm text-gray-100">O Sigma</span>
+                <span className="text-sm text-gray-100">{author}</span>
                 <span className="text-sm text-gray-400">
-                  Edude Bon D Skibdy Toilet
+                {title}
                 </span>
               </div>
             </div>
@@ -38,13 +46,13 @@ export function ReviewCard() {
           </Dialog.Content>
           <div className="flex flex-col ">
             <div className=" hidden lg:flex lg:flex-col">
-              <span className="text-sm text-gray-100">O Sigma</span>
+              <span className="text-sm text-gray-100">{title}</span>
               <span className="text-sm text-gray-400">
-                Edude Bon D Skibdy Toilet
+               {author}
               </span>
             </div>
             <div className="break-words text-sm  text-gray-100 lg:pt-5">
-              Edude ed edudeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+           {review}
             </div>
           </div>
         </div>
