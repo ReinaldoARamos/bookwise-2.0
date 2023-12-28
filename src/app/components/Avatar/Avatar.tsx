@@ -1,3 +1,4 @@
+
 import { Star } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
 
@@ -6,39 +7,42 @@ interface AvatarProps {
   name: string;
   date: string;
   image: string;
+  userId: string;
 }
 /* eslint-disable @next/next/no-img-element */
-export function Avatar({ratingNumber, date, image, name} : AvatarProps) {
-
+export function Avatar({
+  ratingNumber,
+  date,
+  image,
+  name,
+  userId,
+}: AvatarProps) {
   const RedirectTo = useRouter();
 
-  function Redirect(url: string) {
-   
-   RedirectTo.push(url);
- }
- 
+  function Redirect(id: string) {
+    RedirectTo.push(id);
+  }
+
+  
+
   return (
-    <div className="flex gap-4 lg:pb-10  pb-3">
+    <div className="flex gap-4 pb-3  lg:pb-10">
       <img
         src={image}
         alt=""
         className="h-10 w-10 rounded-full border border-teal hover:cursor-pointer"
-        onClick={() => Redirect('/profile')}
-        
+        onClick={() => Redirect(`/${userId}`)}
       />
-      <div className="flex flex-col  w-full">
-        <div className="flex justify-between items-center ">
+      <div className="flex w-full  flex-col">
+        <div className="flex items-center justify-between ">
           <span className="text-gray-100">{name}</span>
-          <div>
-            {ratingNumber}
-          </div>
+          <div>{ratingNumber}</div>
         </div>
         <span className="text-gray-400">{date}</span>
       </div>
     </div>
   );
 }
-
 
 /*
   <div className="flex gap-[5px]">
@@ -48,4 +52,6 @@ export function Avatar({ratingNumber, date, image, name} : AvatarProps) {
               <Star  className="h-4 w-4 lg:h-6 lg:w-6" color="#8381D9" weight="fill" />
               <Star  className="h-4 w-4 lg:h-6 lg:w-6" color="#8381D9" weight="fill" />
             </div>
+
+                
 * */

@@ -28,14 +28,14 @@ export function ReviewDialog() {
         <div className="flex flex-col  px-8 py-6 ">
           <div className="flex gap-8 border-b  border-b-gray-800 pb-10 ">
             <img
-              src="/images/Book.png"
+              src="images/books/o-hobbit.png"
               alt=""
-              className="h-auto w-auto lg:h-[242px] lg:w-[172px]"
+              className="h-36 w-auto lg:h-[242px] lg:w-[172px]"
             />
             <div className="flex flex-col  justify-between">
               <div className="flex flex-col space-y-2 ">
                 <h2 className=" text-md  font-bold text-gray-100 lg:text-lg ">
-                  14 hábitos de um desenvolvedor altamente produtivo
+                 O Hobbit
                 </h2>
                 <span className="text-sm text-gray-300 lg:text-md">
                   Zeno Rocha

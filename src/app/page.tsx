@@ -79,6 +79,7 @@ export default function Home() {
                   username={reviews.user.name}
                   avatarurl={reviews.user.avatar_url}
                   date={relativeDateFormatter(reviews.created_at)}
+                  userId={reviews.user.id}
                 />
               ))}
             </div>

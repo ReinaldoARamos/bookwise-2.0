@@ -8,7 +8,7 @@ export function RatedBooks() {
      <div className="pb-2 text-md text-gray-300 ">Há 2 dias</div>
       <div className="flex lg:w-[608px] flex-col rounded-lg bg-reviewCard p-6">
         <div className="flex gap-6 pb-6">
-          <img src="/images/Book.png" width={108} height={152} alt="" />
+          <img src="/images/books/o-hobbit.png" width={108} height={152} alt="" />
           <div className="flex flex-col justify-between">
             <div className="flex flex-col space-y-0.5">
               <span>Edude</span>

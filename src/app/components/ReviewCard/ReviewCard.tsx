@@ -14,6 +14,7 @@ interface ReviewCardProps {
   username: string;
   avatarurl: string;
   date: string;
+  userId: string;
 }
 
 export function ReviewCard({
@@ -25,6 +26,7 @@ export function ReviewCard({
   date,
   username,
   avatarurl,
+  userId
 }: ReviewCardProps) {
   return (
     <Dialog.Root>
@@ -34,6 +36,7 @@ export function ReviewCard({
           name={username}
           date={date}
           image={avatarurl}
+          userId={userId}
         />
         <div className="flex  flex-col gap-5 lg:flex-row">
           <div className="flex gap-5">
