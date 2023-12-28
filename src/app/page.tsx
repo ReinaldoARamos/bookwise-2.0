@@ -7,6 +7,7 @@ import { ChartLineUp } from "@phosphor-icons/react/dist/ssr";
 import { SideBarDropDownMenu } from "./components/SideBarDropDown/SideBarDropDown";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
+import { relativeDateFormatter } from "@/utils/DateFormatter";
 
 interface RecentReviewsProps {
   id: string;
@@ -24,8 +25,7 @@ interface RecentReviewsProps {
     id: string;
     name: string;
     avatar_url: string;
-
-  }
+  };
 }
 
 export default function Home() {
@@ -55,7 +55,13 @@ export default function Home() {
               <div className="pb-6 text-sm text-gray-100 ">
                 Sua última leitura
               </div>
-              <LatestRead title={"a"} author={"a"} rating={0} review={"a"} cover={"public/images/o-hobbit.png"} />
+              <LatestRead
+                title={"a"}
+                author={"a"}
+                rating={0}
+                review={"a"}
+                cover={"public/images/o-hobbit.png"}
+              />
             </div>
 
             <div className="pb-6  text-sm text-gray-100 ">
@@ -72,7 +78,7 @@ export default function Home() {
                   cover={reviews.book.cover_url}
                   username={reviews.user.name}
                   avatarurl={reviews.user.avatar_url}
-                  date={"hoje"}
+                  date={relativeDateFormatter(reviews.created_at)}
                 />
               ))}
             </div>
