@@ -66,6 +66,7 @@ export default function Explorer() {
             author={books.author}
             rating={books.averageRating}
             cover={books.cover_url}
+            id={books.id}
           />
         ))}
       </div>
