@@ -6,9 +6,13 @@ import { ReviewDialog } from "../ReviewDialog/ReviewDialog";
 
 interface ExplorerBooksProps {
   isRead?: boolean;
+  title: string;
+  author: string;
+  rating: number;
+  cover: string;
 }
 /* eslint-disable @next/next/no-img-element */
-export function ExplorerBooks({ isRead }: ExplorerBooksProps) {
+export function ExplorerBooks({ isRead, author, rating,title, cover }: ExplorerBooksProps) {
   return (
     <Dialog.Root>
       <Dialog.Trigger>
@@ -23,22 +27,18 @@ export function ExplorerBooks({ isRead }: ExplorerBooksProps) {
             )}
           </div>
           <div className="flex   gap-5 lg:flex-row flex-col lg:justify-normal lg:items-stretch  items-center  px-5 pb-6 ">
-          <img src="/images/Book.png" width={108} height={152} alt="" />
+          <img src={cover} width={108} height={152} alt="" />
             <div className="flex flex-col justify-between ">
 
               <div className="flex w-full flex-col lg:items-start items-center ">
                 <span className="text-md font-bold text-gray-100 ">
                   {" "}
-                  Edude Edude
+                {title}
                 </span>
-                <span className="text-sm text-gray-300">Edude Adventures</span>
+                <span className="text-sm text-gray-300">{author}</span>
               </div>
               <div className="flex gap-[5px] w-full justify-center lg:justify-normal ">
-                <Star size={14} color="#8381D9" weight="fill" />
-                <Star size={14} color="#8381D9" weight="fill" />
-                <Star size={14} color="#8381D9" weight="fill" />
-                <Star size={14} color="#8381D9" />
-                <Star size={14} color="#8381D9" />
+               {rating}
               </div>
             </div>
           </div>
@@ -60,3 +60,12 @@ export function ExplorerBooks({ isRead }: ExplorerBooksProps) {
     </Dialog.Root>
   );
 }
+
+
+/*
+ <Star size={14} color="#8381D9" weight="fill" />
+                <Star size={14} color="#8381D9" weight="fill" />
+                <Star size={14} color="#8381D9" weight="fill" />
+                <Star size={14} color="#8381D9" />
+                <Star size={14} color="#8381D9" />
+* */

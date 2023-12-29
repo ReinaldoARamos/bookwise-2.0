@@ -52,54 +52,58 @@ export default function Home() {
 
   return (
     <div className="flex  lg:pl-[480px]  ">
-      <div className="w-full px-4  pt-7   lg:pt-[72px]">
-        <div className="flex justify-between   lg:justify-normal lg:pb-10">
-          <h1 className="ditems-center flex gap-4 text-2xl font-bold text-gray-100">
-            <ChartLineUp size={26} className="text-singin" />
-            Início
-          </h1>
-          <SideBarDropDownMenu />
-        </div>
-
-        <div className="flex flex-col pt-10 lg:flex-row lg:pt-0">
-          <div>
-            <div className=" hidden pb-5">
-              <div className="pb-6 text-sm text-gray-100 ">
-                Sua última leitura
-              </div>
-              <LatestRead
-                title={"a"}
-                author={"a"}
-                rating={0}
-                review={"a"}
-                cover={"public/images/o-hobbit.png"}
-              />
-            </div>
-
-            <div className="pb-6  text-sm text-gray-100 ">
-              Avaliações mais recentes
-            </div>
-            <div className="space-y-3">
-              {data?.map((reviews) => (
-                <ReviewCard
-                  title={reviews.book.name}
-                  author={reviews.book.author}
-                  rating={reviews.rate}
-                  review={reviews.description}
-                  key={reviews.id}
-                  cover={reviews.book.cover_url}
-                  username={reviews.user.name}
-                  avatarurl={reviews.user.avatar_url}
-                  date={relativeDateFormatter(reviews.created_at)}
-                  userId={reviews.user.id}
-                />
-              ))}
-            </div>
+      {isLoading ? (
+        <div></div>
+      ) : (
+        <div className="w-full px-4  pt-7   lg:pt-[72px]">
+          <div className="flex justify-between   lg:justify-normal lg:pb-10">
+            <h1 className="ditems-center flex gap-4 text-2xl font-bold text-gray-100">
+              <ChartLineUp size={26} className="text-singin" />
+              Início
+            </h1>
+            <SideBarDropDownMenu />
           </div>
 
-          <PopularBooks />
+          <div className="flex flex-col pt-10 lg:flex-row lg:pt-0">
+            <div>
+              <div className=" hidden pb-5">
+                <div className="pb-6 text-sm text-gray-100 ">
+                  Sua última leitura
+                </div>
+                <LatestRead
+                  title={"a"}
+                  author={"a"}
+                  rating={0}
+                  review={"a"}
+                  cover={"public/images/o-hobbit.png"}
+                />
+              </div>
+
+              <div className="pb-6  text-sm text-gray-100 ">
+                Avaliações mais recentes
+              </div>
+              <div className="space-y-3">
+                {data?.map((reviews) => (
+                  <ReviewCard
+                    title={reviews.book.name}
+                    author={reviews.book.author}
+                    rating={reviews.rate}
+                    review={reviews.description}
+                    key={reviews.id}
+                    cover={reviews.book.cover_url}
+                    username={reviews.user.name}
+                    avatarurl={reviews.user.avatar_url}
+                    date={relativeDateFormatter(reviews.created_at)}
+                    userId={reviews.user.id}
+                  />
+                ))}
+              </div>
+            </div>
+
+            <PopularBooks />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
