@@ -67,21 +67,20 @@ export function ExplorerBooks({
         </div>
       </Dialog.Trigger>
 
-      <Dialog.Portal >
+      <Dialog.Portal>
         <Dialog.Overlay
-         
+          className="fixed inset-0  bg-black/50"
           onClick={ClearQueryCash}
         />
+        <Dialog.Content className="fixed right-0 top-1/2 z-10 h-screen w-full -translate-y-1/2 transform overflow-auto  rounded-md  bg-background px-12 lg:w-auto ">
+          <div className="flex w-full justify-end pb-4 pt-7">
+            <Dialog.Close>
+              <X size={24} onClick={ClearQueryCash} />
+            </Dialog.Close>
+          </div>
+          <ReviewDialog id={id} />
+        </Dialog.Content>
       </Dialog.Portal>
-
-      <Dialog.Content className="fixed right-0 top-1/2 z-10 h-screen w-full -translate-y-1/2 transform overflow-auto  rounded-md  bg-background px-12 lg:w-auto ">
-        <div className="flex w-full justify-end pb-4 pt-7">
-          <Dialog.Close>
-            <X size={24} onClick={ClearQueryCash} />
-          </Dialog.Close>
-        </div>
-        <ReviewDialog id={id}  />
-      </Dialog.Content>
     </Dialog.Root>
   );
 }

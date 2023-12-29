@@ -12,8 +12,16 @@ export async function GET(
       const data = await prisma.book.findUnique({
         where: {id },
         include: {
-            ratings: true,
-            categories: true,
+            ratings: {
+              include: {
+                user: true
+              }
+            },
+            categories: {
+              include: {
+                category: true
+              }
+            }
             
 
         }
