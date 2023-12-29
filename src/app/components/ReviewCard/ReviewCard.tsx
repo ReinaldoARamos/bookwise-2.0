@@ -5,6 +5,8 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { ReviewDialog } from "../ReviewDialog/ReviewDialog";
 import { X } from "@phosphor-icons/react/dist/ssr";
 import { useRouter } from "next/navigation";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { api } from "@/lib/axios";
 
 interface ReviewCardProps {
   title: string;
@@ -27,30 +29,27 @@ export function ReviewCard({
   date,
   username,
   avatarurl,
-  userId
+  userId,
 }: ReviewCardProps) {
+  const queryClient = useQueryClient();
   const RedirectTo = useRouter();
+  function Redirect(id: string) {
+    RedirectTo.push(id);
+  }
 
-  function Redirect(url: string) {
-   
-   RedirectTo.push(url);
- }
- 
-  /*
- 
-  * */
-
-       
   return (
     <Dialog.Root>
       <div className="rounded-lg bg-reviewCard p-6 lg:w-[608px] ">
-      <Avatar
-          ratingNumber={rating}
-          name={username}
-          date={date}
-          image={avatarurl}
-          userId={userId}
-        />
+
+          <Avatar
+            ratingNumber={rating}
+            name={username}
+            date={date}
+            image={avatarurl}
+            userId={userId}
+          />
+   
+
         <div className="flex  flex-col gap-5 lg:flex-row">
           <div className="flex gap-5">
             <Dialog.Trigger>

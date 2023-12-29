@@ -5,9 +5,10 @@ import { PopularBooks } from "./components/LatestBooks/PopularBooks";
 import { LatestRead } from "./components/LatestRead/LatestRead";
 import { ChartLineUp } from "@phosphor-icons/react/dist/ssr";
 import { SideBarDropDownMenu } from "./components/SideBarDropDown/SideBarDropDown";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
 import { relativeDateFormatter } from "@/utils/DateFormatter";
+import { useEffect } from "react";
 
 interface RecentReviewsProps {
   id: string;
@@ -37,6 +38,17 @@ export default function Home() {
       return response.data;
     },
   });
+
+  const queryClient = useQueryClient();
+
+  function teste() {
+    queryClient.removeQueries({ queryKey: ["userId"], exact: true });
+    console.log("removendo query do cache");
+  }
+
+  useEffect(() => {
+    teste();
+  }, []);
 
   return (
     <div className="flex  lg:pl-[480px]  ">
