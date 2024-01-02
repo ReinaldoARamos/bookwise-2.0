@@ -7,6 +7,8 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
 import { RatedStars } from "../RatedStars/RatedStarts";
+import { User } from "lucide-react";
+import { relativeDateFormatter } from "@/utils/DateFormatter";
 
 /* eslint-disable @next/next/no-img-element */
 interface ReviewDialogProps {
@@ -22,6 +24,12 @@ interface ReviewDialogProps {
       rate: number;
       description: string;
       created_at: string;
+
+      user: {
+        id: string;
+        name: string;
+        avatar_url: string;
+      };
     }
   ];
   categories?: [
@@ -58,8 +66,12 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
 
   const RatingArray = data?.ratings;
 
+  const RatingQuantity = data?.ratings?.length;
+
   //@ts-ignore
-  const booksWithAverageRating = RatingArray?.reduce((sum, ratings) => sum + ratings.rate, 0) /data?.ratings?.length;
+  const booksWithAverageRating =
+    RatingArray?.reduce((sum, ratings) => sum + ratings.rate, 0) /
+    data?.ratings?.length;
 
   console.log("teste" + booksWithAverageRating);
   return (
@@ -74,16 +86,26 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
             />
             <div className="flex flex-col  justify-between">
               <div className="flex flex-col space-y-2 ">
-                <h2 className=" text-md  font-bold text-gray-100 lg:text-lg ">
+                <h2 className=" max-w-[120px]  text-md font-bold text-gray-100  lg:max-w-sm   lg:text-lg">
                   {data?.name}
                 </h2>
                 <span className="text-sm text-gray-300 lg:text-md">
                   {data?.author}
                 </span>
               </div>
+
               <div className="flex flex-col space-y-1">
                 <RatedStars star={Math.floor(booksWithAverageRating)} />
-                <span className="text-sm text-gray-400">1 avaliação</span>
+                {/* @ts-ignore */}
+                {RatingQuantity >= 0 ? (
+                  <span className="text-sm text-gray-400">
+                    {RatingQuantity} Avaliação{" "}
+                  </span>
+                ) : (
+                  <span className="text-sm text-gray-400">
+                    {RatingQuantity} Avaliações
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -92,7 +114,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
               <BookmarkSimple size={24} className="text-singin" />
               <div className="flex flex-col ">
                 <span className="text-sm text-gray-300 lg:text-sm">
-                  Caterogia
+                  Categoria
                 </span>
                 <span
                   className="text-sm  font-bold text-gray-100 lg:text-md"
@@ -161,11 +183,17 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
             <ReviewArea onHideCommentary={() => HideCommentary()} />
           )}
           {data?.ratings?.map((rates) => (
-            <Comments key={rates.id} />
+            <Comments
+              key={rates.id}
+              user={rates.user.name}
+              date={relativeDateFormatter(rates.created_at)}
+              avatar={rates.user.avatar_url}
+              commentary={rates.description}
+              rating={rates.rate}
+            />
           ))}
         </div>
       </div>
     </>
   );
 }
-// {HideComment ? (<></>) : ( <ReviewArea />)}

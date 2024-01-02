@@ -101,8 +101,10 @@ export default function Profile() {
       rating.book.name.toLowerCase().includes(value.toLowerCase())
     );
 
-    console.log(filteredBooks);
+      return filteredBooks
   };
+
+
 
   return (
     <>

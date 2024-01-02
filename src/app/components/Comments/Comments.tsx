@@ -1,8 +1,17 @@
 import { Star } from "@phosphor-icons/react/dist/ssr";
 import { useRouter } from "next/navigation";
+import { RatedStars } from "../RatedStars/RatedStarts";
 
+
+interface CommentProps {
+  user: string;
+  date: string;
+  avatar: string;
+  commentary: string;
+  rating: number;
+}
 /* eslint-disable @next/next/no-img-element */
-export function Comments() {
+export function Comments({avatar, commentary,date, rating,user} : CommentProps) {
   const RedirectTo = useRouter();
 
   function Redirect(url: string) {
@@ -13,29 +22,21 @@ export function Comments() {
     <div className="flex flex-col rounded-lg bg-reviewCard p-6">
       <div className="flex  items-center gap-4 pb-5 ">
         <img
-          src={"https://avatars.githubusercontent.com/u/55931337?v=4"}
+          src={avatar}
           alt=""
           className="h-10 w-10 rounded-full border border-teal"
           onClick={() => Redirect("/profile")}
         />
         <div className=" flex w-full justify-between">
           <div>
-            <div className="text-md font-bold text-gray-100">Reinaldo</div>
-            <div className="text-sm text-gray-400">Há 2 dias</div>
+            <div className="text-md font-bold text-gray-100">{user}</div>
+            <div className="text-sm text-gray-400">{date}</div>
           </div>
-          <div className="flex gap-[5px]">
-            <Star size={14} color="#8381D9" weight="fill" />
-            <Star size={14} color="#8381D9" weight="fill" />
-            <Star size={14} color="#8381D9" weight="fill" />
-            <Star size={14} color="#8381D9" />
-            <Star size={14} color="#8381D9" />
-          </div>
+       <RatedStars star={rating}/>
         </div>
       </div>
       <div className="max-w-[516px] break-words text-sm text-gray-300">
-        Nec tempor nunc in egestas. Euismod nisi eleifend at et in sagittis.
-        Penatibus id vestibulum imperdiet a at imperdiet lectus leo. Sit porta
-        eget nec vitae sit vulputate eget
+       {commentary}
       </div>
     </div>
   );

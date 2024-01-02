@@ -64,8 +64,8 @@ export function ReviewCard({
               <img src={cover} width={108} height={152} alt="not found" />
             </Dialog.Trigger>
             <div className=" flex flex-col lg:hidden">
-              <span className="text-sm text-gray-100">{author}</span>
-              <span className="text-sm text-gray-400">{title}</span>
+              <span className="text-sm text-gray-100">{title}</span>
+              <span className="text-sm text-gray-400">{author}</span>
             </div>
           </div>
 

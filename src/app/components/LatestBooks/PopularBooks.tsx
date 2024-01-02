@@ -43,7 +43,7 @@ export function PopularBooks() {
           <BookReview
             title={popular.name}
             author={popular.author}
-            rating={popular.averageRating}
+            rating={Math.floor(popular.averageRating)}
             cover={popular.cover_url}
             key={popular.id}
           />
