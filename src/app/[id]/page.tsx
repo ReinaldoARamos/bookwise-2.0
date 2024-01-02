@@ -30,6 +30,15 @@ interface ProfileProps {
         author: string;
         total_pages: number;
         cover_url: string;
+
+        categories: [
+          {
+            category: {
+              id: string
+              name: string
+            }
+          }
+        ]
       };
     }
   ];
@@ -63,11 +72,34 @@ export default function Profile() {
     return acc;
   }, []).length;
 
-  console.log("Número de autores únicos:", uniqueAuthorsCount);
+// Usando reduce para contar a ocorrência de cada categoria
+const categoryCounts = data?.ratings.reduce((acc, rating) => {
+  rating.book.categories.forEach(category => {
+    const categoryName = category.category.name;
+    //@ts-ignore
+    acc[categoryName] = (acc[categoryName] || 0) + 1;
+  });
+  return acc;
+}, {});
+
+// Encontrando a categoria que mais se repete
+let mostCommonCategory = null;
+let maxCount = 0;
+
+for (const categoryName in categoryCounts) {
+  //@ts-ignore
+  if (categoryCounts[categoryName] > maxCount) {
+    mostCommonCategory = categoryName;
+    //@ts-ignore
+    maxCount = categoryCounts[categoryName];
+  }
+}
+
+console.log("Categoria mais comum:", mostCommonCategory);
 
   return (
     <>
-      <div className="flex pb-4 lg:gap-16  lg:pb-0 lg:pl-[480px]    ">
+      <div className="flex pb-60 lg:gap-16  lg:pb-0 lg:pl-[480px]    ">
         <div className="w-full  px-4  pt-7 lg:w-auto lg:pt-[72px]   ">
           <div className="flex justify-between pb-10 lg:hidden">
             <h1 className="flex w-full  items-center  gap-4 text-2xl font-bold text-gray-100">
@@ -97,13 +129,13 @@ export default function Profile() {
               />
             ) : (
               <ProfileInfo
-                name={data?.name}
-                created_at={data?.created_at}
-                avatar_url={data?.avatar_url}
-                total_pages={TotalPages}
-                authors_read={1}
-                books_read={30}
-                mostReadCategory="Ciencia"
+              name={data?.name}
+              created_at={data?.created_at}
+              avatar_url={data?.avatar_url}
+              total_pages={TotalPages}
+              authors_read={uniqueAuthorsCount}
+              books_read={RatedBooksNumber}
+              mostReadCategory={mostCommonCategory}
               />
             )}
           </div>
@@ -146,7 +178,7 @@ export default function Profile() {
               total_pages={TotalPages}
               authors_read={uniqueAuthorsCount}
               books_read={RatedBooksNumber}
-              mostReadCategory="Ciencia"
+              mostReadCategory={mostCommonCategory}
             />
           )}
         </div>

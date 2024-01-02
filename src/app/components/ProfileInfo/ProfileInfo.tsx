@@ -9,7 +9,7 @@ interface ProfileInfoProps {
   total_pages: number | undefined;
   authors_read: number  | undefined;
   books_read: number  | undefined;
-  mostReadCategory: string 
+  mostReadCategory: string  | null | undefined;
 }
 
 /* eslint-disable @next/next/no-img-element */

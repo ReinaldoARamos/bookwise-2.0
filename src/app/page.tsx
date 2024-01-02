@@ -53,7 +53,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex  lg:pl-[480px]  ">
+    <div className="flex  lg:pl-[480px] lg:pb-0 pb-60">
       {isLoading ? (
         <div></div>
       ) : (

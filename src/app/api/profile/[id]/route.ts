@@ -14,7 +14,15 @@ export async function GET(
         include: {
             ratings: {
                 include: {
-                    book: true
+                    book: {
+                      include: {
+                        categories: {
+                          include: {
+                            category: true
+                          }
+                        }
+                      }
+                    }
                 }
             }
 

@@ -9,7 +9,7 @@ interface ItemsProps {
    totalPages: number | undefined;
   booksRead: number | undefined;
   authorsRead: number | undefined;
-  MostReadCategory: string | undefined;
+  MostReadCategory: string | undefined | null;
   icon?: React.ElementType;
 }
 

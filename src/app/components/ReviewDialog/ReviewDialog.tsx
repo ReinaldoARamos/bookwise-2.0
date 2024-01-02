@@ -64,7 +64,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
   console.log("teste" + booksWithAverageRating);
   return (
     <>
-      <div className="flex  flex-col rounded-[10px] bg-reviewCard ">
+      <div className="flex  flex-col rounded-[10px]  bg-reviewCard ">
         <div className="flex flex-col  px-8 py-6 ">
           <div className="flex gap-8 border-b  border-b-gray-800 pb-10 ">
             <img
