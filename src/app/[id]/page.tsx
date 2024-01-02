@@ -9,6 +9,7 @@ import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { relativeDateFormatter } from "@/utils/DateFormatter";
 interface ProfileProps {
   id: string;
   name: string;
@@ -34,11 +35,11 @@ interface ProfileProps {
         categories: [
           {
             category: {
-              id: string
-              name: string
-            }
+              id: string;
+              name: string;
+            };
           }
-        ]
+        ];
       };
     }
   ];
@@ -46,11 +47,11 @@ interface ProfileProps {
 
 export default function Profile() {
   const pathname = usePathname();
+
   const { isLoading, data } = useQuery<ProfileProps | null>({
     queryKey: ["userId"],
     queryFn: async () => {
       const response = await api.get(`/profile/${pathname}`);
-      console.log(response.data);
 
       return response.data;
     },
@@ -72,30 +73,36 @@ export default function Profile() {
     return acc;
   }, []).length;
 
-// Usando reduce para contar a ocorrência de cada categoria
-const categoryCounts = data?.ratings.reduce((acc, rating) => {
-  rating.book.categories.forEach(category => {
-    const categoryName = category.category.name;
-    //@ts-ignore
-    acc[categoryName] = (acc[categoryName] || 0) + 1;
-  });
-  return acc;
-}, {});
+  // Usando reduce para contar a ocorrência de cada categoria
+  const categoryCounts = data?.ratings.reduce((acc, rating) => {
+    rating.book.categories.forEach((category) => {
+      const categoryName = category.category.name;
+      //@ts-ignore
+      acc[categoryName] = (acc[categoryName] || 0) + 1;
+    });
+    return acc;
+  }, {});
 
-// Encontrando a categoria que mais se repete
-let mostCommonCategory = null;
-let maxCount = 0;
+  // Encontrando a categoria que mais se repete
+  let mostCommonCategory = null;
+  let maxCount = 0;
 
-for (const categoryName in categoryCounts) {
-  //@ts-ignore
-  if (categoryCounts[categoryName] > maxCount) {
-    mostCommonCategory = categoryName;
+  for (const categoryName in categoryCounts) {
     //@ts-ignore
-    maxCount = categoryCounts[categoryName];
+    if (categoryCounts[categoryName] > maxCount) {
+      mostCommonCategory = categoryName;
+      //@ts-ignore
+      maxCount = categoryCounts[categoryName];
+    }
   }
-}
 
-console.log("Categoria mais comum:", mostCommonCategory);
+  const handleSearchInputChange = (value: string) => {
+    const filteredBooks = data?.ratings.filter((rating) =>
+      rating.book.name.toLowerCase().includes(value.toLowerCase())
+    );
+
+    console.log(filteredBooks);
+  };
 
   return (
     <>
@@ -114,8 +121,7 @@ console.log("Categoria mais comum:", mostCommonCategory);
             <User size={26} className="text-singin" />
             Perfil
           </div>
-
-          <SearchBar />
+          <SearchBar onInputChange={handleSearchInputChange} />
           <div className="block lg:hidden">
             {isLoading ? (
               <ProfileInfo
@@ -129,19 +135,19 @@ console.log("Categoria mais comum:", mostCommonCategory);
               />
             ) : (
               <ProfileInfo
-              name={data?.name}
-              created_at={data?.created_at}
-              avatar_url={data?.avatar_url}
-              total_pages={TotalPages}
-              authors_read={uniqueAuthorsCount}
-              books_read={RatedBooksNumber}
-              mostReadCategory={mostCommonCategory}
+                name={data?.name}
+                created_at={data?.created_at}
+                avatar_url={data?.avatar_url}
+                total_pages={TotalPages}
+                authors_read={uniqueAuthorsCount}
+                books_read={RatedBooksNumber}
+                mostReadCategory={mostCommonCategory}
               />
             )}
           </div>
           <div className="space-y-6 ">
             {isLoading ? (
-              <RatedBooks title={"..."} author={".."} rate={0} review={"..."} />
+              <RatedBooks title={"..."} author={".."} rate={0} review={"..."} createdAt={""} />
             ) : (
               data?.ratings.map((books) => {
                 return (
@@ -152,6 +158,7 @@ console.log("Categoria mais comum:", mostCommonCategory);
                     rate={books.rate}
                     review={books.description}
                     cover={books.book.cover_url}
+                    createdAt={relativeDateFormatter(books.created_at)}
                   />
                 );
               })

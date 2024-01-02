@@ -8,14 +8,15 @@ interface RatedBookProps {
   rate: number;
   review: string;
   cover?: string
+  createdAt: string
 
 }
 /* eslint-disable @next/next/no-img-element */
-export function RatedBooks({author, rate, review,title, cover} : RatedBookProps) {
+export function RatedBooks({author, rate, review,title, cover, createdAt} : RatedBookProps) {
   return (
     <>
 
-     <div className="pb-2 text-md text-gray-300 ">Há 2 dias</div>
+     <div className="pb-2 text-md text-gray-300 ">{createdAt}</div>
       <div className="flex lg:w-[608px] flex-col rounded-lg bg-reviewCard p-6">
         <div className="flex gap-6 pb-6">
           <img src={cover} width={108} height={152} alt="" className="outline-none"/>
