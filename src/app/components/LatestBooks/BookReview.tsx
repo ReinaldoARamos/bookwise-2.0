@@ -1,9 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
-import { Star } from "@phosphor-icons/react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { ReviewDialog } from "../ReviewDialog/ReviewDialog";
 import { X } from "@phosphor-icons/react/dist/ssr";
-import { ratings } from "../../../../prisma/constants/ratings";
+import { RatedStars } from "../RatedStars/RatedStarts";
 
 interface PopularBooksProps {
   title: string;
@@ -34,14 +33,14 @@ export function BookReview({
                 <X size={24} />
               </Dialog.Close>
             </div>
-            <ReviewDialog />
+            <ReviewDialog id={""} />
           </Dialog.Content>
           <div className="flex flex-col justify-between">
             <div className="flex flex-col">
               <span className="text-md font-bold text-gray-100">{title}</span>
               <span className="text-sm text-gray-400">{author}</span>
             </div>
-            <div className="flex gap-[5px] ">{rating}</div>
+          <RatedStars star={rating} />
           </div>
         </div>
       </div>
@@ -49,10 +48,3 @@ export function BookReview({
   );
 }
 
-/*
-    <Star size={14} color="#8381D9" weight="fill" />
-              <Star size={14} color="#8381D9" weight="fill" />
-              <Star size={14} color="#8381D9" weight="fill" />
-              <Star size={14} color="#8381D9" weight="fill" />
-              <Star size={14} color="#8381D9" />
-* */

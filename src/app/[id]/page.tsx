@@ -15,8 +15,7 @@ interface ProfileProps {
   avatar_url: string;
   created_at: string;
 
-  /*
-  ratigs: [
+  ratings: [
     {
       id: string;
       rate: number;
@@ -34,7 +33,6 @@ interface ProfileProps {
       };
     }
   ];
-  */
 }
 
 export default function Profile() {
@@ -49,7 +47,6 @@ export default function Profile() {
     },
   });
 
- 
   return (
     <>
       <div className="flex pb-4 lg:gap-16  lg:pb-0 lg:pl-[480px]    ">
@@ -70,29 +67,47 @@ export default function Profile() {
 
           <SearchBar />
           <div className="block lg:hidden">
-          {isLoading ? (
-           <ProfileInfo name={"loading..."} created_at={"loading..."} avatar_url={undefined}         
-         />
-          ) : (
-            <ProfileInfo
-              name={data?.name}
-              created_at={data?.created_at}
-              avatar_url={data?.avatar_url}
-            />
-          )}
+            {isLoading ? (
+              <ProfileInfo
+                name={"loading..."}
+                created_at={"loading..."}
+                avatar_url={undefined}
+              />
+            ) : (
+              <ProfileInfo
+                name={data?.name}
+                created_at={data?.created_at}
+                avatar_url={data?.avatar_url}
+              />
+            )}
           </div>
           <div className="space-y-6 ">
-            <RatedBooks />
-            <RatedBooks />
-            <RatedBooks />
-            <RatedBooks />
+          {isLoading ? (
+            <RatedBooks title={"..."} author={".."} rate={0} review={"..."}  />
+          ) : (
+            data?.ratings.map((books) => {
+              return (
+                <RatedBooks
+                  key={books.id}
+                  title={books.book.name}
+                  author={books.book.author}
+                  rate={books.rate}
+                  review={books.description}
+                  cover={books.book.cover_url}
+                />
+              );
+            })
+          )}
           </div>
         </div>
 
         <div className="hidden lg:block">
           {isLoading ? (
-           <ProfileInfo name={"loading..."} created_at={""} avatar_url={undefined}         
-         />
+            <ProfileInfo
+              name={"loading..."}
+              created_at={""}
+              avatar_url={undefined}
+            />
           ) : (
             <ProfileInfo
               name={data?.name}

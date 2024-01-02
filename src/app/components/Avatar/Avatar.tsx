@@ -1,6 +1,6 @@
-
 import { Star } from "@phosphor-icons/react";
 import { useRouter } from "next/navigation";
+import { RatedStars } from "../RatedStars/RatedStarts";
 
 interface AvatarProps {
   ratingNumber: number;
@@ -23,8 +23,6 @@ export function Avatar({
     RedirectTo.push(id);
   }
 
-  
-
   return (
     <div className="flex gap-4 pb-3  lg:pb-10">
       <img
@@ -36,7 +34,7 @@ export function Avatar({
       <div className="flex w-full  flex-col">
         <div className="flex items-center justify-between ">
           <span className="text-gray-100">{name}</span>
-          <div>{ratingNumber}</div>
+          <RatedStars star={ratingNumber} />
         </div>
         <span className="text-gray-400">{date}</span>
       </div>
@@ -45,13 +43,7 @@ export function Avatar({
 }
 
 /*
-  <div className="flex gap-[5px]">
-              <Star  className="h-4 w-4 lg:h-6 lg:w-6" color="#8381D9" weight="fill" />
-              <Star  className="h-4 w-4 lg:h-6 lg:w-6" color="#8381D9" weight="fill" />
-              <Star  className="h-4 w-4 lg:h-6 lg:w-6" color="#8381D9" weight="fill" />
-              <Star  className="h-4 w-4 lg:h-6 lg:w-6" color="#8381D9" weight="fill" />
-              <Star  className="h-4 w-4 lg:h-6 lg:w-6" color="#8381D9" weight="fill" />
-            </div>
+
 
                 
 * */

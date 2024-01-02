@@ -29,6 +29,7 @@ interface RecentReviewsProps {
   };
 }
 
+
 export default function Home() {
   const { isLoading, data } = useQuery<RecentReviewsProps[]>({
     queryKey: ["Tasks"],
@@ -85,6 +86,7 @@ export default function Home() {
               <div className="space-y-3">
                 {data?.map((reviews) => (
                   <ReviewCard
+                     id={reviews.book.id}
                     title={reviews.book.name}
                     author={reviews.book.author}
                     rating={reviews.rate}

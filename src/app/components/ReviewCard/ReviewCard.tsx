@@ -9,6 +9,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
 
 interface ReviewCardProps {
+  id: string;
   title: string;
   author: string;
   rating: number;
@@ -30,11 +31,18 @@ export function ReviewCard({
   username,
   avatarurl,
   userId,
+  id
 }: ReviewCardProps) {
   const queryClient = useQueryClient();
   const RedirectTo = useRouter();
   function Redirect(id: string) {
     RedirectTo.push(id);
+  }
+ 
+
+  function ClearQueryCash() {
+    queryClient.removeQueries({ queryKey: ["BookId"], exact: true });
+    console.log("removendo query do cache");
   }
 
   return (
@@ -68,10 +76,10 @@ export function ReviewCard({
           <Dialog.Content className="fixed  right-0 top-1/2 z-10 h-screen w-full -translate-y-1/2 transform overflow-auto  rounded-md  bg-background px-12 lg:w-auto ">
             <div className="flex w-full justify-end pb-4 pt-7">
               <Dialog.Close>
-                <X size={24} />
+              <X size={24} onClick={ClearQueryCash} />
               </Dialog.Close>
             </div>
-            <ReviewDialog />
+            <ReviewDialog id={id} />
           </Dialog.Content>
           <div className="flex flex-col ">
             <div className=" hidden lg:flex lg:flex-col">

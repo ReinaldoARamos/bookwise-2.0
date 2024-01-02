@@ -1,9 +1,4 @@
-import {
-  BookOpen,
-  BookmarkSimple,
-  Star,
-  X,
-} from "@phosphor-icons/react/dist/ssr";
+import { BookOpen, BookmarkSimple, X } from "@phosphor-icons/react/dist/ssr";
 import { Comments } from "../Comments/Comments";
 import * as Dialog from "@radix-ui/react-dialog";
 import { LoginDialog } from "../LoginDialog/LoginDialog";
@@ -11,8 +6,8 @@ import { ReviewArea } from "../ReviewArea/ReviewArea";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
-import { ratings } from "../../../../prisma/constants/ratings";
-import { categories } from "../../../../prisma/constants/categories";
+import { RatedStars } from "../RatedStars/RatedStarts";
+
 /* eslint-disable @next/next/no-img-element */
 interface ReviewDialogProps {
   id: string;
@@ -61,6 +56,12 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
     },
   });
 
+  const RatingArray = data?.ratings;
+
+  //@ts-ignore
+  const booksWithAverageRating = RatingArray?.reduce((sum, ratings) => sum + ratings.rate, 0) /data?.ratings?.length;
+
+  console.log("teste" + booksWithAverageRating);
   return (
     <>
       <div className="flex  flex-col rounded-[10px] bg-reviewCard ">
@@ -81,13 +82,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
                 </span>
               </div>
               <div className="flex flex-col space-y-1">
-                <div className="flex gap-[5px]">
-                  <Star size={16} color="#8381D9" weight="fill" />
-                  <Star size={16} color="#8381D9" weight="fill" />
-                  <Star size={16} color="#8381D9" weight="fill" />
-                  <Star size={16} color="#8381D9" weight="fill" />
-                  <Star size={16} color="#8381D9" weight="fill" />
-                </div>
+                <RatedStars star={Math.floor(booksWithAverageRating)} />
                 <span className="text-sm text-gray-400">1 avaliação</span>
               </div>
             </div>

@@ -4,6 +4,7 @@ import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { ReviewDialog } from "../ReviewDialog/ReviewDialog";
 import { useQueryClient } from "@tanstack/react-query";
+import { RatedStars } from "../RatedStars/RatedStarts";
 
 interface ExplorerBooksProps {
   isRead?: boolean;
@@ -59,9 +60,7 @@ export function ExplorerBooks({
                 </p>
                 <span className="text-sm text-gray-300">{author}</span>
               </div>
-              <div className="flex w-full justify-center gap-[5px] lg:justify-normal ">
-                {rating}
-              </div>
+              <RatedStars star={rating} />
             </div>
           </div>
         </div>

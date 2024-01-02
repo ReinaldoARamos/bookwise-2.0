@@ -26,6 +26,8 @@ export async function GET(
 
         }
       });
+
+    
   
       return new NextResponse(JSON.stringify(data), { status: 200 });
     } catch (error: any) {
