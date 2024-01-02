@@ -18,7 +18,7 @@ export function LatestRead({author, cover, rating, review, title} : ReviewCardPr
   return (
     <Dialog.Root>
     <div className="rounded-lg bg-latestread p-6 lg:w-[608px] ">
-      <Avatar ratingNumber={4} name={""} date={""} image={""}/>
+      <Avatar ratingNumber={4} name={""} date={""} image={""} userId={""}/>
       <div className="flex  flex-col gap-5 lg:flex-row">
         <div className="flex gap-5">
         <Dialog.Trigger>
@@ -34,7 +34,7 @@ export function LatestRead({author, cover, rating, review, title} : ReviewCardPr
                 <X size={24} />
               </Dialog.Close>
             </div>
-            <ReviewDialog />
+            <ReviewDialog id={""} />
           </Dialog.Content>
           <div className=" flex flex-col lg:hidden">
             <span className="text-sm text-gray-100">{title}</span>

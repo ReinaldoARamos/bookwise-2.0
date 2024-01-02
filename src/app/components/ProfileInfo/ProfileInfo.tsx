@@ -6,6 +6,10 @@ interface ProfileInfoProps {
   name: string | undefined;
   created_at: string | undefined;
   avatar_url: string | undefined;
+  total_pages: number | undefined;
+  authors_read: number  | undefined;
+  books_read: number  | undefined;
+  mostReadCategory: string 
 }
 
 /* eslint-disable @next/next/no-img-element */
@@ -13,6 +17,10 @@ export function ProfileInfo({
   avatar_url,
   created_at,
   name,
+  authors_read,
+  books_read,
+  total_pages,
+  mostReadCategory
 }: ProfileInfoProps) {
   return (
     <div>
@@ -35,7 +43,7 @@ export function ProfileInfo({
           </div>
           <div className="to hidden h-1 w-8 rounded-full bg-purpleguy bg-gradient-to-tr from-teal lg:block" />
 
-          <ProfileInfoItem text="A" />
+          <ProfileInfoItem totalPages={total_pages} booksRead={books_read} authorsRead={authors_read} MostReadCategory={mostReadCategory} />
         </div>
       </div>
     </div>
