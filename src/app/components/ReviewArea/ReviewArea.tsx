@@ -1,5 +1,6 @@
 import { Check, Star, X } from "@phosphor-icons/react/dist/ssr";
 import { useState } from "react";
+import StarRating from "../ReviewStar/ReviewStar";
 
 /* eslint-disable @next/next/no-img-element */
 
@@ -28,11 +29,7 @@ export function ReviewArea({ ShowCommentary , onHideCommentary}: ReviewAreaProps
                 </span>
               </div>
               <div className="flex gap-[5px]">
-                <Star color="#8381D9" className="h-3 w-3 lg:h-6 lg:w-6 " />
-                <Star color="#8381D9" className="h-3 w-3 lg:h-6 lg:w-6 " />
-                <Star color="#8381D9" className="h-3 w-3 lg:h-6 lg:w-6 " />
-                <Star color="#8381D9" className="h-3 w-3 lg:h-6 lg:w-6 " />
-                <Star color="#8381D9" className="h-3 w-3 lg:h-6 lg:w-6 " />
+               <StarRating />
               </div>
             </div>
           </div>
@@ -42,7 +39,7 @@ export function ReviewArea({ ShowCommentary , onHideCommentary}: ReviewAreaProps
               placeholder="Escreva sua avaliação"
             />
             <span className="mb-1 mr-2 flex justify-end text-xs text-gray-400 ">
-              200/400
+              0/400
             </span>
           </div>
           <div className="flex justify-end gap-2 pt-3">
