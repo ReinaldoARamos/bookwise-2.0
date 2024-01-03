@@ -1,4 +1,4 @@
-import { Check, Star, X } from "@phosphor-icons/react/dist/ssr";
+import { Check,  X } from "@phosphor-icons/react/dist/ssr";
 import { useState } from "react";
 import StarRating from "../ReviewStar/ReviewStar";
 
@@ -9,9 +9,23 @@ interface ReviewAreaProps {
   onHideCommentary: () => void;
 }
 export function ReviewArea({ ShowCommentary , onHideCommentary}: ReviewAreaProps) {
-
-
+  const [reviewchangeText , setReviewChangeText] = useState<string>("")
+  const [review , setReview] = useState<string>("")
+  const [selectedStarIndex, setSelectedStarIndex] = useState<number | null>(null);
   
+  function handleReviewText(event: React.ChangeEvent<HTMLTextAreaElement>){
+    setReviewChangeText(event.target.value)
+
+  }
+  function handleStarChange(index: number | null) {
+    setSelectedStarIndex(index);
+  }
+
+  function SubmitReview() {
+    setReview(reviewchangeText);
+    console.log("Índice da estrela selecionada:", selectedStarIndex);
+    console.log("Texto da avaliação:", review);
+  }
   return (
    
      
@@ -29,7 +43,7 @@ export function ReviewArea({ ShowCommentary , onHideCommentary}: ReviewAreaProps
                 </span>
               </div>
               <div className="flex gap-[5px]">
-               <StarRating />
+              <StarRating onSelectedStarChange={handleStarChange} />
               </div>
             </div>
           </div>
@@ -37,6 +51,7 @@ export function ReviewArea({ ShowCommentary , onHideCommentary}: ReviewAreaProps
             <textarea
               className="h-[164px] w-full resize-none  bg-background px-5 py-3.5 text-sm text-gray-400 focus:outline-none "
               placeholder="Escreva sua avaliação"
+              onChange={handleReviewText}
             />
             <span className="mb-1 mr-2 flex justify-end text-xs text-gray-400 ">
               0/400
@@ -46,7 +61,8 @@ export function ReviewArea({ ShowCommentary , onHideCommentary}: ReviewAreaProps
             <div  onClick={() => onHideCommentary()} className="flex justify-center bg-latestread p-3 transition duration-150 hover:cursor-pointer  hover:bg-searchbar">
               <X size={24} className="text-custompurple "  />
             </div>
-            <div className="flex justify-center bg-latestread p-3 transition  duration-150 hover:cursor-pointer  hover:bg-searchbar">
+            <div onClick={SubmitReview} className="flex justify-center bg-latestread p-3 transition  duration-150 hover:cursor-pointer  hover:bg-searchbar">
+           
               <Check size={24} className="text-customgreen100" />
             </div>
           </div>

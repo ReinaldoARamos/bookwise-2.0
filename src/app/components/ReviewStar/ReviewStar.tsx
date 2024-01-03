@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Star } from '@phosphor-icons/react/dist/ssr';
 
 interface StarIconProps {
@@ -8,12 +8,21 @@ interface StarIconProps {
   onSelect: (index: number) => void;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
-  onIconClick: (index: number) => void; // Nova prop para lidar com o clique no ícone
+  onStarClick: (index: number) => void; // Nova prop para lidar com o clique no ícone
 }
 
-const StarRating: React.FC = () => {
+interface ReviewStarProps {
+  onSelectedStarChange: (index: number | null) => void;
+}
+
+const StarRating: React.FC<ReviewStarProps> = ({ onSelectedStarChange }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [currentSelected, setCurrentSelected] = useState<number | null>(null);
   const [selectedIndexes, setSelectedIndexes] = useState<number[]>([]);
+
+  useEffect(() => {
+    onSelectedStarChange(currentSelected);
+  }, [currentSelected, onSelectedStarChange]);
 
   const handleSelect = (index: number) => {
     const newSelectedIndexes = selectedIndexes.includes(index)
@@ -25,7 +34,7 @@ const StarRating: React.FC = () => {
   };
 
   const handleIconClick = (index: number) => {
-    console.log("Índice selecionado:", index + 1);
+    setCurrentSelected(index + 1);
     // Aqui você pode realizar a ação desejada com o índice selecionado
   };
 
@@ -38,7 +47,7 @@ const StarRating: React.FC = () => {
       onSelect={handleSelect}
       onMouseEnter={() => setHoveredIndex(index)}
       onMouseLeave={() => setHoveredIndex(null)}
-      onIconClick={handleIconClick} // Passa a função para lidar com o clique no ícone
+      onStarClick={handleIconClick}
     />
   ));
 
@@ -49,7 +58,7 @@ const StarRating: React.FC = () => {
   );
 };
 
-const StarIcon: React.FC<StarIconProps> = ({ index, hoveredIndex, selectedIndexes, onSelect, onMouseEnter, onMouseLeave, onIconClick }) => {
+const StarIcon: React.FC<StarIconProps> = ({ index, hoveredIndex, selectedIndexes, onSelect, onMouseEnter, onMouseLeave, onStarClick }) => {
   const isHovered = index <= (hoveredIndex ?? -1);
   const isSelected = selectedIndexes.includes(index);
 
@@ -57,14 +66,14 @@ const StarIcon: React.FC<StarIconProps> = ({ index, hoveredIndex, selectedIndexe
 
   return (
     <Star
-      className="h-3 w-3 lg:h-6 lg:w-6"
+      className="h-3 w-3 lg:h-6 lg:w-6 cursor-pointer"
       color="#8381D9"
       weight={weightStyle}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={() => {
         onSelect(index);
-        onIconClick(index); // Chama a função de clique no ícone passando o índice
+        onStarClick(index);
       }}
     />
   );
