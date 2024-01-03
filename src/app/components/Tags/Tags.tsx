@@ -1,19 +1,46 @@
-'use client'
+"use client";
+import { api } from "@/lib/axios";
+import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
 interface TagsProps {
-  text: string;
+  id?: string;
+  name?: string;
   isSelected?: boolean;
+  onClickTag: (tagName: string) => void;
 }
-export function Tags({ text, isSelected }: TagsProps) {
-    const [select, SetSelected] = useState<boolean>(false)
+export function Tags({ onClickTag }: TagsProps) {
+  const [selectedTag, setSelectedTag] = useState<string>("");
+  const { isLoading, data } = useQuery<TagsProps[]>({
+    queryKey: ["Tags"],
+    queryFn: async () => {
+      const response = await api.get(`/tags`);
 
-    function Select() {
-        SetSelected(true)
-    }
+      return response.data;
+    },
+  });
+
+  function handleTagClick(tag: TagsProps) {
+    onClickTag(tag.name || "");
+    //@ts-ignore
+    setSelectedTag(tag.name || null);
+  }
+
   return (
-    <div className={`${select ? 'py-1 px-3  border rounded-full cursor-pointer bg-custompurple200 border-custompurple200 hover:text-gray-100 transition duration-150' : "py-1 px-3  border border-starpurple text-starpurple rounded-full hover:cursor-pointer hover:bg-custompurple200 hover:border-custompurple200 hover:text-gray-100 transition duration-150"}  `} onClick={Select}>
-      {text}
+    <div className="flex flex-wrap gap-3 pb-12">
+      {data?.map((tag) => (
+        <div
+          key={tag.id}
+          className={`cursor-pointer rounded-full border ${
+            selectedTag === tag.name
+              ? "border-custompurple200 bg-custompurple200 hover:text-gray-100"
+              : "border-starpurple text-starpurple"
+          } px-3 py-1 transition duration-150 hover:cursor-pointer hover:border-custompurple200 hover:bg-custompurple200 hover:text-gray-100`}
+          onClick={() => handleTagClick(tag)}
+        >
+          {tag.name}
+        </div>
+      ))}
     </div>
   );
 }

@@ -4,6 +4,11 @@ export async function GET(req: Request, res: Response) {
   const popularbooks = await prisma.book.findMany({
     include: {
       ratings: true,
+      categories: {
+        include: {
+          category: true
+        }
+      }
     },
   });
 

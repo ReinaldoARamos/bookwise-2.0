@@ -69,9 +69,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
   const RatingQuantity = data?.ratings?.length;
 
   //@ts-ignore
-  const booksWithAverageRating =
-    RatingArray?.reduce((sum, ratings) => sum + ratings.rate, 0) /
-    data?.ratings?.length;
+  const booksWithAverageRating = RatingArray?.reduce((sum, ratings) => sum + ratings.rate, 0) / data?.ratings?.length;
 
   console.log("teste" + booksWithAverageRating);
   return (
