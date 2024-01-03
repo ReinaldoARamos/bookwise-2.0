@@ -2,11 +2,18 @@
 import { MagnifyingGlass } from "@phosphor-icons/react/dist/ssr";
 import { useState } from "react";
 
+interface SearchBarProps {
+  onInputChange: (value: string) => void;
+  isHidden?: boolean;
+}
+/*
 export function SearchBar({
   onInputChange,
 }: {
   onInputChange: (value: string) => void;
-}) {
+}) 
+*/
+export function SearchBar({onInputChange, isHidden} : SearchBarProps) {
   const [isInputFocused, setIsInputFocused] = useState(false);
   const [inputText, setInputText] = useState<string>("");
 
@@ -17,7 +24,20 @@ export function SearchBar({
   };
 
   return (
-    <div
+    isHidden ? (
+      <div
+      className={`mb-8 flex w-full items-center justify-between border-background rounded-[4px] border py-3.5 pl-5 pr-3.5`}
+    >
+      <input
+        className="bg-transparent text-background hover:cursor-default border-white placeholder-background outline-none placeholder:text-md"
+        placeholder="Buscar livro avaliado"
+        disabled
+      />
+     
+      
+    </div>
+    ) : (
+      <div
       className={`mb-8 flex w-full items-center justify-between rounded-[4px] border py-3.5 pl-5 pr-3.5 ${
         isInputFocused ? "border-customgreen200" : "border-searchbar"
       }`}
@@ -37,5 +57,6 @@ export function SearchBar({
         }`}
       />
     </div>
+    )
   );
 }

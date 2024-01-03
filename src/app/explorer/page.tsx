@@ -28,6 +28,7 @@ interface ExplorerBooksProps {
 export default function Explorer() {
   const [selectedTagName, setSelectedTagName] = useState<string>();
   const [filter, setFilter] = useState<string>("");
+  const [hideSearchBar, sethideSearchBar] = useState<boolean>(false);
   const { data } = useQuery<ExplorerBooksProps[]>({
     queryKey: ["explorerbooks"],
     queryFn: async () => {
@@ -40,10 +41,18 @@ export default function Explorer() {
   function handleSearchBar(value: string) {
     setFilter(value);
 
+    
   }
 
   function handleTagClick(tagName: string) {
     setSelectedTagName(tagName);
+
+    if(tagName === "Todos") {
+      sethideSearchBar(false)
+    }else {
+      sethideSearchBar(true)
+    }
+
   }
   const filteredBooks = data?.filter((books) =>
     books.categories.some((category) =>
@@ -76,7 +85,8 @@ console.log(searchBooks)
           <Binoculars size={26} className="text-singin" />
           Explorar
         </h1>
-    <SearchBar onInputChange={handleSearchBar}/>
+    <SearchBar onInputChange={handleSearchBar} isHidden={hideSearchBar}/>
+   
       </div>
       <div className="flex flex-wrap gap-3   pb-12 ">
         <Tags onClickTag={handleTagClick} />
@@ -84,7 +94,8 @@ console.log(searchBooks)
 
       {selectedTagName === "Todos" || !selectedTagName ? (
         <div className="grid  grid-cols-2 gap-5 pb-4 lg:grid-cols-3 lg:pb-0 ">
-          {data?.map((books) => (
+         {!filter ? (
+           data?.map((books) => (
             <ExplorerBooks
               key={books.id}
               title={books.name}
@@ -93,7 +104,19 @@ console.log(searchBooks)
               cover={books.cover_url}
               id={books.id}
             />
-          ))}
+          ))
+         ) : (
+          searchBooks?.map((books) => (
+            <ExplorerBooks
+              key={books.id}
+              title={books.name}
+              author={books.author}
+              rating={books.averageRating}
+              cover={books.cover_url}
+              id={books.id}
+            />
+          ))
+         )}
         </div>
       ) : (
         <div className="grid  grid-cols-2 gap-5 pb-4 lg:grid-cols-3 lg:pb-0 ">
@@ -112,5 +135,9 @@ console.log(searchBooks)
         </div>
       )}
     </div>
+    
   );
+  
 }
+
+
