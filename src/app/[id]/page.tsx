@@ -103,7 +103,7 @@ export default function Profile() {
   };
 
   const removeDiacritics = (str : string) => diacritics.remove(str);
-  const filteredBooks = data?.ratings.filter((rating) =>
+  const filteredBooks  = data?.ratings.filter((rating) =>
   removeDiacritics(rating.book.name.toLowerCase()).includes(
     removeDiacritics(filter.toLowerCase())
   )
@@ -170,19 +170,26 @@ return (
                   );
                 })
               ) : (
-                filteredBooks?.map((books) => {
-                  return (
-                    <RatedBooks
-                      key={books.id}
-                      title={books.book.name}
-                      author={books.book.author}
-                      rate={books.rate}
-                      review={books.description}
-                      cover={books.book.cover_url}
-                      createdAt={relativeDateFormatter(books.created_at)}
-                    />
-                  );
-                })
+                filteredBooks?.length <= 0 ? (
+                  <div className="flex lg:w-[608px] flex-col rounded-lg bg-background p-6" />
+                ) : 
+                  (
+                    filteredBooks?.map((books) => {
+                      return (
+                        <RatedBooks
+                          key={books.id}
+                          title={books.book.name}
+                          author={books.book.author}
+                          rate={books.rate}
+                          review={books.description}
+                          cover={books.book.cover_url}
+                          createdAt={relativeDateFormatter(books.created_at)}
+                        />
+                      );
+                    })
+                    
+                  
+                  )
               )
             )}
           </div>
