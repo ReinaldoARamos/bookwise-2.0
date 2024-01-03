@@ -170,6 +170,7 @@ return (
                   );
                 })
               ) : (
+                //@ts-ignore
                 filteredBooks?.length <= 0 ? (
                   <div className="flex lg:w-[608px] flex-col rounded-lg bg-background p-6" />
                 ) : 
