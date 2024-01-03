@@ -69,10 +69,12 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
   const RatingQuantity = data?.ratings?.length;
 
   //@ts-ignore
-  const booksWithAverageRating = RatingArray?.reduce((sum, ratings) => sum + ratings.rate, 0) / data?.ratings?.length;
+  const booksWithAverageRating = RatingArray?.reduce((sum, ratings) => sum + ratings.rate, 0) /data?.ratings?.length;
 
   console.log("teste" + booksWithAverageRating);
-  return (
+  return isLoading ? (
+    <div>oi</div>
+  ) : (
     <>
       <div className="flex  flex-col rounded-[10px]  bg-reviewCard ">
         <div className="flex flex-col  px-8 py-6 ">

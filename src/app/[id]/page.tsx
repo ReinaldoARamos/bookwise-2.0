@@ -10,6 +10,8 @@ import { api } from "@/lib/axios";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { relativeDateFormatter } from "@/utils/DateFormatter";
+import diacritics from 'diacritics';
+
 interface ProfileProps {
   id: string;
   name: string;
@@ -47,7 +49,7 @@ interface ProfileProps {
 
 export default function Profile() {
   const pathname = usePathname();
-
+   const [filter, setfilter] = useState<string>('')
   const { isLoading, data } = useQuery<ProfileProps | null>({
     queryKey: ["userId"],
     queryFn: async () => {
@@ -97,16 +99,17 @@ export default function Profile() {
   }
 
   const handleSearchInputChange = (value: string) => {
-    const filteredBooks = data?.ratings.filter((rating) =>
-      rating.book.name.toLowerCase().includes(value.toLowerCase())
-    );
-
-      return filteredBooks
+     setfilter(value)
   };
 
-
-
-  return (
+  const removeDiacritics = (str : string) => diacritics.remove(str);
+  const filteredBooks = data?.ratings.filter((rating) =>
+  removeDiacritics(rating.book.name.toLowerCase()).includes(
+    removeDiacritics(filter.toLowerCase())
+  )
+);
+console.log(filteredBooks)  
+return (
     <>
       <div className="flex pb-60 lg:gap-16  lg:pb-0 lg:pl-[480px]    ">
         <div className="w-full  px-4  pt-7 lg:w-auto lg:pt-[72px]   ">
@@ -124,6 +127,7 @@ export default function Profile() {
             Perfil
           </div>
           <SearchBar onInputChange={handleSearchInputChange} />
+         
           <div className="block lg:hidden">
             {isLoading ? (
               <ProfileInfo
@@ -151,19 +155,35 @@ export default function Profile() {
             {isLoading ? (
               <RatedBooks title={"..."} author={".."} rate={0} review={"..."} createdAt={""} />
             ) : (
-              data?.ratings.map((books) => {
-                return (
-                  <RatedBooks
-                    key={books.id}
-                    title={books.book.name}
-                    author={books.book.author}
-                    rate={books.rate}
-                    review={books.description}
-                    cover={books.book.cover_url}
-                    createdAt={relativeDateFormatter(books.created_at)}
-                  />
-                );
-              })
+              !filter ? (
+                data?.ratings.map((books) => {
+                  return (
+                    <RatedBooks
+                      key={books.id}
+                      title={books.book.name}
+                      author={books.book.author}
+                      rate={books.rate}
+                      review={books.description}
+                      cover={books.book.cover_url}
+                      createdAt={relativeDateFormatter(books.created_at)}
+                    />
+                  );
+                })
+              ) : (
+                filteredBooks?.map((books) => {
+                  return (
+                    <RatedBooks
+                      key={books.id}
+                      title={books.book.name}
+                      author={books.book.author}
+                      rate={books.rate}
+                      review={books.description}
+                      cover={books.book.cover_url}
+                      createdAt={relativeDateFormatter(books.created_at)}
+                    />
+                  );
+                })
+              )
             )}
           </div>
         </div>
@@ -173,7 +193,7 @@ export default function Profile() {
             <ProfileInfo
               name={"loading..."}
               created_at={""}
-              avatar_url={""}
+              avatar_url={"/images/no-avatar.jpg"}
               total_pages={123}
               authors_read={1}
               books_read={30}

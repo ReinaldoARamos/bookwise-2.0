@@ -34,6 +34,10 @@ export function ExplorerBooks({
     console.log("removendo query do cache");
   }
 
+  function teste() {
+    console.log("fechando");
+  }
+
   return (
     <Dialog.Root>
       <Dialog.Trigger>
@@ -68,9 +72,10 @@ export function ExplorerBooks({
 
       <Dialog.Portal>
         <Dialog.Overlay
-          className="fixed inset-0  bg-black/50"
+          className="bg-/50 fixed  inset-0"
           onClick={ClearQueryCash}
         />
+
         <Dialog.Content className="fixed right-0 top-1/2 z-10 h-screen w-full -translate-y-1/2 transform overflow-auto  rounded-md  bg-background px-12 lg:w-auto ">
           <div className="flex w-full justify-end pb-4 pt-7">
             <Dialog.Close>
@@ -83,11 +88,3 @@ export function ExplorerBooks({
     </Dialog.Root>
   );
 }
-
-/*
- <Star size={14} color="#8381D9" weight="fill" />
-                <Star size={14} color="#8381D9" weight="fill" />
-                <Star size={14} color="#8381D9" weight="fill" />
-                <Star size={14} color="#8381D9" />
-                <Star size={14} color="#8381D9" />
-* */
