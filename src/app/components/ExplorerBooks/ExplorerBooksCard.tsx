@@ -56,16 +56,17 @@ export function ExplorerBooks({
           </div>
           <div className="flex   flex-col items-center gap-5 px-5 pb-6  lg:flex-row  lg:items-stretch lg:justify-normal ">
             <img src={cover} width={108} height={152} alt="" />
-            <div className="flex flex-col justify-between ">
-              <div className="flex w-full flex-col items-center lg:items-start  ">
+            <div className="flex flex-col lg:justify-between  item-center justify-center ">
+              <div className="flex w-full flex-col  lg:items-start  ">
                 <p className="max-w-[124px] truncate break-words  text-md font-bold text-gray-100 ">
                   {" "}
                   {title}
                 </p>
                 <span className="text-sm text-gray-300">{author}</span>
               </div>
-              <RatedStars star={rating} />
+            <div className="lg:block hidden">  <RatedStars star={rating} /></div>
             </div>
+            <div className="lg:hidden block">  <RatedStars star={rating} /></div>
           </div>
         </div>
       </Dialog.Trigger>
@@ -76,7 +77,7 @@ export function ExplorerBooks({
           onClick={ClearQueryCash}
         />
 
-        <Dialog.Content className="fixed right-0 top-1/2 z-10 h-screen w-full -translate-y-1/2 transform overflow-auto  rounded-md  bg-background px-12 lg:w-auto ">
+        <Dialog.Content className="fixed right-0 top-1/2 z-10 h-screen w-full -translate-y-1/2 transform overflow-auto  rounded-md  bg-background px-6 lg:px-12 lg:w-auto ">
           <div className="flex w-full justify-end pb-4 pt-7">
             <Dialog.Close>
               <X size={24} onClick={ClearQueryCash} />

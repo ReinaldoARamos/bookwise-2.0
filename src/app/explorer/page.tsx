@@ -26,7 +26,7 @@ interface ExplorerBooksProps {
   ];
 }
 export default function Explorer() {
-  const [selectedTagName, setSelectedTagName] = useState<string>();
+  const [selectedTagName, setSelectedTagName] = useState<string>("Todos");
   const [filter, setFilter] = useState<string>("");
   const [hideSearchBar, sethideSearchBar] = useState<boolean>(false);
   const { data } = useQuery<ExplorerBooksProps[]>({

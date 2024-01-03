@@ -10,7 +10,7 @@ interface TagsProps {
   onClickTag: (tagName: string) => void;
 }
 export function Tags({ onClickTag }: TagsProps) {
-  const [selectedTag, setSelectedTag] = useState<string>("");
+  const [selectedTag, setSelectedTag] = useState<string>("Todos");
   const { isLoading, data } = useQuery<TagsProps[]>({
     queryKey: ["Tags"],
     queryFn: async () => {

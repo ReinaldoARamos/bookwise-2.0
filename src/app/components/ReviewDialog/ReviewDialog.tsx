@@ -73,12 +73,102 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
 
   console.log("teste" + booksWithAverageRating);
   return isLoading ? (
-    <div>oi</div>
+    <>
+      <div className="flex  flex-col rounded-[10px]  bg-reviewCard ">
+        <div className="flex flex-col  px-8 py-6 ">
+          <div className="flex lg:gap-8 gap-4 border-b  border-b-gray-800 pb-10 ">
+            <div
+               
+              className="h-36 w-auto lg:h-[242px] lg:w-[172px] border border-white"
+            />
+            <div className="flex flex-col  justify-between">
+              <div className="flex flex-col space-y-2 ">
+                <h2 className=" max-w-[120px]  text-md font-bold text-reviewCard w-96 lg:max-w-sm   lg:text-lg">
+                 AAAAAAAAAAAAAAAAAAAA
+                </h2>
+                <span className="text-sm text-reviewCard lg:text-md">
+                 Doridoridoridori
+                </span>
+              </div>
+
+              <div className="flex flex-col space-y-1">
+                <RatedStars star={0} />
+              
+                  <span className="text-sm text-gray-400">
+                   ...
+                  </span>
+               
+                
+              </div>
+            </div>
+          </div>
+          <div className="flex pt-6 gap-[60px]">
+            <div className="flex items-center gap-4">
+              <BookmarkSimple size={24} className="text-singin" />
+              <div className="flex flex-col ">
+                <span className="text-sm text-gray-300 lg:text-sm">
+                  Categoria
+                </span>
+                <span
+                  className="text-sm  font-bold text-gray-100 lg:text-md"
+                  key={""}
+                >
+                 ...
+                </span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <BookOpen size={24} className="text-singin" />
+              <div className="flex flex-col">
+                <span className="text-sm text-gray-300 lg:text-sm">
+                  {" "}
+                  Páginas
+                </span>
+                <span className="text-sm  font-bold text-gray-100 lg:text-md">
+                  ...
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="pt-[46px]">
+        <div className="flex w-full justify-between pb-[22px]">
+          <span className="text-sm text-gray-200">Avaliações</span>
+          <span
+              className="text-sm font-bold text-custompurple hover:cursor-pointer"
+              onClick={() => ShowComment()}
+            >
+              Avaliar
+            </span>
+        </div>
+
+        <div className="flex flex-col space-y-3 rounded-lg">
+          {HideComment ? (
+            <></>
+          ) : (
+            <ReviewArea onHideCommentary={() => HideCommentary()} />
+          )}
+         
+            <Comments
+              key={0}
+              user={"..."}
+              date={"..."}
+              avatar={"/images/no-avatar.jpg"}
+              commentary={"..."}
+              rating={0}
+            />
+        
+        </div>
+      </div>
+    </>
   ) : (
     <>
       <div className="flex  flex-col rounded-[10px]  bg-reviewCard ">
         <div className="flex flex-col  px-8 py-6 ">
-          <div className="flex gap-8 border-b  border-b-gray-800 pb-10 ">
+          <div className="flex lg:gap-8 gap-4 border-b  border-b-gray-800 pb-10 ">
             <img
               src={data?.cover_url}
               alt=""
@@ -86,7 +176,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
             />
             <div className="flex flex-col  justify-between">
               <div className="flex flex-col space-y-2 ">
-                <h2 className=" max-w-[120px]  text-md font-bold text-gray-100  lg:max-w-sm   lg:text-lg">
+                <h2 className=" max-w-[120px]  text-md font-bold text-gray-100 w-96 lg:max-w-sm   lg:text-lg">
                   {data?.name}
                 </h2>
                 <span className="text-sm text-gray-300 lg:text-md">
@@ -97,7 +187,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
               <div className="flex flex-col space-y-1">
                 <RatedStars star={Math.floor(booksWithAverageRating)} />
                 {/* @ts-ignore */}
-                {RatingQuantity >= 0 ? (
+                {RatingQuantity <= 1 ? (
                   <span className="text-sm text-gray-400">
                     {RatingQuantity} Avaliação{" "}
                   </span>
@@ -109,7 +199,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
               </div>
             </div>
           </div>
-          <div className="flex pt-6 lg:gap-[60px]">
+          <div className="flex pt-6 gap-[60px]">
             <div className="flex items-center gap-4">
               <BookmarkSimple size={24} className="text-singin" />
               <div className="flex flex-col ">
