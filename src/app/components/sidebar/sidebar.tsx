@@ -42,7 +42,7 @@ export function Sidebar() {
             redirectUrl={"/explorer"}
           />
           {logged ? (
-            <Items text={"Perfil"} icon={User} redirectUrl={"/profile"} />
+            <Items text={"Perfil"} icon={User} redirectUrl={"/c29cda0d-e3ed-4f9f-83c0-b2a1d97ffdcd"} />
           ) : (
             <></>
           )}

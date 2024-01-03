@@ -4,7 +4,7 @@ import { SearchBar } from "../components/SearchBar/SearchBar";
 import { ExplorerBooks } from "../components/ExplorerBooks/ExplorerBooksCard";
 import { Tags } from "../components/Tags/Tags";
 import { SideBarDropDownMenu } from "../components/SideBarDropDown/SideBarDropDown";
-
+import diacritics from 'diacritics';
 import { api } from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
@@ -27,6 +27,7 @@ interface ExplorerBooksProps {
 }
 export default function Explorer() {
   const [selectedTagName, setSelectedTagName] = useState<string>();
+  const [filter, setFilter] = useState<string>("");
   const { data } = useQuery<ExplorerBooksProps[]>({
     queryKey: ["explorerbooks"],
     queryFn: async () => {
@@ -35,6 +36,11 @@ export default function Explorer() {
       return response.data;
     },
   });
+
+  function handleSearchBar(value: string) {
+    setFilter(value);
+
+  }
 
   function handleTagClick(tagName: string) {
     setSelectedTagName(tagName);
@@ -45,6 +51,16 @@ export default function Explorer() {
       category?.category.name?.includes(selectedTagName)
     )
   );
+  const removeDiacritics = (str : string) => diacritics.remove(str);
+  const searchBooks = data?.filter((books) =>
+  removeDiacritics(books.name.toLowerCase()).includes(
+    removeDiacritics(filter.toLowerCase())
+  )
+);
+
+console.log(searchBooks)
+
+  
 
   return (
     <div className="flex  flex-col px-4 pb-60  lg:mr-24  lg:px-0 lg:pb-0 lg:pl-[480px]">
@@ -60,7 +76,7 @@ export default function Explorer() {
           <Binoculars size={26} className="text-singin" />
           Explorar
         </h1>
-        <div>aqui fica a serchbar</div>
+    <SearchBar onInputChange={handleSearchBar}/>
       </div>
       <div className="flex flex-wrap gap-3   pb-12 ">
         <Tags onClickTag={handleTagClick} />

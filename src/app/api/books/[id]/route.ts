@@ -15,12 +15,15 @@ export async function GET(
             ratings: {
               include: {
                 user: true
+              },
+              orderBy: {
+                created_at: "desc"
               }
             },
             categories: {
               include: {
                 category: true
-              }
+              },
             }
             
 

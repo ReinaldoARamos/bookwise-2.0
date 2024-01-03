@@ -70,7 +70,7 @@ export function SideBarDropDownMenu() {
             <DropdownMenu.Item className="group  flex  h-[25px] rounded-[3px]  px-[5px] leading-none   outline-none">
               {isLoggedIn ? (
                 <div
-                  onClick={() => Redirect("/profile")}
+                  onClick={() => Redirect("/c29cda0d-e3ed-4f9f-83c0-b2a1d97ffdcd")}
                   className="flex items-center  gap-2 text-sm group-data-[highlighted]:text-white "
                 >
                   <User size={16} className="text-singin" />
