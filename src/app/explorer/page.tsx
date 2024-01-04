@@ -67,7 +67,7 @@ export default function Explorer() {
   )
 );
 
-console.log(searchBooks)
+
 
   
 

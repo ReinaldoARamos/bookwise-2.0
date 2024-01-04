@@ -7,7 +7,6 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
 import { RatedStars } from "../RatedStars/RatedStarts";
-import { User } from "lucide-react";
 import { relativeDateFormatter } from "@/utils/DateFormatter";
 
 /* eslint-disable @next/next/no-img-element */
@@ -71,7 +70,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
   //@ts-ignore
   const booksWithAverageRating = RatingArray?.reduce((sum, ratings) => sum + ratings.rate, 0) /data?.ratings?.length;
 
-  console.log("teste" + booksWithAverageRating);
+
   return isLoading ? (
     <>
       <div className="flex  flex-col rounded-[10px]  bg-reviewCard ">
