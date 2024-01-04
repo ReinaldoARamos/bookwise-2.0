@@ -149,7 +149,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
           {HideComment ? (
             <></>
           ) : (
-            <ReviewArea onHideCommentary={() => HideCommentary()} />
+            <ReviewArea onHideCommentary={() => HideCommentary()} book_id={id} />
           )}
          
             <Comments
@@ -270,7 +270,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
           {HideComment ? (
             <></>
           ) : (
-            <ReviewArea onHideCommentary={() => HideCommentary()} />
+            <ReviewArea book_id={id} onHideCommentary={() => HideCommentary()} />
           )}
           {data?.ratings?.map((rates) => (
             <Comments

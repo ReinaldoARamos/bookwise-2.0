@@ -1,5 +1,5 @@
 import { Check, X } from "@phosphor-icons/react/dist/ssr";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StarRating from "../ReviewStar/ReviewStar";
 import { api } from "@/lib/axios";
 
@@ -8,16 +8,18 @@ import { api } from "@/lib/axios";
 interface ReviewAreaProps {
   ShowCommentary?: boolean;
   onHideCommentary: () => void;
+  book_id: string;
 }
 export function ReviewArea({
   ShowCommentary,
+book_id,
   onHideCommentary,
 }: ReviewAreaProps) {
-  const [reviewchangeText, setReviewChangeText] = useState<string>("");
+  const [description, setReviewChangeText] = useState<string>("");
   const [review, setReview] = useState<string>("");
   const [text, setNewText] = useState<string>("");
   const [charcounter, setCharCounter] = useState<number>(0);
-  const [selectedStarIndex, setSelectedStarIndex] = useState<number | null>(
+  const [rate, setSelectedStarIndex] = useState<number | null>(
     null
   );
 
@@ -30,7 +32,7 @@ export function ReviewArea({
     // Exibe no console
 
     if (charCount >= 400) {
-      setNewText(reviewchangeText);
+      setNewText(description);
       setReviewChangeText(text);
       setCharCounter(400);
     } else {
@@ -42,17 +44,26 @@ export function ReviewArea({
   }
 
   function SubmitReview() {
-    setReview(reviewchangeText);
-    console.log("Índice da estrela selecionada:", selectedStarIndex);
+    setReview(description);
+    console.log("Índice da estrela selecionada:", rate);
     console.log("Texto da avaliação:", review);
   }
+
+
+
+//const book_id = "0440ad7d-230e-4573-b455-84ca38b5d339"
+const user_id  = "c29cda0d-e3ed-4f9f-83c0-b2a1d97ffdcd"
 
   async function handleCreateReview() {
     try {
       const response = await api.post(`registerreview`, {
 
-        selectedStarIndex,
-        review,
+        rate,
+        description,
+        created_at : new Date(),
+        book_id,
+        user_id
+        
       }
       );
         console.log(response)
@@ -62,6 +73,10 @@ export function ReviewArea({
     }
    
   }
+
+  useEffect(() => {
+
+  }, [])
 
   return (
     <div className="flex  flex-col rounded-lg bg-reviewCard p-6">
@@ -76,6 +91,7 @@ export function ReviewArea({
             <span className="text-md font-bold text-gray-100  ">
               Reinaldo Ramos
             </span>
+
           </div>
           <div className="flex gap-[5px]">
             <StarRating onSelectedStarChange={handleStarChange} />
@@ -87,7 +103,7 @@ export function ReviewArea({
           className="h-[164px] w-full resize-none  bg-background px-5 py-3.5 text-sm text-gray-400 focus:outline-none "
           placeholder="Escreva sua avaliação"
           onChange={handleReviewText}
-          value={reviewchangeText}
+          value={description}
         />
         <span className="mb-1 mr-2 flex justify-end text-xs text-gray-400 ">
           {charcounter}/400
