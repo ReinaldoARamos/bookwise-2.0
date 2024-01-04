@@ -11,11 +11,26 @@ interface ReviewAreaProps {
 export function ReviewArea({ ShowCommentary , onHideCommentary}: ReviewAreaProps) {
   const [reviewchangeText , setReviewChangeText] = useState<string>("")
   const [review , setReview] = useState<string>("")
+  const [text , setNewText] = useState<string>("")
+  const [charcounter , setCharCounter] = useState<number>(0)
   const [selectedStarIndex, setSelectedStarIndex] = useState<number | null>(null);
   
   function handleReviewText(event: React.ChangeEvent<HTMLTextAreaElement>){
-    setReviewChangeText(event.target.value)
+    const newText = event.target.value;
+    setReviewChangeText(newText);
+    setNewText(newText)
+    const charCount = newText.length;
+    setCharCounter(charCount)
+    // Exibe no console
+   
 
+    if(charCount >= 400){
+      setNewText(reviewchangeText)
+      setReviewChangeText(text)
+      setCharCounter(400)
+    } else {
+     console.log(charCount)
+    }
   }
   function handleStarChange(index: number | null) {
     setSelectedStarIndex(index);
@@ -52,9 +67,10 @@ export function ReviewArea({ ShowCommentary , onHideCommentary}: ReviewAreaProps
               className="h-[164px] w-full resize-none  bg-background px-5 py-3.5 text-sm text-gray-400 focus:outline-none "
               placeholder="Escreva sua avaliação"
               onChange={handleReviewText}
+              value={reviewchangeText}
             />
             <span className="mb-1 mr-2 flex justify-end text-xs text-gray-400 ">
-              0/400
+             {charcounter}/400
             </span>
           </div>
           <div className="flex justify-end gap-2 pt-3">
