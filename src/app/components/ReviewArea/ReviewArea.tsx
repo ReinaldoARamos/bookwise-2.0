@@ -49,7 +49,12 @@ export function ReviewArea({
 
   async function handleCreateReview() {
     try {
-      const response = await api.post(`registerreview`);
+      const response = await api.post(`registerreview`, {
+
+        selectedStarIndex,
+        review,
+      }
+      );
         console.log(response)
 
     } catch (error) {
