@@ -46,11 +46,11 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
 
   function ShowComment() {
     setHideComment(false);
-    console.log("mostrando comentario");
+
   }
   function HideCommentary() {
     setHideComment(true);
-    console.log("FEchando comentario");
+
   }
 
   const { isLoading, data } = useQuery<ReviewDialogProps>({

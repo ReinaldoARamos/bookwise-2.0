@@ -46,6 +46,7 @@ export function PopularBooks() {
             rating={Math.floor(popular.averageRating)}
             cover={popular.cover_url}
             key={popular.id}
+            id={popular.id}
           />
         ))}
       </div>
