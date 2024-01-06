@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { relativeDateFormatter } from "@/utils/DateFormatter";
 import diacritics from 'diacritics';
 import { ProfileInfoSkeleton } from "../components/ProfileInfo/ProfileInfoSkeleton";
+import { RatedBooksSkeleton } from "../components/RatedBooks/RatedBookSkeleton";
 
 
 interface ProfileProps {
@@ -148,7 +149,7 @@ return (
           </div>
           <div className="space-y-6 ">
             {isLoading ? (
-              <RatedBooks title={"..."} author={".."} rate={0} review={"..."} createdAt={""} />
+              <RatedBooksSkeleton />
             ) : (
               !filter ? (
                 data?.ratings.map((books) => {
