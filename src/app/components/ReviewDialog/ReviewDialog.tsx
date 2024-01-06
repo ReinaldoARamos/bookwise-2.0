@@ -3,12 +3,12 @@ import { Comments } from "../Comments/Comments";
 import * as Dialog from "@radix-ui/react-dialog";
 import { LoginDialog } from "../LoginDialog/LoginDialog";
 import { ReviewArea } from "../ReviewArea/ReviewArea";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
 import { RatedStars } from "../RatedStars/RatedStarts";
 import { relativeDateFormatter } from "@/utils/DateFormatter";
-
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 /* eslint-disable @next/next/no-img-element */
 interface ReviewDialogProps {
   id: string;
@@ -43,7 +43,8 @@ interface ReviewDialogProps {
 export function ReviewDialog({ id }: ReviewDialogProps) {
   const [isLoggedIn, setLoggedIn] = useState<boolean>(true);
   const [HideComment, setHideComment] = useState<boolean>(true);
-
+ 
+  const [parent, enableAnimations] = useAutoAnimate({duration:150})
   function ShowComment() {
     setHideComment(false);
 
@@ -271,6 +272,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
           ) : (
             <ReviewArea book_id={id} onHideCommentary={() => HideCommentary()} />
           )}
+           <div className="flex flex-col space-y-3 rounded-lg" ref={parent}>
           {data?.ratings?.map((rates) => (
             <Comments
               key={rates.id}
@@ -281,6 +283,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
               rating={rates.rate}
             />
           ))}
+          </div>
         </div>
       </div>
     </>

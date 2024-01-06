@@ -10,7 +10,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
 import { relativeDateFormatter } from "@/utils/DateFormatter";
 import { useEffect } from "react";
-
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 interface RecentReviewsProps {
   id: string;
   rate: number;
@@ -40,7 +40,7 @@ export default function Home() {
       return response.data;
     },
   });
-
+  const [parent, enableAnimations] = useAutoAnimate({duration:300})
   const queryClient = useQueryClient();
 
   function teste() {
@@ -55,7 +55,7 @@ export default function Home() {
   return (
     <div className="flex  lg:pl-[480px] lg:pb-0 pb-60">
       {isLoading ? (
-        <div></div>
+        <div>Aqui vai ficara a skeleton screen</div>
       ) : (
         <div className="w-full px-4  pt-7   lg:pt-[72px]">
           <div className="flex justify-between   lg:justify-normal lg:pb-10">
@@ -84,7 +84,7 @@ export default function Home() {
               <div className="pb-6  text-sm text-gray-100 ">
                 Avaliações mais recentes
               </div>
-              <div className="space-y-3">
+              <div className="space-y-3" ref={parent}>
                 {data?.map((reviews) => (
                   <ReviewCard
                      id={reviews.book.id}

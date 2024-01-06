@@ -2,17 +2,19 @@ import { Check, X } from "@phosphor-icons/react/dist/ssr";
 import { useEffect, useState } from "react";
 import StarRating from "../ReviewStar/ReviewStar";
 import { api } from "@/lib/axios";
-
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 /* eslint-disable @next/next/no-img-element */
 
 interface ReviewAreaProps {
   ShowCommentary?: boolean;
   onHideCommentary: () => void;
   book_id: string;
+  refresh?: boolean;
 }
 export function ReviewArea({
   ShowCommentary,
   book_id,
+  refresh,
   onHideCommentary,
 }: ReviewAreaProps) {
   const [description, setReviewChangeText] = useState<string>("");
@@ -22,6 +24,8 @@ export function ReviewArea({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [canSubmit, setcanSubmit] = useState(false);
   const [rate, setSelectedStarIndex] = useState<number | null>(0);
+  const [parent, enableAnimations] = useAutoAnimate({duration:150})
+  
 
   function handleReviewText(event: React.ChangeEvent<HTMLTextAreaElement>) {
     const newText = event.target.value;
@@ -70,7 +74,7 @@ export function ReviewArea({
   }
 
   return (
-    <div className="flex  flex-col rounded-lg bg-reviewCard p-6">
+    <div className="flex  flex-col rounded-lg bg-reviewCard p-6" >
       <div className="flex items-center justify-between pb-6">
         <div className="flex w-full  items-center justify-between gap-4">
           <div className="flex items-center gap-3">
