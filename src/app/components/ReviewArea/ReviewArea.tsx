@@ -99,9 +99,9 @@ export function ReviewArea({
           {charcounter}/400
         </span>
       </div>
-      <div className="flex justify-between pt-3">
-        <div>ola</div>
-        <div className="flex  gap-2">
+      <div className="flex justify-end gap-2 pt-3">
+       
+       
           <button
             onClick={() => {
               onHideCommentary();
@@ -123,7 +123,7 @@ export function ReviewArea({
             <Check size={24} className="text-customgreen100" />
           </button>
         </div>
-      </div>
+      
     </div>
   );
 }
