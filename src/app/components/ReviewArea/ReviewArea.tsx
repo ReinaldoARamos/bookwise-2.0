@@ -73,6 +73,10 @@ export function ReviewArea({
     }
   }
 
+  useEffect(() => {
+
+  }, [description])
+
   return (
     <div className="flex  flex-col rounded-lg bg-reviewCard p-6" >
       <div className="flex items-center justify-between pb-6">

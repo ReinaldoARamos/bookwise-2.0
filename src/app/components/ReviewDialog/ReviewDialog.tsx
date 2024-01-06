@@ -43,7 +43,8 @@ interface ReviewDialogProps {
 export function ReviewDialog({ id }: ReviewDialogProps) {
   const [isLoggedIn, setLoggedIn] = useState<boolean>(true);
   const [HideComment, setHideComment] = useState<boolean>(true);
- 
+  const [BookDrawer, setBookDrawer] = useState<ReviewDialogProps | null>();
+
   const [parent, enableAnimations] = useAutoAnimate({duration:150})
   function ShowComment() {
     setHideComment(false);
@@ -54,133 +55,56 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
 
   }
 
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  async function fetchData() {
+    const response = await api.get(`books/${id}`);
+
+    setBookDrawer(response.data);
+  }
+  /*
   const { isLoading, data } = useQuery<ReviewDialogProps>({
     queryKey: ["BookId"],
     queryFn: async () => {
       const response = await api.get(`/books/${id}`);
       console.log(response.data);
-
+     
       return response.data;
     },
   });
+*/
 
-  const RatingArray = data?.ratings;
 
-  const RatingQuantity = data?.ratings?.length;
+useEffect(() => {
+  fetchData()
+}, [fetchData, id]);
+  const RatingArray = BookDrawer?.ratings;
+
+  const RatingQuantity = BookDrawer?.ratings?.length;
 
   //@ts-ignore
-  const booksWithAverageRating = RatingArray?.reduce((sum, ratings) => sum + ratings.rate, 0) /data?.ratings?.length;
+  const booksWithAverageRating = RatingArray?.reduce((sum, ratings) => sum + ratings.rate, 0) /BookDrawer?.ratings?.length;
 
 
-  return isLoading ? (
-    <>
-      <div className="flex  flex-col rounded-[10px]  bg-reviewCard ">
-        <div className="flex flex-col  px-8 py-6 ">
-          <div className="flex lg:gap-8 gap-4 border-b  border-b-gray-800 pb-10 ">
-            <div
-               
-              className="h-36 w-auto lg:h-[242px] lg:w-[172px] border border-white"
-            />
-            <div className="flex flex-col  justify-between">
-              <div className="flex flex-col space-y-2 ">
-                <h2 className=" max-w-[120px]  text-md font-bold text-reviewCard w-96 lg:max-w-sm   lg:text-lg">
-                 AAAAAAAAAAAAAAAAAAAA
-                </h2>
-                <span className="text-sm text-reviewCard lg:text-md">
-                 Doridoridoridori
-                </span>
-              </div>
-
-              <div className="flex flex-col space-y-1">
-                <RatedStars star={0} />
-              
-                  <span className="text-sm text-gray-400">
-                   ...
-                  </span>
-               
-                
-              </div>
-            </div>
-          </div>
-          <div className="flex pt-6 gap-[60px]">
-            <div className="flex items-center gap-4">
-              <BookmarkSimple size={24} className="text-singin" />
-              <div className="flex flex-col ">
-                <span className="text-sm text-gray-300 lg:text-sm">
-                  Categoria
-                </span>
-                <span
-                  className="text-sm  font-bold text-gray-100 lg:text-md"
-                  key={""}
-                >
-                 ...
-                </span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <BookOpen size={24} className="text-singin" />
-              <div className="flex flex-col">
-                <span className="text-sm text-gray-300 lg:text-sm">
-                  {" "}
-                  Páginas
-                </span>
-                <span className="text-sm  font-bold text-gray-100 lg:text-md">
-                  ...
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="pt-[46px]">
-        <div className="flex w-full justify-between pb-[22px]">
-          <span className="text-sm text-gray-200">Avaliações</span>
-          <span
-              className="text-sm font-bold text-custompurple hover:cursor-pointer"
-              onClick={() => ShowComment()}
-            >
-              Avaliar
-            </span>
-        </div>
-
-        <div className="flex flex-col space-y-3 rounded-lg">
-          {HideComment ? (
-            <></>
-          ) : (
-            <ReviewArea onHideCommentary={() => HideCommentary()} book_id={id} />
-          )}
-         
-            <Comments
-              key={0}
-              user={"..."}
-              date={"..."}
-              avatar={"/images/no-avatar.jpg"}
-              commentary={"..."}
-              rating={0}
-            />
-        
-        </div>
-      </div>
-    </>
-  ) : (
+  return  (
+   
+  
     <>
       <div className="flex  flex-col rounded-[10px]  bg-reviewCard ">
         <div className="flex flex-col  px-8 py-6 ">
           <div className="flex lg:gap-8 gap-4 border-b  border-b-gray-800 pb-10 ">
             <img
-              src={data?.cover_url}
+              src={BookDrawer?.cover_url}
               alt=""
               className="h-36 w-auto lg:h-[242px] lg:w-[172px]"
             />
             <div className="flex flex-col  justify-between">
               <div className="flex flex-col space-y-2 ">
                 <h2 className=" max-w-[120px]  text-md font-bold text-gray-100 w-96 lg:max-w-sm   lg:text-lg">
-                  {data?.name}
+                  {BookDrawer?.name}
                 </h2>
                 <span className="text-sm text-gray-300 lg:text-md">
-                  {data?.author}
+                  {BookDrawer?.author}
                 </span>
               </div>
 
@@ -210,7 +134,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
                   className="text-sm  font-bold text-gray-100 lg:text-md"
                   key={""}
                 >
-                  {data?.categories
+                  {BookDrawer?.categories
                     ?.map((category) => category.category.name)
                     .join(", ")}
                 </span>
@@ -225,7 +149,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
                   Páginas
                 </span>
                 <span className="text-sm  font-bold text-gray-100 lg:text-md">
-                  {data?.total_pages}
+                  {BookDrawer?.total_pages}
                 </span>
               </div>
             </div>
@@ -273,7 +197,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
             <ReviewArea book_id={id} onHideCommentary={() => HideCommentary()} />
           )}
            <div className="flex flex-col space-y-3 rounded-lg" ref={parent}>
-          {data?.ratings?.map((rates) => (
+          {BookDrawer?.ratings?.map((rates) => (
             <Comments
               key={rates.id}
               user={rates.user.name}
