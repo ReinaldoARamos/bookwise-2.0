@@ -10,7 +10,8 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
 import { relativeDateFormatter } from "@/utils/DateFormatter";
 import { useEffect } from "react";
-import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { ReviewCardSkeleton } from "./components/ReviewCard/ReviewCardSkeleton";
 interface RecentReviewsProps {
   id: string;
   rate: number;
@@ -30,7 +31,6 @@ interface RecentReviewsProps {
   };
 }
 
-
 export default function Home() {
   const { isLoading, data } = useQuery<RecentReviewsProps[]>({
     queryKey: ["Tasks"],
@@ -40,7 +40,7 @@ export default function Home() {
       return response.data;
     },
   });
-  const [parent, enableAnimations] = useAutoAnimate({duration:300})
+  const [parent, enableAnimations] = useAutoAnimate({ duration: 300 });
   const queryClient = useQueryClient();
 
   function teste() {
@@ -54,40 +54,40 @@ export default function Home() {
 
   return (
     <div className="flex  lg:pl-[480px] lg:pb-0 pb-60">
-      {isLoading ? (
-        <div>Aqui vai ficara a skeleton screen</div>
-      ) : (
-        <div className="w-full px-4  pt-7   lg:pt-[72px]">
-          <div className="flex justify-between   lg:justify-normal lg:pb-10">
-            <h1 className="ditems-center flex gap-4 text-2xl font-bold text-gray-100">
-              <ChartLineUp size={26} className="text-singin" />
-              Início
-            </h1>
-            <SideBarDropDownMenu />
-          </div>
+      <div className="w-full px-4  pt-7   lg:pt-[72px]">
+        <div className="flex justify-between   lg:justify-normal lg:pb-10">
+          <h1 className="ditems-center flex gap-4 text-2xl font-bold text-gray-100">
+            <ChartLineUp size={26} className="text-singin" />
+            Início
+          </h1>
+          <SideBarDropDownMenu />
+        </div>
 
-          <div className="flex flex-col pt-10 lg:flex-row lg:pt-0">
-            <div>
-              <div className=" hidden pb-5">
-                <div className="pb-6 text-sm text-gray-100 ">
-                  Sua última leitura
-                </div>
-                <LatestRead
-                  title={"a"}
-                  author={"a"}
-                  rating={0}
-                  review={"a"}
-                  cover={"public/images/o-hobbit.png"}
-                />
+        <div className="flex flex-col pt-10 lg:flex-row lg:pt-0">
+          <div>
+            <div className=" hidden pb-5">
+              <div className="pb-6 text-sm text-gray-100 ">
+                Sua última leitura
               </div>
+              <LatestRead
+                title={"a"}
+                author={"a"}
+                rating={0}
+                review={"a"}
+                cover={"public/images/o-hobbit.png"}
+              />
+            </div>
 
-              <div className="pb-6  text-sm text-gray-100 ">
-                Avaliações mais recentes
-              </div>
-              <div className="space-y-3" ref={parent}>
-                {data?.map((reviews) => (
+            <div className="pb-6  text-sm text-gray-100 ">
+              Avaliações mais recentes
+            </div>
+            <div className="space-y-3" ref={parent}>
+              {isLoading ? (
+               <ReviewCardSkeleton />
+              ) : (
+                data?.map((reviews) => (
                   <ReviewCard
-                     id={reviews.book.id}
+                    id={reviews.book.id}
                     title={reviews.book.name}
                     author={reviews.book.author}
                     rating={reviews.rate}
@@ -99,14 +99,14 @@ export default function Home() {
                     date={relativeDateFormatter(reviews.created_at)}
                     userId={reviews.user.id}
                   />
-                ))}
-              </div>
+                ))
+              )}
             </div>
-
-            <PopularBooks />
           </div>
+
+          <PopularBooks />
         </div>
-      )}
+      </div>
     </div>
   );
 }
