@@ -5,7 +5,7 @@ import { Nunito_Sans } from "next/font/google";
 import { Sidebar } from "./components/sidebar/sidebar";
 import { usePathname } from "next/navigation";
 import { Provider } from "@/utils/Provider";
-
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
   display: "swap",
@@ -25,8 +25,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={nunitoSans.className}>
         <Sidebar />
-
+        <SkeletonTheme baseColor="#252D4A" highlightColor="#181C2A">
         <Provider>{children}</Provider>
+          </SkeletonTheme>
       </body>
     </html>
   );

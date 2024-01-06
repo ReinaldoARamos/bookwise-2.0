@@ -11,6 +11,8 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { relativeDateFormatter } from "@/utils/DateFormatter";
 import diacritics from 'diacritics';
+import { ProfileInfoSkeleton } from "../components/ProfileInfo/ProfileInfoSkeleton";
+
 
 interface ProfileProps {
   id: string;
@@ -128,20 +130,12 @@ return (
           </div>
           <SearchBar onInputChange={handleSearchInputChange} />
          
-          <div className="block lg:hidden">
+          <div className="block lg:hidden" >
             {isLoading ? (
-              <ProfileInfo
-                name={"loading..."}
-                created_at={"loading..."}
-                avatar_url={undefined}
-                total_pages={123}
-                authors_read={1}
-                books_read={30}
-                mostReadCategory="Ciencia"
-              />
+              <ProfileInfoSkeleton />
             ) : (
               <ProfileInfo
-                name={data?.name}
+                name={data?.name } 
                 created_at={data?.created_at}
                 avatar_url={data?.avatar_url}
                 total_pages={TotalPages}
@@ -150,6 +144,7 @@ return (
                 mostReadCategory={mostCommonCategory}
               />
             )}
+           
           </div>
           <div className="space-y-6 ">
             {isLoading ? (
@@ -198,15 +193,7 @@ return (
 
         <div className="hidden lg:block">
           {isLoading ? (
-            <ProfileInfo
-              name={"loading..."}
-              created_at={""}
-              avatar_url={"/images/no-avatar.jpg"}
-              total_pages={123}
-              authors_read={1}
-              books_read={30}
-              mostReadCategory="Ciencia"
-            />
+          <ProfileInfoSkeleton />
           ) : (
             <ProfileInfo
               name={data?.name}

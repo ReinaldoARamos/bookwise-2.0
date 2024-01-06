@@ -2,6 +2,9 @@ import { DateFormatterYear } from "@/utils/DateFormatter";
 import { ProfileInfoItem } from "./Item";
 import { useEffect, useState } from "react";
 
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 interface ProfileInfoProps {
   name: string | undefined;
   created_at: string | undefined;
@@ -31,13 +34,15 @@ export function ProfileInfo({
               src={avatar_url}
               alt=""
               className="h-[72px] w-[72px] rounded-full border border-teal"
+              
             />
             <div className="flex flex-col">
               <div className="text-center text-xl font-bold text-gray-100 lg:pt-5">
                 {name}
+                
               </div>
               <div className="text-md text-gray-400 lg:pb-10">
-                membro desde {DateFormatterYear(created_at)}
+                membro desde {DateFormatterYear(created_at)} 
               </div>
             </div>
           </div>
