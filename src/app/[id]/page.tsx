@@ -1,19 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { ChartLineUp, User } from "@phosphor-icons/react/dist/ssr";
+import { User } from "@phosphor-icons/react/dist/ssr";
 import { ProfileInfo } from "../components/ProfileInfo/ProfileInfo";
 import { SearchBar } from "../components/SearchBar/SearchBar";
 import { RatedBooks } from "../components/RatedBooks/RatedBooks";
 import { SideBarDropDownMenu } from "../components/SideBarDropDown/SideBarDropDown";
-import { QueryClient, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { relativeDateFormatter } from "@/utils/DateFormatter";
-import diacritics from 'diacritics';
+import diacritics from "diacritics";
 import { ProfileInfoSkeleton } from "../components/ProfileInfo/ProfileInfoSkeleton";
 import { RatedBooksSkeleton } from "../components/RatedBooks/RatedBookSkeleton";
-
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { ReviewCardSkeleton } from "../components/ReviewCard/ReviewCardSkeleton";
 
 interface ProfileProps {
   id: string;
@@ -52,7 +53,8 @@ interface ProfileProps {
 
 export default function Profile() {
   const pathname = usePathname();
-   const [filter, setfilter] = useState<string>('')
+  const [parent, enableAnimations] = useAutoAnimate({ duration: 300 });
+  const [filter, setfilter] = useState<string>("");
   const { isLoading, data } = useQuery<ProfileProps | null>({
     queryKey: ["userId"],
     queryFn: async () => {
@@ -102,17 +104,17 @@ export default function Profile() {
   }
 
   const handleSearchInputChange = (value: string) => {
-     setfilter(value)
+    setfilter(value);
   };
 
-  const removeDiacritics = (str : string) => diacritics.remove(str);
-  const filteredBooks  = data?.ratings.filter((rating) =>
-  removeDiacritics(rating.book.name.toLowerCase()).includes(
-    removeDiacritics(filter.toLowerCase())
-  )
-);
-console.log(filteredBooks)  
-return (
+  const removeDiacritics = (str: string) => diacritics.remove(str);
+  const filteredBooks = data?.ratings.filter((rating) =>
+    removeDiacritics(rating.book.name.toLowerCase()).includes(
+      removeDiacritics(filter.toLowerCase())
+    )
+  );
+  console.log(filteredBooks);
+  return (
     <>
       <div className="flex pb-60 lg:gap-16  lg:pb-0 lg:pl-[480px]    ">
         <div className="w-full  px-4  pt-7 lg:w-auto lg:pt-[72px]   ">
@@ -121,7 +123,7 @@ return (
               <User size={26} className="text-singin" />
               Perfil
             </h1>
-
+ProfileInfoSkeleton
             <SideBarDropDownMenu />
           </div>
 
@@ -130,13 +132,13 @@ return (
             Perfil
           </div>
           <SearchBar onInputChange={handleSearchInputChange} />
-         
-          <div className="block lg:hidden" >
+
+          <div className="block lg:hidden" ref={parent}>
             {isLoading ? (
               <ProfileInfoSkeleton />
             ) : (
               <ProfileInfo
-                name={data?.name } 
+                name={data?.name}
                 created_at={data?.created_at}
                 avatar_url={data?.avatar_url}
                 total_pages={TotalPages}
@@ -145,56 +147,52 @@ return (
                 mostReadCategory={mostCommonCategory}
               />
             )}
-           
           </div>
-          <div className="space-y-6 ">
+          <div className="space-y-6 " ref={parent}>
             {isLoading ? (
               <RatedBooksSkeleton />
+            ) : !filter ? (
+              data?.ratings.map((books) => {
+                return (
+                  <RatedBooks
+                    key={books.id}
+                    title={books.book.name}
+                    author={books.book.author}
+                    rate={books.rate}
+                    review={books.description}
+                    cover={books.book.cover_url}
+                    createdAt={relativeDateFormatter(books.created_at)}
+                  />
+                );
+              })
+            ) : //@ts-ignore
+            filteredBooks?.length <= 0 ? (
+              <div
+                className="flex flex-col rounded-lg bg-background p-6 lg:w-[608px]"
+                ref={parent}
+              />
             ) : (
-              !filter ? (
-                data?.ratings.map((books) => {
-                  return (
-                    <RatedBooks
-                      key={books.id}
-                      title={books.book.name}
-                      author={books.book.author}
-                      rate={books.rate}
-                      review={books.description}
-                      cover={books.book.cover_url}
-                      createdAt={relativeDateFormatter(books.created_at)}
-                    />
-                  );
-                })
-              ) : (
-                //@ts-ignore
-                filteredBooks?.length <= 0 ? (
-                  <div className="flex lg:w-[608px] flex-col rounded-lg bg-background p-6" />
-                ) : 
-                  (
-                    filteredBooks?.map((books) => {
-                      return (
-                        <RatedBooks
-                          key={books.id}
-                          title={books.book.name}
-                          author={books.book.author}
-                          rate={books.rate}
-                          review={books.description}
-                          cover={books.book.cover_url}
-                          createdAt={relativeDateFormatter(books.created_at)}
-                        />
-                      );
-                    })
-                    
-                  
-                  )
-              )
+              filteredBooks?.map((books) => {
+                return (
+                  <RatedBooks
+                    key={books.id}
+                    title={books.book.name}
+                    author={books.book.author}
+                    rate={books.rate}
+                    review={books.description}
+                    cover={books.book.cover_url}
+                    createdAt={relativeDateFormatter(books.created_at)}
+                  />
+                );
+              })
             )}
           </div>
+          <ReviewCardSkeleton />
         </div>
 
-        <div className="hidden lg:block">
+        <div className="hidden lg:block ">
           {isLoading ? (
-          <ProfileInfoSkeleton />
+            <ProfileInfoSkeleton />
           ) : (
             <ProfileInfo
               name={data?.name}

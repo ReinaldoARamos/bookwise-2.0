@@ -10,8 +10,9 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
 import { relativeDateFormatter } from "@/utils/DateFormatter";
 import { useEffect } from "react";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
+
 import { ReviewCardSkeleton } from "./components/ReviewCard/ReviewCardSkeleton";
+import { RatedBooksSkeleton } from "./components/RatedBooks/RatedBookSkeleton";
 interface RecentReviewsProps {
   id: string;
   rate: number;
@@ -40,7 +41,7 @@ export default function Home() {
       return response.data;
     },
   });
-  const [parent, enableAnimations] = useAutoAnimate({ duration: 300 });
+  //const [parent, enableAnimations] = useAutoAnimate({ duration: 300 });
   const queryClient = useQueryClient();
 
   function teste() {
@@ -53,7 +54,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex  lg:pl-[480px] lg:pb-0 pb-60">
+    <div className="flex  pb-60 lg:pb-0 lg:pl-[480px]">
       <div className="w-full px-4  pt-7   lg:pt-[72px]">
         <div className="flex justify-between   lg:justify-normal lg:pb-10">
           <h1 className="ditems-center flex gap-4 text-2xl font-bold text-gray-100">
@@ -76,14 +77,15 @@ export default function Home() {
                 review={"a"}
                 cover={"public/images/o-hobbit.png"}
               />
-            </div>
+            </div>  
+         
 
             <div className="pb-6  text-sm text-gray-100 ">
               Avaliações mais recentes
             </div>
-            <div className="space-y-3" ref={parent}>
+            <div className="space-y-3">
               {isLoading ? (
-               <ReviewCardSkeleton />
+                <ReviewCardSkeleton />
               ) : (
                 data?.map((reviews) => (
                   <ReviewCard
