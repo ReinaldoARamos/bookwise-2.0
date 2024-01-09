@@ -10,9 +10,8 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
 import { relativeDateFormatter } from "@/utils/DateFormatter";
 import { useEffect } from "react";
-
 import { ReviewCardSkeleton } from "./components/ReviewCard/ReviewCardSkeleton";
-import { RatedBooksSkeleton } from "./components/RatedBooks/RatedBookSkeleton";
+
 interface RecentReviewsProps {
   id: string;
   rate: number;
@@ -108,6 +107,8 @@ export default function Home() {
 
           <PopularBooks />
         </div>
+
+        
       </div>
     </div>
   );

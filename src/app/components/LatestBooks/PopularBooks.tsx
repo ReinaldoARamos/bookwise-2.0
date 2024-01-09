@@ -3,6 +3,7 @@ import { BookReview } from "./BookReview";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
 import { useRouter } from "next/navigation";
+import { BookReviewSkeleton } from "./BookReviewSkeleton";
 interface PopularBooksProps {
   id: string;
   name: string;
@@ -12,7 +13,7 @@ interface PopularBooksProps {
 }
 /* eslint-disable @next/next/no-img-element */
 export function PopularBooks() {
-  const { data } = useQuery<PopularBooksProps[]>({
+  const { data, isLoading } = useQuery<PopularBooksProps[]>({
     queryKey: ["PopularBooks"],
     queryFn: async () => {
       const response = await api.get(`/popularbooks`);
@@ -39,7 +40,8 @@ export function PopularBooks() {
         </div>
       </div>
       <div className="space-y-3">
-        {data?.map((popular) => (
+       {isLoading ? (<BookReviewSkeleton />): (
+         data?.map((popular) => (
           <BookReview
             title={popular.name}
             author={popular.author}
@@ -48,7 +50,8 @@ export function PopularBooks() {
             key={popular.id}
             id={popular.id}
           />
-        ))}
+        ))
+       )}
       </div>
     </div>
   );

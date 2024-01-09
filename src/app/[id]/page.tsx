@@ -14,7 +14,7 @@ import diacritics from "diacritics";
 import { ProfileInfoSkeleton } from "../components/ProfileInfo/ProfileInfoSkeleton";
 import { RatedBooksSkeleton } from "../components/RatedBooks/RatedBookSkeleton";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { ReviewCardSkeleton } from "../components/ReviewCard/ReviewCardSkeleton";
+import { BookReviewSkeleton } from "../components/LatestBooks/BookReviewSkeleton";
 
 interface ProfileProps {
   id: string;
@@ -187,9 +187,9 @@ ProfileInfoSkeleton
               })
             )}
           </div>
-          <ReviewCardSkeleton />
-        </div>
 
+        </div>
+       
         <div className="hidden lg:block ">
           {isLoading ? (
             <ProfileInfoSkeleton />
@@ -205,7 +205,9 @@ ProfileInfoSkeleton
             />
           )}
         </div>
+
       </div>
+   
     </>
   );
 }
