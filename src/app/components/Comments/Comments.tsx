@@ -9,9 +9,10 @@ interface CommentProps {
   avatar: string;
   commentary: string;
   rating: number;
+  userId: string
 }
 /* eslint-disable @next/next/no-img-element */
-export function Comments({avatar, commentary,date, rating,user} : CommentProps) {
+export function Comments({avatar, commentary,date, rating,user, userId} : CommentProps) {
   const RedirectTo = useRouter();
 
   function Redirect(url: string) {
@@ -25,7 +26,7 @@ export function Comments({avatar, commentary,date, rating,user} : CommentProps) 
           src={avatar}
           alt=""
           className="h-10 w-10 rounded-full border border-teal"
-          onClick={() => Redirect("/profile")}
+          onClick={() => Redirect(`/${userId}`)}
         />
         <div className=" flex w-full justify-between">
           <div>

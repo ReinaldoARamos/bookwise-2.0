@@ -193,7 +193,9 @@ useEffect(() => {
                       date={relativeDateFormatter(rates.created_at)}
                       avatar={rates.user.avatar_url}
                       commentary={rates.description}
-                      rating={rates.rate} />
+                      rating={rates.rate}
+                      userId={rates.user.id
+                      } />
                   ))}
                 </div>
               </div>
