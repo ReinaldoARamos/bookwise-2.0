@@ -6,9 +6,11 @@ import { Tags } from "../components/Tags/Tags";
 import { SideBarDropDownMenu } from "../components/SideBarDropDown/SideBarDropDown";
 import diacritics from 'diacritics';
 import { api } from "@/lib/axios";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
-import { BookReviewSkeleton } from "../components/LatestBooks/BookReviewSkeleton";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { ExplorerBooksSkeleton } from "../components/ExplorerBooks/ExplorerBooksCardSkeleton";
+import 'react-loading-skeleton/dist/skeleton.css'
 
 interface ExplorerBooksProps {
   id: string;
@@ -29,8 +31,9 @@ interface ExplorerBooksProps {
 export default function Explorer() {
   const [selectedTagName, setSelectedTagName] = useState<string>("Todos");
   const [filter, setFilter] = useState<string>("");
+  const [parent, enableAnimations] = useAutoAnimate({ duration: 300 });
   const [hideSearchBar, sethideSearchBar] = useState<boolean>(false);
-  const { data } = useQuery<ExplorerBooksProps[]>({
+  const { data, isLoading } = useQuery<ExplorerBooksProps[]>({
     queryKey: ["explorerbooks"],
     queryFn: async () => {
       const response = await api.get(`/books`);
@@ -91,50 +94,60 @@ export default function Explorer() {
       </div>
       <div className="flex flex-wrap gap-3   pb-12 ">
         <Tags onClickTag={handleTagClick} />
-      </div>
-
-      {selectedTagName === "Todos" || !selectedTagName ? (
-        <div className="grid  grid-cols-2 gap-5 pb-4 lg:grid-cols-3 lg:pb-0 ">
-         {!filter ? (
-           data?.map((books) => (
-            <ExplorerBooks
-              key={books.id}
-              title={books.name}
-              author={books.author}
-              rating={books.averageRating}
-              cover={books.cover_url}
-              id={books.id}
-            />
-          ))
+      </div >
+         {isLoading ? (
+         <div className="grid  grid-cols-2 gap-5 pb-4 lg:grid-cols-3 lg:pb-0  " >
+           <ExplorerBooksSkeleton />
+           <ExplorerBooksSkeleton />
+           <ExplorerBooksSkeleton />
+           <ExplorerBooksSkeleton />
+           <ExplorerBooksSkeleton />
+           <ExplorerBooksSkeleton />
+         </div>
          ) : (
-          searchBooks?.map((books) => (
-            <ExplorerBooks
-              key={books.id}
-              title={books.name}
-              author={books.author}
-              rating={books.averageRating}
-              cover={books.cover_url}
-              id={books.id}
-            />
-          ))
-         )}
-        </div>
-      ) : (
-        <div className="grid  grid-cols-2 gap-5 pb-4 lg:grid-cols-3 lg:pb-0 ">
-          {filteredBooks?.map((filter) => {
-            return (
-              <ExplorerBooks
-                key={filter.id}
-                title={filter.name}
-                author={filter.author}
-                rating={filter.averageRating}
-                cover={filter.cover_url}
-                id={filter.id}
-              />
-            );
-          })}
-        </div>
-      )}
+           selectedTagName === "Todos" || !selectedTagName ? (
+            <div className="grid  grid-cols-2 gap-5 pb-4 lg:grid-cols-3 lg:pb-0  " ref={parent}>
+             {!filter ? (
+               data?.map((books) => (
+                <ExplorerBooks
+                  key={books.id}
+                  title={books.name}
+                  author={books.author}
+                  rating={books.averageRating}
+                  cover={books.cover_url}
+                  id={books.id}
+                />
+              ))
+             ) : (
+              searchBooks?.map((books) => (
+                <ExplorerBooks
+                  key={books.id}
+                  title={books.name}
+                  author={books.author}
+                  rating={books.averageRating}
+                  cover={books.cover_url}
+                  id={books.id}
+                />
+              ))
+             )}
+            </div>
+          ) : (
+            <div className="grid  grid-cols-2 gap-5 pb-4 lg:grid-cols-3 lg:pb-0 ">
+              {filteredBooks?.map((filter) => {
+                return (
+                  <ExplorerBooks
+                    key={filter.id}
+                    title={filter.name}
+                    author={filter.author}
+                    rating={filter.averageRating}
+                    cover={filter.cover_url}
+                    id={filter.id}
+                  />
+                );
+              })}
+            </div>
+         ))}
+     
     </div>
     
   );

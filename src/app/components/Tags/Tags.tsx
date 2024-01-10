@@ -2,7 +2,7 @@
 import { api } from "@/lib/axios";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 interface TagsProps {
   id?: string;
   name?: string;
@@ -11,6 +11,7 @@ interface TagsProps {
 }
 export function Tags({ onClickTag }: TagsProps) {
   const [selectedTag, setSelectedTag] = useState<string>("Todos");
+  const [parent, enableAnimations] = useAutoAnimate({ duration: 300 });
   const { isLoading, data } = useQuery<TagsProps[]>({
     queryKey: ["Tags"],
     queryFn: async () => {
@@ -27,7 +28,7 @@ export function Tags({ onClickTag }: TagsProps) {
   }
 
   return (
-    <div className="flex flex-wrap gap-3 pb-12">
+    <div className="flex flex-wrap gap-3 pb-12" ref={parent}>
       {data?.map((tag) => (
         <div
           key={tag.id}

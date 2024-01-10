@@ -14,7 +14,7 @@ import diacritics from "diacritics";
 import { ProfileInfoSkeleton } from "../components/ProfileInfo/ProfileInfoSkeleton";
 import { RatedBooksSkeleton } from "../components/RatedBooks/RatedBookSkeleton";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import 'react-loading-skeleton/dist/skeleton.css'
+
 
 interface ProfileProps {
   id: string;
@@ -201,7 +201,23 @@ export default function Profile() {
           </div>
 
         </div>
-   
+       
+        <div className="hidden lg:block ">
+          {isLoading ? (
+            <ProfileInfoSkeleton />
+          ) : (
+            <ProfileInfo
+              name={data?.name}
+              created_at={data?.created_at}
+              avatar_url={data?.avatar_url}
+              total_pages={TotalPages}
+              authors_read={uniqueAuthorsCount}
+              books_read={RatedBooksNumber}
+              mostReadCategory={mostCommonCategory}
+            />
+          )}
+        </div>
+
       </div>
    
     </>
