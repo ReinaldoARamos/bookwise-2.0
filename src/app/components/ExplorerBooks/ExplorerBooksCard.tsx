@@ -5,6 +5,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { ReviewDialog } from "../ReviewDialog/ReviewDialog";
 import { useQueryClient } from "@tanstack/react-query";
 import { RatedStars } from "../RatedStars/RatedStarts";
+import { ReviewDialogSkeleton } from "../ReviewDialog/ReviewDialogSkeleton";
 
 interface ExplorerBooksProps {
   isRead?: boolean;
@@ -83,9 +84,10 @@ export function ExplorerBooks({
               <X size={24} onClick={ClearQueryCash} />
             </Dialog.Close>
           </div>
-          <ReviewDialog id={id} />
+        <  ReviewDialog id={id} />
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
   );
 }
+//   <ReviewDialog id={id} />
