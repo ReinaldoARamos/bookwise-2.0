@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
 import { useRouter } from "next/navigation";
 import { BookReviewSkeleton } from "./BookReviewSkeleton";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 interface PopularBooksProps {
   id: string;
   name: string;
@@ -21,7 +22,7 @@ export function PopularBooks() {
       return response.data;
     },
   });
-
+  const [parent, enableAnimations] = useAutoAnimate({ duration: 300 });
   const RedirectTo = useRouter();
 
   function Redirect(url: string) {
@@ -39,7 +40,7 @@ export function PopularBooks() {
           Ver tudo
         </div>
       </div>
-      <div className="space-y-3">
+      <div className="space-y-3 " ref={parent}>
        {isLoading ? (<BookReviewSkeleton />): (
          data?.map((popular) => (
           <BookReview

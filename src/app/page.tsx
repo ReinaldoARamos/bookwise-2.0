@@ -11,6 +11,9 @@ import { api } from "@/lib/axios";
 import { relativeDateFormatter } from "@/utils/DateFormatter";
 import { useEffect } from "react";
 import { ReviewCardSkeleton } from "./components/ReviewCard/ReviewCardSkeleton";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+
+import { ProfileInfo } from "./components/ProfileInfo/ProfileInfo";
 
 interface RecentReviewsProps {
   id: string;
@@ -36,11 +39,11 @@ export default function Home() {
     queryKey: ["Tasks"],
     queryFn: async () => {
       const response = await api.get(`/recentreviews`);
-      console.log(response.data);
+
       return response.data;
     },
   });
-  //const [parent, enableAnimations] = useAutoAnimate({ duration: 300 });
+  const [parent, enableAnimations] = useAutoAnimate({ duration: 300 });
   const queryClient = useQueryClient();
 
   function teste() {
@@ -76,13 +79,12 @@ export default function Home() {
                 review={"a"}
                 cover={"public/images/o-hobbit.png"}
               />
-            </div>  
-         
+            </div>
 
             <div className="pb-6  text-sm text-gray-100 ">
               Avaliações mais recentes
             </div>
-            <div className="space-y-3">
+            <div className="space-y-3" ref={parent}>
               {isLoading ? (
                 <ReviewCardSkeleton />
               ) : (
@@ -107,14 +109,22 @@ export default function Home() {
 
           <PopularBooks />
         </div>
+      </div>
 
-        
+      <div className="hidden ">
+        {isLoading ? (
+          <ReviewCardSkeleton />
+        ) : (
+          data?.map((reviews) => (
+            <ProfileInfo
+              name={reviews?.user.name}
+              created_at={reviews?.created_at}
+              avatar_url={reviews?.user.avatar_url}
+              key={reviews.id}
+            />
+          ))
+        )}
       </div>
     </div>
   );
 }
-
-/*
-
-
-* */

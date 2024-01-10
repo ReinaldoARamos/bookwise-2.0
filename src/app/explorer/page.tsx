@@ -6,8 +6,9 @@ import { Tags } from "../components/Tags/Tags";
 import { SideBarDropDownMenu } from "../components/SideBarDropDown/SideBarDropDown";
 import diacritics from 'diacritics';
 import { api } from "@/lib/axios";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
+import { BookReviewSkeleton } from "../components/LatestBooks/BookReviewSkeleton";
 
 interface ExplorerBooksProps {
   id: string;
@@ -68,7 +69,6 @@ export default function Explorer() {
 );
 
 
-
   
 
   return (
@@ -79,6 +79,7 @@ export default function Explorer() {
             <Binoculars size={26} className="text-singin" />
             Explorar
           </h1>
+       
           <SideBarDropDownMenu />
         </div>
         <h1 className="hidden w-full items-center gap-4 pb-10 text-2xl font-bold text-gray-100 lg:flex">

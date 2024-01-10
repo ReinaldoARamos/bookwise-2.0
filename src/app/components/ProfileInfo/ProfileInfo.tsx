@@ -9,10 +9,10 @@ interface ProfileInfoProps {
   name: string | undefined;
   created_at: string | undefined;
   avatar_url: string | undefined;
-  total_pages: number | undefined;
-  authors_read: number  | undefined;
-  books_read: number  | undefined;
-  mostReadCategory: string  | null | undefined;
+  total_pages?: number | undefined;
+  authors_read?: number  | undefined;
+  books_read?: number  | undefined;
+  mostReadCategory?: string  | null | undefined;
 }
 
 /* eslint-disable @next/next/no-img-element */

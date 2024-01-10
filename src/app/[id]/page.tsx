@@ -5,16 +5,16 @@ import { ProfileInfo } from "../components/ProfileInfo/ProfileInfo";
 import { SearchBar } from "../components/SearchBar/SearchBar";
 import { RatedBooks } from "../components/RatedBooks/RatedBooks";
 import { SideBarDropDownMenu } from "../components/SideBarDropDown/SideBarDropDown";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { relativeDateFormatter } from "@/utils/DateFormatter";
 import diacritics from "diacritics";
 import { ProfileInfoSkeleton } from "../components/ProfileInfo/ProfileInfoSkeleton";
 import { RatedBooksSkeleton } from "../components/RatedBooks/RatedBookSkeleton";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-import { BookReviewSkeleton } from "../components/LatestBooks/BookReviewSkeleton";
+import 'react-loading-skeleton/dist/skeleton.css'
 
 interface ProfileProps {
   id: string;
@@ -113,7 +113,16 @@ export default function Profile() {
       removeDiacritics(filter.toLowerCase())
     )
   );
-  console.log(filteredBooks);
+  const queryClient = useQueryClient();
+
+  function teste() {
+    queryClient.removeQueries({ queryKey: ["userId"], exact: true });
+    console.log("removendo query do cache");
+  }
+
+  useEffect(() => {
+    teste();
+  }, []);
   return (
     <>
       <div className="flex pb-60 lg:gap-16  lg:pb-0 lg:pl-[480px]    ">
@@ -123,7 +132,7 @@ export default function Profile() {
               <User size={26} className="text-singin" />
               Perfil
             </h1>
-ProfileInfoSkeleton
+          
             <SideBarDropDownMenu />
           </div>
 
@@ -154,6 +163,7 @@ ProfileInfoSkeleton
             ) : !filter ? (
               data?.ratings.map((books) => {
                 return (
+                 <>
                   <RatedBooks
                     key={books.id}
                     title={books.book.name}
@@ -163,6 +173,8 @@ ProfileInfoSkeleton
                     cover={books.book.cover_url}
                     createdAt={relativeDateFormatter(books.created_at)}
                   />
+                   
+                  </>
                 );
               })
             ) : //@ts-ignore
@@ -189,23 +201,7 @@ ProfileInfoSkeleton
           </div>
 
         </div>
-       
-        <div className="hidden lg:block ">
-          {isLoading ? (
-            <ProfileInfoSkeleton />
-          ) : (
-            <ProfileInfo
-              name={data?.name}
-              created_at={data?.created_at}
-              avatar_url={data?.avatar_url}
-              total_pages={TotalPages}
-              authors_read={uniqueAuthorsCount}
-              books_read={RatedBooksNumber}
-              mostReadCategory={mostCommonCategory}
-            />
-          )}
-        </div>
-
+   
       </div>
    
     </>

@@ -1,6 +1,7 @@
 'use client'
 import { LoginButton } from "../components/LoginButton/LoginButton";
 import LoginLogo from "../components/LoginLogo/LoginLogo";
+import { RatedBooksSkeleton } from "../components/RatedBooks/RatedBookSkeleton";
 import BookwiseLogo from "../components/logo/Logo";
 export default function Login() {
   return (
@@ -35,6 +36,7 @@ export default function Login() {
             text="Entrar como visitante"
 
           />
+          <RatedBooksSkeleton />
         </div>
       </div>
     </div>

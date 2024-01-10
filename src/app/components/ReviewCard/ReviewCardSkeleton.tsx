@@ -29,7 +29,7 @@ export function ReviewCardSkeleton() {
             <Skeleton count={2} width={124}/>
             </div>
             <div className="break-words text-sm text-gray-100 lg:max-w-[432px] lg:pt-5">
-           <Skeleton width={220} height={84}/>
+           <Skeleton width={232} height={84}/>
             </div>
           </div>
         </div>
