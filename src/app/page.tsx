@@ -46,14 +46,7 @@ export default function Home() {
   const [parent, enableAnimations] = useAutoAnimate({ duration: 300 });
   const queryClient = useQueryClient();
 
-  function teste() {
-    queryClient.removeQueries({ queryKey: ["userId"], exact: true });
-    console.log("removendo query do cache");
-  }
 
-  useEffect(() => {
-    teste();
-  }, []);
 
   return (
     <div className="flex  pb-60 lg:pb-0 lg:pl-[480px]">

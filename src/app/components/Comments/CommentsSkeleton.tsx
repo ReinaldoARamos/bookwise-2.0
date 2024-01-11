@@ -11,6 +11,7 @@ export function CommentsSkeleton() {
        
           width={40}
           height={40}
+          circle
         />
         <div className=" flex w-full justify-between">
           <div>
