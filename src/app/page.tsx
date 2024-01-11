@@ -9,10 +9,8 @@ import { SideBarDropDownMenu } from "./components/SideBarDropDown/SideBarDropDow
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/axios";
 import { relativeDateFormatter } from "@/utils/DateFormatter";
-import { useEffect } from "react";
 import { ReviewCardSkeleton } from "./components/ReviewCard/ReviewCardSkeleton";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
-
 import { ProfileInfo } from "./components/ProfileInfo/ProfileInfo";
 
 interface RecentReviewsProps {
