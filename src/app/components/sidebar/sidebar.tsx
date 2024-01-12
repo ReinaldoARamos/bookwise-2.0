@@ -60,7 +60,7 @@ console.log(session)
               <div>{session.user?.name}</div>
               <SignOut
                 size={24}
-                className="text-md text-red-500 group-hover:text-gray-100 hover:cursor-pointer"
+                className="text-md text-red-500 hover:text-gray-100 hover:cursor-pointer"
                 onClick={() => signOut()}
               />
             </div>
