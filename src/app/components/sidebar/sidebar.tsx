@@ -4,23 +4,22 @@ import BookwiseLogo from "../logo/Logo";
 import { Binoculars, SignIn, SignOut } from "@phosphor-icons/react";
 import { Items } from "./items";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { User } from "@phosphor-icons/react/dist/ssr";
-import { useSession, signIn, signOut } from "next-auth/react"
+import { useSession,  signOut } from "next-auth/react"
 
 export function Sidebar() {
-  const [logged, SetLogged] = useState<boolean>(false);
-
+ const {data:session} = useSession()
+console.log(session)
   const [isloginPage, setIsloginPage] = useState<boolean>(false);
 
   const path = usePathname();
-  function Login() {
-    SetLogged(true);
-  }
+  const RedirectTo = useRouter();
 
-  function LogOut() {
-    SetLogged(false);
-  }
+  function Redirect(url: string) {
+   
+   RedirectTo.push(url);
+ }
   return (
     <div
       className={
@@ -42,7 +41,7 @@ export function Sidebar() {
             icon={Binoculars}
             redirectUrl={"/explorer"}
           />
-          {logged ? (
+          {session ? (
             <Items text={"Perfil"} icon={User} redirectUrl={"/c29cda0d-e3ed-4f9f-83c0-b2a1d97ffdcd"} />
           ) : (
             <></>
@@ -50,26 +49,26 @@ export function Sidebar() {
         </div>
       </div>
       <div className="group flex  justify-center pb-6">
-        {logged ? (
+        {session ? (
           <>
             <div className="flex  items-center justify-center gap-3">
               <img
-                src={"https://avatars.githubusercontent.com/u/55931337?v=4"}
+                 src={session.user?.image ?? ""}
                 alt=""
                 className="h-10 w-10 rounded-full"
               />
-              <div>Reinaldo</div>
+              <div>{session.user?.name}</div>
               <SignOut
                 size={24}
                 className="text-md text-red-500 group-hover:text-gray-100 hover:cursor-pointer"
-                onClick={() => LogOut()}
+                onClick={() => signOut()}
               />
             </div>
           </>
         ) : (
           <>
             <div className="item-center flex gap-3">
-              <button className="text-gray-400 group-hover:text-gray-100 " onClick={() => Login()}>
+              <button className="text-gray-400 group-hover:text-gray-100  hover:cursor-pointer " onClick={() => Redirect('/login')} >
                 Login
               </button>
               <SignIn

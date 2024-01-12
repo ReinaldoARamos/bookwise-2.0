@@ -11,9 +11,10 @@ import {
   User,
 } from "@phosphor-icons/react/dist/ssr";
 import { useRouter } from "next/navigation";
+import Login from "@/app/login/page";
+import { useSession,  signOut } from "next-auth/react"
 
 export function SideBarDropDownMenu() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const RedirectTo = useRouter();
 
@@ -21,20 +22,16 @@ export function SideBarDropDownMenu() {
     RedirectTo.push(url);
   }
 
-  function Login() {
-    setIsLoggedIn(true);
-  }
 
-  function LogOut() {
-    setIsLoggedIn(false);
-  }
+
+  const {data:session} = useSession()
 
   return (
     <DropdownMenu.Root defaultOpen={false}>
       <DropdownMenu.Trigger className="block lg:hidden">
-        {isLoggedIn ? (
+        {session ? (
           <img
-            src={"https://avatars.githubusercontent.com/u/55931337?v=4"}
+            src={session.user?.image ?? ""}
             alt=""
             className="h-8 w-8 rounded-full border border-teal"
           />
@@ -68,7 +65,7 @@ export function SideBarDropDownMenu() {
             </DropdownMenu.Item>
 
             <DropdownMenu.Item className="group  flex  h-[25px] rounded-[3px]  px-[5px] leading-none   outline-none">
-              {isLoggedIn ? (
+              {session ? (
                 <div
                   onClick={() => Redirect("/c29cda0d-e3ed-4f9f-83c0-b2a1d97ffdcd")}
                   className="flex items-center  gap-2 text-sm group-data-[highlighted]:text-white "
@@ -78,7 +75,7 @@ export function SideBarDropDownMenu() {
                 </div>
               ) : (
                 <div
-                  onClick={() => Login()}
+                  onClick={() => Redirect('/login')}
                   className="flex items-center  gap-2 text-sm group-data-[highlighted]:text-white "
                 >
                   <SignIn size={16} className="text-singin" />
@@ -87,9 +84,9 @@ export function SideBarDropDownMenu() {
               )}
             </DropdownMenu.Item>
             <DropdownMenu.Item className="   ">
-              {isLoggedIn ? (
+              {session ? (
                 <div
-                  onClick={() => LogOut()}
+                  onClick={() => signOut()}
                   className="group     flex  h-[25px] items-center gap-2 rounded-[3px] px-[5px] text-sm  leading-none outline-none group-data-[highlighted]:text-white "
                 >
                   <SignOut size={16} className="text-red-700" />
