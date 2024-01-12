@@ -27,6 +27,7 @@ export default function Login() {
             image="/logos_google-icon.png"
             text="Entrar com o google"
         
+            
           />
           <LoginButton
             image="/Vector.png"
