@@ -21,6 +21,7 @@ body {
   background: rgb(14,17,22);
 }
 
+
 ::-webkit-scrollbar {
   width: 0px; /* Width of the scrollbar */
 }
