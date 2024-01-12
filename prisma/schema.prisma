@@ -23,10 +23,10 @@ model User {
 
 model Book {
   id          String   @id @default(uuid())
-  name        String
-  author      String
-  summary     String
-  cover_url   String
+  name        String   @db.Text
+  author      String   @db.Text
+  summary     String   @db.Text
+  cover_url   String   @db.Text
   total_pages Int
   created_at  DateTime @default(now())
 
@@ -60,7 +60,7 @@ model CategoriesOnBooks {
 model Rating {
   id          String   @id @default(uuid())
   rate        Int
-  description String
+  description String   @db.Text
   created_at  DateTime @default(now())
 
   book    Book   @relation(fields: [book_id], references: [id])
@@ -81,11 +81,11 @@ model Account {
   provider            String
   provider_account_id String
   refresh_token       String?
-  access_token        String?
+  access_token        String? @db.Text
   expires_at          Int?
   token_type          String?
   scope               String?
-  id_token            String?
+  id_token            String? @db.Text
   session_state       String?
   user                User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
@@ -96,7 +96,7 @@ model Account {
 
 model Session {
   id            String   @id @default(cuid())
-  session_token String
+  session_token String   @unique
   user_id       String
   expires       DateTime
   user          User     @relation(fields: [user_id], references: [id], onDelete: Cascade)
