@@ -28,7 +28,7 @@ export default function RootLayout({
         <Sidebar />
         <SkeletonTheme baseColor="#252D4A" highlightColor="#181C2A">
           <Provider>
-            <ProviderSession>{children}</ProviderSession>
+         {children}
           </Provider>
         </SkeletonTheme>
       </body>
