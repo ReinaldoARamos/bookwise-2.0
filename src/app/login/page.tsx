@@ -21,10 +21,13 @@ export default function Login() {
           Faça seu login ou acesse como visitante
         </span>
         <div className="flex flex-col space-y-4">
+
+          
           <LoginButton
             image="/logos_google-icon.png"
             text="Entrar com o google"
         
+            
           />
           <LoginButton
             image="/Vector.png"
