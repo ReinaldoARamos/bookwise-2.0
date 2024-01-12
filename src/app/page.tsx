@@ -12,6 +12,7 @@ import { relativeDateFormatter } from "@/utils/DateFormatter";
 import { ReviewCardSkeleton } from "./components/ReviewCard/ReviewCardSkeleton";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { ProfileInfo } from "./components/ProfileInfo/ProfileInfo";
+import { useSession } from "next-auth/react";
 
 interface RecentReviewsProps {
   id: string;
@@ -42,7 +43,6 @@ export default function Home() {
     },
   });
   const [parent, enableAnimations] = useAutoAnimate({ duration: 300 });
-  const queryClient = useQueryClient();
 
 
 

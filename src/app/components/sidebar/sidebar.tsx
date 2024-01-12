@@ -6,6 +6,7 @@ import { Items } from "./items";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { User } from "@phosphor-icons/react/dist/ssr";
+import { useSession, signIn, signOut } from "next-auth/react"
 
 export function Sidebar() {
   const [logged, SetLogged] = useState<boolean>(false);
