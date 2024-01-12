@@ -25,19 +25,16 @@ export default function Login() {
           
           <LoginButton
             image="/logos_google-icon.png"
-            text="Entrar com o google"
-        
+            text="Entrar com o google" provider={'google'}        
             
           />
           <LoginButton
             image="/Vector.png"
-            text="Entrar com o Github"
-         
+            text="Entrar com o Github" provider={'github'}         
           />
           <LoginButton
             image="/RocketLaunch.png"
-            text="Entrar como visitante"
-
+            text="Entrar como visitante" provider={""}
           />
           <RatedBooksSkeleton />
         </div>
