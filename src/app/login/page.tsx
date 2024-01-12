@@ -1,10 +1,11 @@
 'use client'
+import { useSession } from "next-auth/react";
 import { LoginButton } from "../components/LoginButton/LoginButton";
 import LoginLogo from "../components/LoginLogo/LoginLogo";
-import { RatedBooksSkeleton } from "../components/RatedBooks/RatedBookSkeleton";
-import BookwiseLogo from "../components/logo/Logo";
+import {signOut } from 'next-auth/react'
 export default function Login() {
-  return (
+  const { data: session} = useSession()
+    return (
     <div className="flex items-center justify-center gap-48  px-5  py-5 lg:justify-normal lg:px-0 lg:py-0 lg:pl-3.5 ">
       {" "}
       <div
@@ -21,8 +22,8 @@ export default function Login() {
           Faça seu login ou acesse como visitante
         </span>
         <div className="flex flex-col space-y-4">
-
-          
+          {session ?  (<div>Ola </div>) : (<div>perdedor</div>)}
+          <div onClick={() => signOut()}>loga foras</div>
           <LoginButton
             image="/logos_google-icon.png"
             text="Entrar com o google" provider={'google'}        
@@ -36,7 +37,7 @@ export default function Login() {
             image="/RocketLaunch.png"
             text="Entrar como visitante" provider={""}
           />
-          <RatedBooksSkeleton />
+        
         </div>
       </div>
     </div>

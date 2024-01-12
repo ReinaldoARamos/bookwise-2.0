@@ -25,12 +25,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={nunitoSans.className}>
-        <Sidebar />
-        <SkeletonTheme baseColor="#252D4A" highlightColor="#181C2A">
-          <Provider>
-         {children}
-          </Provider>
-        </SkeletonTheme>
+        <ProviderSession>
+          <Sidebar />
+          <SkeletonTheme baseColor="#252D4A" highlightColor="#181C2A">
+            <Provider>{children}</Provider>
+          </SkeletonTheme>
+        </ProviderSession>
       </body>
     </html>
   );
