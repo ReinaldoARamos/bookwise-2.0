@@ -10,6 +10,7 @@ import { RatedStars } from "../RatedStars/RatedStarts";
 import { relativeDateFormatter } from "@/utils/DateFormatter";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { ReviewDialogSkeleton } from "./ReviewDialogSkeleton";
+import { useSession } from "next-auth/react";
 /* eslint-disable @next/next/no-img-element */
 interface ReviewDialogProps {
   id: string;
@@ -45,7 +46,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
   const [isLoggedIn, setLoggedIn] = useState<boolean>(true);
   const [HideComment, setHideComment] = useState<boolean>(true);
   const [BookDrawer, setBookDrawer] = useState<ReviewDialogProps | null>();
-
+  const { data: session } = useSession();
   const [parent, enableAnimations] = useAutoAnimate({ duration: 150 });
   function ShowComment() {
     setHideComment(false);
@@ -69,7 +70,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
   const RatingQuantity = BookDrawer?.ratings?.length;
 
   //@ts-ignore
-  const booksWithAverageRating =RatingArray?.reduce((sum, ratings) => sum + ratings.rate, 0) /BookDrawer?.ratings?.length;
+  const booksWithAverageRating =RatingArray?.reduce((sum, ratings) => sum + ratings.rate, 0) / BookDrawer?.ratings?.length;
 
   return (
     <>
@@ -149,7 +150,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
           <div className="pt-[46px]">
             <div className="flex w-full justify-between pb-[22px]">
               <span className="text-sm text-gray-200">Avaliações</span>
-              {isLoggedIn ? (
+              {session ? (
                 <span
                   className="text-sm font-bold text-custompurple hover:cursor-pointer"
                   onClick={() => ShowComment()}
@@ -186,6 +187,8 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
                 <ReviewArea
                   book_id={id}
                   onHideCommentary={() => HideCommentary()}
+                  username={session?.user?.name ?? ""}
+                  avatar_url={session?.user?.image ?? ""}
                 />
               )}
               <div className="flex flex-col space-y-3 rounded-lg" ref={parent}>

@@ -10,11 +10,16 @@ interface ReviewAreaProps {
   onHideCommentary: () => void;
   book_id: string;
   refresh?: boolean;
+  username: string;
+  avatar_url: string;
+
 }
 export function ReviewArea({
   ShowCommentary,
   book_id,
   refresh,
+  avatar_url,
+  username,
   onHideCommentary,
 }: ReviewAreaProps) {
   const [description, setReviewChangeText] = useState<string>("");
@@ -83,12 +88,12 @@ export function ReviewArea({
         <div className="flex w-full  items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <img
-              src={"https://avatars.githubusercontent.com/u/55931337?v=4"}
+              src={avatar_url}
               alt=""
               className="h-10 w-10 rounded-full"
             />
             <span className="text-md font-bold text-gray-100  ">
-              Reinaldo Ramos
+             {username}
             </span>
           </div>
           <div className="flex gap-[5px]">
