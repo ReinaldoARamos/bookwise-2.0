@@ -1,69 +1,11 @@
 import NextAuth from "next-auth";
-import GithubProvider, { GithubProfile } from "next-auth/providers/github";
-import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
-//import { PrismaAdapter } from "@next-auth/prisma-adapter";
+
 import { PrismaClient } from "@prisma/client";
 import PrismaAdapter from "@/lib/prisma-adapter";
+import { authOption } from "@/app/auth/authOptions";
 
 const prisma = new PrismaClient();
-export const authOption = {
-  adapter: PrismaAdapter(),
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID ?? "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
-      authorization: {
-        params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code",
-          scope:
-            "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile ",
-        },
-      },
-      profile(profile: GoogleProfile) {
-        return {
-          id: profile.sub,
-          name: profile.name,
-          username: "",
-          email: profile.email,
-          avatar_url: profile.picture,
-          
-        };
-      },
-    }),
-    /*
-    GithubProvider({
-      clientId: process.env.GITHUB_ID ?? "",
-      clientSecret: process.env.GITHUB_SECRET ?? "",
-      
-      //@ts-ignore
-      profile(profile: GithubProfile) {
-        return {
-          id: profile.id,
-          name: profile.name!,
-          email: profile.email!,
-          avatar_url: profile.avatar_url,
-          
-        }
-      }
-    }),
-    * */
-  ],
 
-  callbacks: {
-    //@ts-ignore
-    async session({ session, user }) {
-      // Send properties to the client, like an access_token and user id from a provider.
-
-      return {
-        ...session,
-        user,
-      };
-    },
-  },
-};
-//@ts-ignore
 const handler = NextAuth(authOption);
 
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST , handler as PUT, handler as DELETE, handler as PATCH}; 
