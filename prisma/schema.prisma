@@ -13,7 +13,7 @@ model User {
   name       String   @db.VarChar(191)
   avatar_url String?
   created_at DateTime @default(now())
-  email String 
+email  String
   accounts Account[]
   sessions Session[]
   ratings  Rating[]

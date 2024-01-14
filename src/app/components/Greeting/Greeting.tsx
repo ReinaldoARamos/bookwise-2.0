@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 const GreetingComponent = () => {
-  const [greeting, setGreeting] = useState("");
+  const [greeting, setGreeting] = useState('');
 
   useEffect(() => {
     const getCurrentGreeting = () => {
       const currentHour = new Date().getHours();
 
       if (currentHour >= 6 && currentHour < 12) {
-        setGreeting("Bom dia,  Início");
+        setGreeting('Bom dia, Início');
       } else if (currentHour >= 12 && currentHour < 18) {
-        setGreeting("Boa tarde,  Início");
+        setGreeting('Boa tarde, Início');
       } else {
-        setGreeting("Boa noite,  Início");
+        setGreeting('Boa noite, Início');
       }
     };
 
@@ -26,6 +26,7 @@ const GreetingComponent = () => {
 
   return (
     <div>
+    
       <p>{greeting}</p>
     </div>
   );

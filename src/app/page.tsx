@@ -12,7 +12,6 @@ import { relativeDateFormatter } from "@/utils/DateFormatter";
 import { ReviewCardSkeleton } from "./components/ReviewCard/ReviewCardSkeleton";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { ProfileInfo } from "./components/ProfileInfo/ProfileInfo";
-import { useSession } from "next-auth/react";
 import GreetingComponent from "./components/Greeting/Greeting";
 
 interface RecentReviewsProps {
@@ -53,7 +52,7 @@ export default function Home() {
         <div className="flex justify-between   lg:justify-normal lg:pb-10">
           <h1 className="ditems-center flex gap-4 text-2xl font-bold text-gray-100">
             <ChartLineUp size={26} className="text-singin" />
-          <GreetingComponent />
+            Início
           </h1>
           <SideBarDropDownMenu />
         </div>
