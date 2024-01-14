@@ -1,7 +1,7 @@
 import { Adapter } from "next-auth/adapters";
 import { prisma } from "./prisma";
-
-//import { parseCookies, destroyCookie } from "nookies";
+import { NextApiRequest, NextApiResponse, NextPageContext } from "next";
+import { parseCookies, destroyCookie } from "nookies";
 
 export default function PrismaAdapter(): Adapter {
   return {
@@ -17,7 +17,7 @@ export default function PrismaAdapter(): Adapter {
         },
       });
 
-      
+  
 
       return {
         id: prismaUser?.id,
@@ -46,7 +46,28 @@ export default function PrismaAdapter(): Adapter {
         emailVerified: null,
       };
     },
-   
+    
+    async getUserByEmail(id) {
+      const user = await prisma.user.findUnique({
+        where: {
+          
+         id
+        },
+      });
+
+      if (!user) {
+        return null;
+      }
+      return {
+        id: user?.id,
+        name: user.name,
+        avatar_url: user?.avatar_url!,
+        email: user.email!,
+       
+        emailVerified: null,
+      };
+    },
+    
     async getUserByAccount({ providerAccountId, provider }) {
       const account = await prisma.account.findUnique({
         where: {
