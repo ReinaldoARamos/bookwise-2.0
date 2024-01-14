@@ -1,5 +1,6 @@
 import PrismaAdapter from "@/lib/prisma-adapter";
 import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
+import { redirect } from "next/navigation";
 
 export const authOption = {
     adapter: PrismaAdapter(),
@@ -38,6 +39,12 @@ export const authOption = {
           ...session,
           user,
         };
+
+      
+      },
+         //@ts-ignore
+      async redirect() {
+        return "/";
       },
     },
   };
