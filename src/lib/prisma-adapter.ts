@@ -1,12 +1,9 @@
 import { Adapter } from "next-auth/adapters";
 import { prisma } from "./prisma";
-import { NextApiRequest, NextApiResponse, NextPageContext } from "next";
-import { parseCookies, destroyCookie } from "nookies";
 
-export default function PrismaAdapter(
-  req: NextApiRequest | NextPageContext['req'] ,
-  res: NextApiResponse | NextPageContext['res']
-): Adapter {
+//import { parseCookies, destroyCookie } from "nookies";
+
+export default function PrismaAdapter(): Adapter {
   return {
     async createUser(user) {
       
@@ -20,9 +17,7 @@ export default function PrismaAdapter(
         },
       });
 
-      destroyCookie({ res }, "@ignitecall:userId", {
-        path: "/",
-      });
+      
 
       return {
         id: prismaUser?.id,

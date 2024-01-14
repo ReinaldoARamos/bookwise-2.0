@@ -1,23 +1,38 @@
 import NextAuth from "next-auth";
-import GithubProvider from "next-auth/providers/github";
-import { PrismaAdapter } from "@auth/prisma-adapter"
-import { PrismaClient } from "@prisma/client"
+import GithubProvider, { GithubProfile } from "next-auth/providers/github";
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 export const authOption = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID ?? "",
       clientSecret: process.env.GITHUB_SECRET ?? "",
+      
+      //@ts-ignore
+      profile(profile: GithubProfile) {
+        return {
+          id: profile.id,
+          name: profile.name!,
+          email: profile.email!,
+          avatar_url: profile.avatar_url,
+          
+        }
+      }
     }),
+   
   ],
-
-  pages: {
-    signIn: "/signin",
-    
+  callbacks: {
+    async session({ session, user }) {
+      return {
+        ...session,
+        user,
+      };
+    },
   },
-
+  
 
 };
 //@ts-ignore
