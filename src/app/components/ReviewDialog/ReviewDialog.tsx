@@ -188,7 +188,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
                   book_id={id}
                   onHideCommentary={() => HideCommentary()}
                   username={session?.user?.name ?? ""}
-                  avatar_url={session?.user?.image ?? ""}
+                  avatar_url={session?.user?.avatar_url ?? ""}
                 />
               )}
               <div className="flex flex-col space-y-3 rounded-lg" ref={parent}>

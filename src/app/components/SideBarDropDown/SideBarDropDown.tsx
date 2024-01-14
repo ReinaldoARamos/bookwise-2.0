@@ -31,7 +31,7 @@ export function SideBarDropDownMenu() {
       <DropdownMenu.Trigger className="block lg:hidden">
         {session ? (
           <img
-            src={session.user?.image ?? ""}
+            src={session.user?.avatar_url ?? ""}
             alt=""
             className="h-8 w-8 rounded-full border border-teal"
           />
@@ -67,7 +67,7 @@ export function SideBarDropDownMenu() {
             <DropdownMenu.Item className="group  flex  h-[25px] rounded-[3px]  px-[5px] leading-none   outline-none">
               {session ? (
                 <div
-                  onClick={() => Redirect("/c29cda0d-e3ed-4f9f-83c0-b2a1d97ffdcd")}
+                  onClick={() => Redirect(session.user.id)}
                   className="flex items-center  gap-2 text-sm group-data-[highlighted]:text-white "
                 >
                   <User size={16} className="text-singin" />

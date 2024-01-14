@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import GithubProvider, { GithubProfile } from "next-auth/providers/github";
-import GoogleProvider from "next-auth/providers/google";
+import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
 //import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
 import PrismaAdapter from "@/lib/prisma-adapter";
@@ -20,6 +20,16 @@ export const authOption = {
           scope:
             "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile ",
         },
+      },
+      profile(profile: GoogleProfile) {
+        return {
+          id: profile.sub,
+          name: profile.name,
+          username: "",
+          email: profile.email,
+          avatar_url: profile.picture,
+          
+        };
       },
     }),
     /*
@@ -43,10 +53,8 @@ export const authOption = {
 
   callbacks: {
     //@ts-ignore
-    async session({ session, token, user }) {
+    async session({ session, user }) {
       // Send properties to the client, like an access_token and user id from a provider.
-      session.accessToken = token.accessToken;
-      session.user.id = token.id;
 
       return {
         ...session,

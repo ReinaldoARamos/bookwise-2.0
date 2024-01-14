@@ -42,7 +42,7 @@ console.log(session)
             redirectUrl={"/explorer"}
           />
           {session ? (
-            <Items text={"Perfil"} icon={User} redirectUrl={"/c29cda0d-e3ed-4f9f-83c0-b2a1d97ffdcd"} />
+            <Items text={"Perfil"} icon={User} redirectUrl={session.user.id} />
           ) : (
             <></>
           )}
@@ -53,7 +53,7 @@ console.log(session)
           <>
             <div className="flex  items-center justify-center gap-3">
               <img
-                 src={session.user?.image ?? ""}
+                 src={session.user?.avatar_url }
                 alt=""
                 className="h-10 w-10 rounded-full"
               />

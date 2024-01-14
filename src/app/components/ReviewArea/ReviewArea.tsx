@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import StarRating from "../ReviewStar/ReviewStar";
 import { api } from "@/lib/axios";
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { useSession } from "next-auth/react";
 /* eslint-disable @next/next/no-img-element */
 
 interface ReviewAreaProps {
@@ -30,7 +31,7 @@ export function ReviewArea({
   const [canSubmit, setcanSubmit] = useState(false);
   const [rate, setSelectedStarIndex] = useState<number | null>(0);
   const [parent, enableAnimations] = useAutoAnimate({duration:150})
-  
+  const {data:session} = useSession()
 
   function handleReviewText(event: React.ChangeEvent<HTMLTextAreaElement>) {
     const newText = event.target.value;
@@ -53,7 +54,7 @@ export function ReviewArea({
     setReview(description);
   }
 
-  const user_id = "c29cda0d-e3ed-4f9f-83c0-b2a1d97ffdcd";
+  const user_id = session?.user.id;
 
   async function handleCreateReview() {
     try {
