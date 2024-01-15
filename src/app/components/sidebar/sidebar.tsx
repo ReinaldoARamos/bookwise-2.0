@@ -10,7 +10,7 @@ import { useSession,  signOut } from "next-auth/react"
 
 export function Sidebar() {
  const {data:session} = useSession()
-console.log(session)
+
   const [isloginPage, setIsloginPage] = useState<boolean>(false);
 
   const path = usePathname();
