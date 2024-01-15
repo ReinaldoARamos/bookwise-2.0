@@ -48,7 +48,7 @@ export default function Home() {
     <div className="flex  pb-60 lg:pb-0 lg:pl-[480px]">
       <div className="w-full px-4  pt-7   lg:pt-[72px]">
         <div className="flex justify-between   lg:justify-normal lg:pb-10">
-          <h1 className="ditems-center flex gap-4 text-2xl font-bold text-gray-100">
+          <h1 className="items-center flex gap-4 text-2xl font-bold text-gray-100">
             <ChartLineUp size={26} className="text-singin" />
             <GreetingComponent />
           </h1>
@@ -98,7 +98,7 @@ export default function Home() {
 
           <PopularBooks />
         </div>
-        
+
       </div>
 
       <div className="hidden ">
