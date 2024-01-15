@@ -11,6 +11,7 @@ import { useState } from "react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { ExplorerBooksSkeleton } from "../components/ExplorerBooks/ExplorerBooksCardSkeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
+import { useSession } from "next-auth/react";
 
 interface ExplorerBooksProps {
   id: string;
@@ -27,12 +28,23 @@ interface ExplorerBooksProps {
       };
     }
   ];
+
+  ratings: [
+    {
+      user: {
+        id: string;
+        name: string;
+
+      }
+    }
+  ]
 }
 export default function Explorer() {
   const [selectedTagName, setSelectedTagName] = useState<string>("Todos");
   const [filter, setFilter] = useState<string>("");
   const [parent, enableAnimations] = useAutoAnimate({ duration: 300 });
   const [hideSearchBar, sethideSearchBar] = useState<boolean>(false);
+  const {data: session} = useSession()
   const { data, isLoading } = useQuery<ExplorerBooksProps[]>({
     queryKey: ["explorerbooks"],
     queryFn: async () => {
@@ -71,8 +83,8 @@ export default function Explorer() {
   )
 );
 
+//@ts-ignore
 
-  
 
   return (
     <div className="flex  flex-col px-4 pb-6  lg:mr-24  lg:px-0 lg:pb-0 lg:pl-[480px]">
@@ -116,6 +128,7 @@ export default function Explorer() {
                   rating={books.averageRating}
                   cover={books.cover_url}
                   id={books.id}
+             
                 />
               ))
              ) : (
@@ -127,6 +140,7 @@ export default function Explorer() {
                   rating={books.averageRating}
                   cover={books.cover_url}
                   id={books.id}
+              
                 />
               ))
              )}
@@ -142,6 +156,7 @@ export default function Explorer() {
                     rating={filter.averageRating}
                     cover={filter.cover_url}
                     id={filter.id}
+                  
                   />
                 );
               })}

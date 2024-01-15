@@ -8,7 +8,7 @@ import { RatedStars } from "../RatedStars/RatedStarts";
 import { ReviewDialogSkeleton } from "../ReviewDialog/ReviewDialogSkeleton";
 
 interface ExplorerBooksProps {
-  isRead?: boolean;
+  isRead?: boolean
   id: string;
   title: string;
   author: string;
@@ -38,6 +38,8 @@ export function ExplorerBooks({
   function teste() {
     console.log("fechando");
   }
+
+
 
   return (
     <Dialog.Root>
