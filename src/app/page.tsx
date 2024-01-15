@@ -44,15 +44,13 @@ export default function Home() {
   });
   const [parent, enableAnimations] = useAutoAnimate({ duration: 300 });
 
-
-
   return (
     <div className="flex  pb-6 lg:pb-0 lg:pl-[480px]">
       <div className="w-full px-4  pt-7   lg:pt-[72px]">
         <div className="flex justify-between   lg:justify-normal lg:pb-10">
-          <h1 className="ditems-center flex gap-4 text-2xl font-bold text-gray-100">
+          <h1 className="items-center flex gap-4 text-2xl font-bold text-gray-100">
             <ChartLineUp size={26} className="text-singin" />
-            Início
+            <GreetingComponent />
           </h1>
           <SideBarDropDownMenu />
         </div>
@@ -100,6 +98,7 @@ export default function Home() {
 
           <PopularBooks />
         </div>
+
       </div>
 
       <div className="hidden ">
