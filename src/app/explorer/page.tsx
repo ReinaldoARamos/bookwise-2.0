@@ -75,7 +75,7 @@ export default function Explorer() {
   
 
   return (
-    <div className="flex  flex-col px-4 pb-60  lg:mr-24  lg:px-0 lg:pb-0 lg:pl-[480px]">
+    <div className="flex  flex-col px-4 pb-6  lg:mr-24  lg:px-0 lg:pb-0 lg:pl-[480px]">
       <div className="flex w-full  flex-col pb-14 pt-7 lg:flex-row lg:justify-between lg:pt-[72px]">
         <div className="flex justify-between pb-10 lg:hidden">
           <h1 className="flex w-full  items-center  gap-4 text-2xl font-bold text-gray-100">

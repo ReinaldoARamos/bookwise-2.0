@@ -125,7 +125,7 @@ export default function Profile() {
   }, []);
   return (
     <>
-      <div className="flex pb-60 lg:gap-16  lg:pb-0 lg:pl-[480px]    ">
+      <div className="flex pb-6 lg:gap-16  lg:pb-0 lg:pl-[480px]    ">
         <div className="w-full  px-4  pt-7 lg:w-auto lg:pt-[72px]   ">
           <div className="flex justify-between pb-10 lg:hidden">
             <h1 className="flex w-full  items-center  gap-4 text-2xl font-bold text-gray-100">

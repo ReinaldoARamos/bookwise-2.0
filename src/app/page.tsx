@@ -47,7 +47,7 @@ export default function Home() {
 
 
   return (
-    <div className="flex  pb-60 lg:pb-0 lg:pl-[480px]">
+    <div className="flex  pb-6 lg:pb-0 lg:pl-[480px]">
       <div className="w-full px-4  pt-7   lg:pt-[72px]">
         <div className="flex justify-between   lg:justify-normal lg:pb-10">
           <h1 className="ditems-center flex gap-4 text-2xl font-bold text-gray-100">
