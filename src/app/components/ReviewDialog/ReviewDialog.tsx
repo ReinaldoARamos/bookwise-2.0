@@ -65,6 +65,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
   useEffect(() => {
     fetchData();
   }, [fetchData, id]);
+
   const RatingArray = BookDrawer?.ratings;
 
   const RatingQuantity = BookDrawer?.ratings?.length;
@@ -72,6 +73,12 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
   //@ts-ignore
   const booksWithAverageRating =RatingArray?.reduce((sum, ratings) => sum + ratings.rate, 0) / BookDrawer?.ratings?.length;
 
+  //@ts-ignore
+  const IsAlreadyRated = BookDrawer?.ratings 
+  .map((item) => item.user.id)
+  .includes(session?.user.id ?? "");
+
+  console.log(IsAlreadyRated)
   return (
     <>
       {!BookDrawer ? (
@@ -150,7 +157,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
           <div className="pt-[46px]">
             <div className="flex w-full justify-between pb-[22px]">
               <span className="text-sm text-gray-200">Avaliações</span>
-              {session ? (
+              {session && !IsAlreadyRated ? (
                 <span
                   className="text-sm font-bold text-custompurple hover:cursor-pointer"
                   onClick={() => ShowComment()}
@@ -158,25 +165,29 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
                   Avaliar
                 </span>
               ) : (
+               session && IsAlreadyRated ? (
+                <div></div>
+               ) : (
                 <Dialog.Root>
-                  <Dialog.Trigger>
-                    <span className="text-sm font-bold text-custompurple hover:cursor-pointer">
-                      Avaliar
-                    </span>
-                  </Dialog.Trigger>
+                <Dialog.Trigger>
+                  <span className="text-sm font-bold text-custompurple hover:cursor-pointer">
+                    Avaliar
+                  </span>
+                </Dialog.Trigger>
 
-                  <Dialog.Portal>
-                    <Dialog.Overlay className="fixed inset-0   z-20 bg-background/50" />
-                    <Dialog.Content className="fixed left-1/2 top-1/2 z-30 flex -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center rounded-xl bg-reviewCard focus:outline-none  ">
-                      <div className="flex w-full justify-end py-4 pr-4 ">
-                        <Dialog.Close>
-                          <X size={24} />
-                        </Dialog.Close>
-                      </div>
-                      <LoginDialog />
-                    </Dialog.Content>
-                  </Dialog.Portal>
-                </Dialog.Root>
+                <Dialog.Portal>
+                  <Dialog.Overlay className="fixed inset-0   z-20 bg-background/50" />
+                  <Dialog.Content className="fixed left-1/2 top-1/2 z-30 flex -translate-x-1/2 -translate-y-1/2 transform flex-col items-center justify-center rounded-xl bg-reviewCard focus:outline-none  ">
+                    <div className="flex w-full justify-end py-4 pr-4 ">
+                      <Dialog.Close>
+                        <X size={24} />
+                      </Dialog.Close>
+                    </div>
+                    <LoginDialog />
+                  </Dialog.Content>
+                </Dialog.Portal>
+              </Dialog.Root>
+               )
               )}
             </div>
 
