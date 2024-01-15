@@ -98,6 +98,7 @@ export default function Home() {
 
           <PopularBooks />
         </div>
+        
       </div>
 
       <div className="hidden ">
