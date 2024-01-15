@@ -15,7 +15,6 @@ import { ProfileInfoSkeleton } from "../components/ProfileInfo/ProfileInfoSkelet
 import { RatedBooksSkeleton } from "../components/RatedBooks/RatedBookSkeleton";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
-
 interface ProfileProps {
   id: string;
   name: string;
@@ -132,7 +131,7 @@ export default function Profile() {
               <User size={26} className="text-singin" />
               Perfil
             </h1>
-          
+
             <SideBarDropDownMenu />
           </div>
 
@@ -161,22 +160,28 @@ export default function Profile() {
             {isLoading ? (
               <RatedBooksSkeleton />
             ) : !filter ? (
-              data?.ratings.map((books) => {
-                return (
-                 <>
-                  <RatedBooks
-                    key={books.id}
-                    title={books.book.name}
-                    author={books.book.author}
-                    rate={books.rate}
-                    review={books.description}
-                    cover={books.book.cover_url}
-                    createdAt={relativeDateFormatter(books.created_at)}
-                  />
-                   
-                  </>
-                );
-              })
+              !data?.ratings.length ? (
+                <div
+                className="flex flex-col rounded-lg bg-background p-6 lg:w-[608px]"
+                ref={parent}
+              />
+              ) : (
+                data?.ratings.map((books) => {
+                  return (
+                    <>
+                      <RatedBooks
+                        key={books.id}
+                        title={books.book.name}
+                        author={books.book.author}
+                        rate={books.rate}
+                        review={books.description}
+                        cover={books.book.cover_url}
+                        createdAt={relativeDateFormatter(books.created_at)}
+                      />
+                    </>
+                  );
+                })
+              )
             ) : //@ts-ignore
             filteredBooks?.length <= 0 ? (
               <div
@@ -199,9 +204,8 @@ export default function Profile() {
               })
             )}
           </div>
-
         </div>
-       
+
         <div className="hidden lg:block ">
           {isLoading ? (
             <ProfileInfoSkeleton />
@@ -217,9 +221,7 @@ export default function Profile() {
             />
           )}
         </div>
-
       </div>
-   
     </>
   );
 }
