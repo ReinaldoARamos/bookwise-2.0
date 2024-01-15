@@ -13,6 +13,7 @@ import { ReviewCardSkeleton } from "./components/ReviewCard/ReviewCardSkeleton";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { ProfileInfo } from "./components/ProfileInfo/ProfileInfo";
 import GreetingComponent from "./components/Greeting/Greeting";
+import { useSession } from "next-auth/react";
 
 interface RecentReviewsProps {
   id: string;
@@ -34,6 +35,8 @@ interface RecentReviewsProps {
 }
 
 export default function Home() {
+  const {data: session} = useSession()
+  const [parent, enableAnimations] = useAutoAnimate({ duration: 300 });
   const { isLoading, data } = useQuery<RecentReviewsProps[]>({
     queryKey: ["Tasks"],
     queryFn: async () => {
@@ -42,7 +45,8 @@ export default function Home() {
       return response.data;
     },
   });
-  const [parent, enableAnimations] = useAutoAnimate({ duration: 300 });
+
+
 
   return (
     <div className="flex  pb-6 lg:pb-0 lg:pl-[480px]">
@@ -57,17 +61,12 @@ export default function Home() {
 
         <div className="flex flex-col pt-10 lg:flex-row lg:pt-0">
           <div>
-            <div className=" hidden pb-5">
+            <div className=" pb-5">
               <div className="pb-6 text-sm text-gray-100 ">
                 Sua última leitura
               </div>
-              <LatestRead
-                title={"a"}
-                author={"a"}
-                rating={0}
-                review={"a"}
-                cover={"public/images/o-hobbit.png"}
-              />
+            
+         <LatestRead  />
             </div>
 
             <div className="pb-6  text-sm text-gray-100 ">
