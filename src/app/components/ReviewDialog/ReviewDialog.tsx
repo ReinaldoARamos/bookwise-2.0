@@ -78,7 +78,7 @@ export function ReviewDialog({ id }: ReviewDialogProps) {
   .map((item) => item.user.id)
   .includes(session?.user.id ?? "");
 
-  console.log(IsAlreadyRated)
+
   return (
     <>
       {!BookDrawer ? (

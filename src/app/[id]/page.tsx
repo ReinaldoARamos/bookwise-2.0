@@ -112,16 +112,7 @@ export default function Profile() {
       removeDiacritics(filter.toLowerCase())
     )
   );
-  const queryClient = useQueryClient();
-
-  function teste() {
-    queryClient.removeQueries({ queryKey: ["userId"], exact: true });
-    console.log("removendo query do cache");
-  }
-
-  useEffect(() => {
-    teste();
-  }, []);
+  
   return (
     <>
       <div className="flex pb-6 lg:gap-16  lg:pb-0 lg:pl-[480px]    ">
