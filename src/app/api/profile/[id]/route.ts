@@ -21,8 +21,12 @@ export async function GET(
                             category: true
                           }
                         }
-                      }
+                      },
+                      
                     }
+                },
+                orderBy: {
+                  created_at: "desc"
                 }
             }
 

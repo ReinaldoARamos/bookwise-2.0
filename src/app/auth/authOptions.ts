@@ -1,5 +1,6 @@
 import PrismaAdapter from "@/lib/prisma-adapter";
 import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github"
 import { redirect } from "next/navigation";
 
 export const authOption = {
@@ -28,7 +29,10 @@ export const authOption = {
           };
         },
       }),
-    
+      GitHubProvider({
+        clientId: process.env.GITHUB_ID ?? "",
+        clientSecret: process.env.GITHUB_SECRET ?? "",
+      })
     ],
   
     callbacks: {

@@ -3,7 +3,7 @@
 
 import { ReviewCard } from "./components/ReviewCard/ReviewCard";
 import { PopularBooks } from "./components/LatestBooks/PopularBooks";
-import { LatestRead } from "./components/LatestRead/LatestRead";
+
 import { ChartLineUp } from "@phosphor-icons/react/dist/ssr";
 import { SideBarDropDownMenu } from "./components/SideBarDropDown/SideBarDropDown";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -34,6 +34,8 @@ interface RecentReviewsProps {
   };
 }
 
+
+
 export default function Home() {
   const {data: session} = useSession()
   const [parent, enableAnimations] = useAutoAnimate({ duration: 300 });
@@ -61,13 +63,7 @@ export default function Home() {
 
         <div className="flex flex-col pt-10 lg:flex-row lg:pt-0">
           <div>
-            <div className=" pb-5">
-              <div className="pb-6 text-sm text-gray-100 ">
-                Sua última leitura
-              </div>
-            
-         <LatestRead  />
-            </div>
+           
 
             <div className="pb-6  text-sm text-gray-100 ">
               Avaliações mais recentes

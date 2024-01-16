@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import { LoginButton } from "../components/LoginButton/LoginButton";
 import LoginLogo from "../components/LoginLogo/LoginLogo";
 import {signOut } from 'next-auth/react'
+import { GuestButtton } from "../components/LoginButton/GuestButton";
 export default function Login() {
   const { data: session} = useSession()
     return (
@@ -25,18 +26,14 @@ export default function Login() {
     
           <LoginButton
             image="/logos_google-icon.png"
-            text="Entrar com o google" provider={'google'}        
+            text="Entrar com o Google" provider={'google'}        
             
           />
           <LoginButton
             image="/Vector.png"
             text="Entrar com o Github" provider={'github'}         
           />
-          <LoginButton
-            image="/RocketLaunch.png"
-            text="Entrar como visitante" provider={""}
-          />
-        
+         <GuestButtton />
         </div>
       </div>
     </div>
