@@ -10,8 +10,9 @@ export function LoginDialog() {
         <LoginButton
           image="/logos_google-icon.png"
           text="Entrar com o google"
+          provider="google"
         />{" "}
-        <LoginButton image="/Vector.png" text="Entrar com o Github" />{" "}
+        <LoginButton image="/Vector.png" text="Entrar com o Github" provider="github"/>{" "}
       </div>
     </div>
   );
